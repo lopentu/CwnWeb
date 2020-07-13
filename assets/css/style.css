@@ -1,0 +1,42 @@
+:root{
+  --main-color: #434343;
+  --primary-color: #54afbc;
+  --secondary-color: #ffb449;
+  --highlight-color: #fe5c36;
+}
+
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  /* background-image: url("https://lope.linguistics.ntu.edu.tw/ioltw/zh/cwnlogonew.svg"); */
+  background-color: white;
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {  
+  padding: 8px;
+  border: 1px solid var(--main-color); 
+  border-radius: 10px;
+}
+
+#myNavbar{
+  background: var(--main-color);
+  color: white;
+}
+
+.bg-main { background-color: var(--main-color); }
+.bg-grey {  background-color: #FEFEFE; }
+.bg-secondary { background-color: var(--secondary-color); }
+.bg-primary { background-color: var(--primary-color); }
+
+.tabcontent{ margin: 0px 3%; }
+.tabtitle {margin-bottom: 1em; display: block; border-bottom: 4px solid}
+.border-primary {border-color: var(--primary-color) !important}
