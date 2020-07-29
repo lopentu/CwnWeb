@@ -54,3 +54,11 @@ function openContent(evt, tabName) {
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+// redirect if request are query
+const urlParams = new URLSearchParams(window.location.search);
+const queryParam = urlParams.get("query");
+const posParam = urlParams.get("pos")
+if(queryParam !== null){
+  window.location.replace("http://lope.linguistics.ntu.edu.tw/cwnvis_beta/index.php/lemmas?word=" + queryParam);
+}
