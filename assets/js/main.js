@@ -55,4 +55,6 @@ if(queryParam !== null){
   window.location.replace("http://lope.linguistics.ntu.edu.tw/cwnvis_beta/index.php/lemmas?word=" + queryParam);
 }
 
-Vue.createApp(CwnQuery).mount("#cwn-query");
+const app = Vue.createApp(CwnQuery);
+app.component('cwn-relation', CwnRelation);
+app.mount("#cwn-query");

@@ -1,0 +1,44 @@
+#senseResults {
+  text-align: left;
+}
+
+.pos-label {
+  cursor: default;
+  padding: 3pt 6pt 3pt 6pt;    
+}
+
+.sense-wrapper {
+  border-left: 6px solid #54afbc
+}
+
+.sense-head {
+  font-weight: bolder;
+}
+
+.example-preview {
+  color: #666666;
+  overflow-x: hidden; 
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.full-example-wrapper {
+  color: #666666;     
+}
+
+.full-example-wrapper p{
+  margin: 6pt 0;  
+  line-height: 150%;
+}
+
+.relation-wrapper {
+  cursor: default;  
+  background-color: lightgray!important;
+  color: black!important;
+}
+
+.relation-wrapper:hover {
+  background-color: #ffc107!important;
+  color: black!important;
+  transition: 0.3s ease-out;
+}
