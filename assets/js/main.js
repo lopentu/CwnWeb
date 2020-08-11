@@ -4,14 +4,6 @@ var apiurl={
   itemsdata: "https://awiclass.monoame.com/api/command.php?type=get&name=itemdata"
 };
 
-// 呈現查詢的資料
-var vmshow= new Vue({
-  el: "#appshow",
-  data: {
-    items: []
-  }
-});
-
 /*
 $.ajax({
   url: apiurl.itemdata,
@@ -62,3 +54,5 @@ const posParam = urlParams.get("pos")
 if(queryParam !== null){
   window.location.replace("http://lope.linguistics.ntu.edu.tw/cwnvis_beta/index.php/lemmas?word=" + queryParam);
 }
+
+Vue.createApp(CwnQuery).mount("#cwn-query");

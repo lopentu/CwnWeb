@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<script src="https://unpkg.com/vue@next"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <style>
 
 </style>
@@ -21,7 +24,7 @@
       <!-- Right-sided navbar links -->
       <div class="w3-right w3-hide-small">
         <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-user"></i> 關於（About）</a>
-        <a href="#query" class="w3-bar-item w3-button"><i class="fas fa-search"></i> 查詢（Query）</a>
+        <a href="#cwn-query" class="w3-bar-item w3-button"><i class="fas fa-search"></i> 查詢（Query）</a>
         <a href="#download" class="w3-bar-item w3-button"><i class="fas fa-download"></i> 下載（Download）</a>
       </div>
       <!-- Hide right-floated links on small screens and replace them with a menu icon -->
@@ -229,13 +232,26 @@
 
   <hr class="dotted">
   <!-- query section-->
-  <div class="w3-container w3-center w3-padding-64" id="query" style="background-color: #EDEDED">
+  <div class="w3-container w3-center w3-padding-64" id="cwn-query" style="background-color: #EDEDED">
     <span class="w3-tag w3-teal">即將上線</span>
     <h2 class="w3-center">線上查詢</h2>
     <p class="w3-large">輸入字詞並閱覽查詢結果</p>
     <div class="w3-section w3-row-padding w3-center w3-text">
-      <input />
+      <input placeholder="請輸入查詢字詞" 
+        @keyup="onQuerWordKeyup"
+        v-model="queryWord"/>
       <label class="i fas fa-search"></label>
+    </div>
+    <div class="">      
+      <div id="senseNotFound" v-if="senseData.length == 0">
+        無該字詞
+      </div>
+      <div id="senseResults" v-if="senseData.length > 0">
+        <div v-for="sense in senseData">
+          <span class="senseItem">{{sense.definition}}</span>
+        </div>
+      </div>
+      
     </div>
     <!--
         <div class="w3-row-padding" id="appshow">
@@ -401,9 +417,8 @@
 
 
 
-  <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- partial -->  
+  <script src="./assets/js/cwn-query.js"></script>
   <script src="./assets/js/main.js"></script>
 </body>
 
