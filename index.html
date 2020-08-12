@@ -241,12 +241,12 @@
       <label class="i fas fa-search"></label>
     </div>
     <div class="">
-      <div id="senseNotFound" v-if="senseData.length == 0">
+      <div id="senseNotFound" v-if="currentWord.length > 0 && senseData.length == 0">
         無該字詞
       </div>
       <!-- <sense-group-wrapper -->
       <div v-for="(grouped_senses, group_key) in senseGroups">
-        <div class="group-header" v-if="grouped_senses.length > 1">
+        <div class="group-header" v-if="Object.keys(senseGroups).length > 1">
           <span>{{currentWord}}（{{group_key}}） 有 {{grouped_senses.length}}個詞意</span>
         </div>
         <div id="senseResults" class="w3-row" v-if="senseData.length > 0">
@@ -282,6 +282,9 @@
                 <cwn-relation :sense="sense" relation="hyponym" :key="sense.cwn_id + 'hypo'"></cwn-relation>
                 <cwn-relation :sense="sense" relation="holonym" :key="sense.cwn_id + 'holo'"></cwn-relation>
                 <cwn-relation :sense="sense" relation="meronym" :key="sense.cwn_id + 'mero'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="antonym" :key="sense.cwn_id + 'anto'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="paranym" :key="sense.cwn_id + 'para'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="nearsynonym" :key="sense.cwn_id + 'near'"></cwn-relation>
               </div>
             </div>
           </div> <!-- </sense-card-wrapper> -->

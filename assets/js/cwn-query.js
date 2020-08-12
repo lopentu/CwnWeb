@@ -27,7 +27,7 @@ const CwnQuery = {
       document.getElementById("cwn-query").scrollIntoView();
     }
     // use when debugging    
-    this.queryWord = cwnQueryCursor.word ? cwnQueryCursor.word : "字";
+    this.queryWord = cwnQueryCursor.word ? cwnQueryCursor.word : "";
     this.querySenseData(this.queryWord);    
     CwnDataIO.fetchPosLabels().then((data) => {
       this.posLabels = data;
@@ -37,8 +37,9 @@ const CwnQuery = {
   updated() {
     if (this.queryCursor.cwnId) {
       const el = this.$refs["sense-" + this.queryCursor.cwnId];
-      if (el) {
-        el.scrollIntoView();
+      if (el) {      
+        const elemY = el.getBoundingClientRect().top + window.pageYOffset - 50;          
+        window.scrollTo({top: elemY, behavior:'smooth'});        
       }
     }
   },
@@ -84,7 +85,7 @@ const CwnQuery = {
         + "&cwnid=" + sense.cwn_id
         + "#cwn-query";
       navigator.clipboard.writeText(senseUrl).then(() => {
-        console.log(senseUrl + "copied");
+        console.log(senseUrl + " copied");
       }).catch((err) => {
         console.error("could not copy");
       });
@@ -115,10 +116,10 @@ const CwnRelation = {
       </div>      
     </div>
     <div class="word-wrapper w3-cell">
-      <a v-for="word in rel_words" 
+      <a v-for="rel in rel_senses" 
         style="margin-right: 8pt"
-        :href="'?query=' + word + '#cwn-query'">
-        {{word}}</a>
+        :href="'?query='+rel[0]+'&cwnid='+rel[1]+'#cwn-query'">
+        {{rel[0]}}</a>
     </div>
   </div>
   `
@@ -129,8 +130,7 @@ const CwnDataIO = {
     const file_idx = await fetch("cwn_web/word_map.json")
       .then((resp) => {
         return resp.json();
-      }).then((data) => {
-        console.log(data);
+      }).then((data) => {        
         const idx = data[word];
         return idx ? idx : null;
       }).catch((err) => {
