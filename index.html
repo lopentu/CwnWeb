@@ -233,69 +233,62 @@
 
   <hr class="dotted">
   <!-- query section-->
-  <div class="w3-container w3-center w3-padding-64" id="cwn-query" style="background-color: #EDEDED">
-    <span class="w3-tag w3-teal">即將上線</span>
+  <div class="w3-container w3-center w3-padding-64" ref="vue-cwn-query" id="cwn-query"
+    style="background-color: #EDEDED">
     <h2 class="w3-center">線上查詢</h2>
-    <p class="w3-large">輸入字詞並閱覽查詢結果</p>
     <div class="w3-section w3-row-padding w3-center w3-text">
-      <input placeholder="請輸入查詢字詞" @keyup="onQuerWordKeyup" v-model="queryWord" />
+      <input id="cwn-query-word-input" placeholder="請輸入查詢字詞" @keyup="onQuerWordKeyup" v-model="queryWord" />
       <label class="i fas fa-search"></label>
     </div>
     <div class="">
       <div id="senseNotFound" v-if="senseData.length == 0">
         無該字詞
       </div>
-      <div id="senseResults" class="w3-row" v-if="senseData.length > 0">
-        <div class="w3-col m6 w3-padding" v-for="sense in senseData">
-          <div class="sense-wrapper  w3-padding w3-white w3-card w3-display-container">
-            <div class="pos-label w3-medium w3-display-topright w3-hover-red"
-              :title="posLabels[sense.pos]">
-              {{sense.pos}}</div>
-            <div class="sense-head">
-              {{sense.definition}}
-            </div>
-            <div class="sense-examples">
-              <div v-if="!toShowFullExamples(sense.cwn_id)" 
-                @click="()=>toggleShowFullExamples(sense.cwn_id)"
-                class="example-preview">{{sense.examples[0]}}</div>
-              <div v-if="toShowFullExamples(sense.cwn_id)" 
-                class="full-example-wrapper w3-display-container">
-                <div 
-                  class="w3-display-topright w3-large w3-hover-text-green"
-                  @click="()=>toggleShowFullExamples(sense.cwn_id)">
-                  <i class="fa fa-caret-square-up"></i>
+      <!-- <sense-group-wrapper -->
+      <div v-for="(grouped_senses, group_key) in senseGroups">
+        <div class="group-header" v-if="grouped_senses.length > 1">
+          <span>{{currentWord}}（{{group_key}}） 有 {{grouped_senses.length}}個詞意</span>
+        </div>
+        <div id="senseResults" class="w3-row" v-if="senseData.length > 0">
+          <!-- <sense-card-wrapper> -->
+          <div v-for="(sense, idx) in grouped_senses" 
+            class="w3-col l4 m6 s12 w3-padding" :ref="'sense-'+sense.cwn_id">
+            <div class="sense-wrapper w3-padding w3-white w3-card w3-display-container"
+              :class="{senseFocus: isSenseFocus(sense)}">
+              <div class="pos-label w3-medium w3-display-topright"
+                :title="sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(按一下複製詞意連結)'" 
+                @click="copySenseUrl(sense)">
+                {{sense.pos}}</div>
+              <div class="sense-head">
+                {{idx+1}}. {{sense.definition}}
+              </div>
+              <div class="sense-examples">
+                <div v-if="!toShowFullExamples(sense.cwn_id)" @click="()=>toggleShowFullExamples(sense.cwn_id)"
+                  class="example-preview">{{sense.examples[0]}}<div class="fadeout"></div>
                 </div>
-                <p v-for="example in sense.examples">{{example}}</p>
+
+                <div v-if="toShowFullExamples(sense.cwn_id)" class="full-example-wrapper w3-display-container">
+                  <div class="collapse-examples"
+                    @click="()=>toggleShowFullExamples(sense.cwn_id)">
+                    <i class="fa fa-angle-double-up"></i> &nbsp; 收起例句 &nbsp;
+                    <i class="fa fa-angle-double-up"></i>
+                  </div>
+                  <p v-for="example in sense.examples">{{example}}</p>
+                </div>
+              </div>
+              <div class="sense-relations">
+                <cwn-relation :sense="sense" relation="synonym" :key="sense.cwn_id + 'syn'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="hypernym" :key="sense.cwn_id + 'hyper'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="hyponym" :key="sense.cwn_id + 'hypo'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="holonym" :key="sense.cwn_id + 'holo'"></cwn-relation>
+                <cwn-relation :sense="sense" relation="meronym" :key="sense.cwn_id + 'mero'"></cwn-relation>
               </div>
             </div>
-            <div class="sense-relations">
-              <cwn-relation :sense="sense" relation="synonym" key="syno"></cwn-relation>
-              <cwn-relation :sense="sense" relation="hypernym" key="hyper"></cwn-relation>
-              <cwn-relation :sense="sense" relation="hyponym" key="hypo"></cwn-relation>
-              <cwn-relation :sense="sense" relation="holonym" key="holo"></cwn-relation>
-              <cwn-relation :sense="sense" relation="meronym" key="mero"></cwn-relation>
-            </div>
-          </div>
-        </div>
+          </div> <!-- </sense-card-wrapper> -->
+        </div> <!-- </sense-group-wrapper> -->
       </div>
 
     </div>
-    <!--
-        <div class="w3-row-padding" id="appshow">
-      <div class="w3-col m6">
-        <h3>載入資料</h3>
-        <ul>
-          <li v-for="item in items">
-            {{item.lemma}}
-            {{item.zhuyin}}
-          </li>
-        </ul>
-      </div>
-      <div class="w3-col m6">
-        <h3>視覺化圖像</h3>
-      </div>
-    </div>
-    -->
   </div>
 
   <hr class="dotted">

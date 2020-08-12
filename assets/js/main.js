@@ -49,10 +49,17 @@ document.getElementById("defaultOpen").click();
 
 // redirect if request are query
 const urlParams = new URLSearchParams(window.location.search);
-const queryParam = urlParams.get("query");
-const posParam = urlParams.get("pos")
-if(queryParam !== null){
-  window.location.replace("http://lope.linguistics.ntu.edu.tw/cwnvis_beta/index.php/lemmas?word=" + queryParam);
+
+// Do not change GET parameter name of _query_ and _pos_. 
+// They are linked from external sites (e.g. E-HowNet from AI project 2020).
+const word = urlParams.get("query");
+const pos = urlParams.get("pos");
+const cwnId = urlParams.get("cwnid");
+let cwnQueryCursor = {}
+if(word !== null){
+  // window.location.replace("http://lope.linguistics.ntu.edu.tw/cwnvis_beta/index.php/lemmas?word=" + queryParam);
+  cwnQueryCursor = {word, pos, cwnId};
+  document.getElementById("cwn-query").scrollIntoView();
 }
 
 const app = Vue.createApp(CwnQuery);
