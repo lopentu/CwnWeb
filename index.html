@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/cwn-query.css">
-<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.prod.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style>
@@ -57,18 +57,18 @@
         <table class="w3-table w3-striped w3-white">
           <tr>
             <td><i class="fa fa-bullhorn"></i></td>
-            <td>CWN2.0 新版網頁測試中！</td>
-            <td><i>2020/03/20</i></td>
-          </tr>
-          <tr>
-            <td><i class="fa fa-bullhorn"></i></td>
-            <td>CWN2.0 Python程式介面已釋出</td>
-            <td><i>2020/05/21</i></td>
+            <td>歡迎使用 CWN2.0 線上查詢！</td>
+            <td><i>2020/08/08</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-bullhorn"></i></td>
             <td>歡迎參與CWN詞意標記工作小組！</td>
             <td><i>2020/07/01</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-bullhorn"></i></td>
+            <td>CWN2.0 Python程式介面已釋出</td>
+            <td><i>2020/05/21</i></td>
           </tr>
         </table>
         <br>
@@ -117,11 +117,9 @@
     <div class="w3-row" style="padding:20px">
       <div id="Intro" class="tabcontent">
         <span class="w3-xlarge w3-padding-small tabtitle border-primary">ＣＷＮ 簡介</span>
-        <p>中文詞彙網路（Chinse Wordnet，縮寫為 CWN），想要解決詞義（sense）以及詞彙語意關係（lexical semantic
-          relations）的研究主題。中文詞網的核心元素是各個中文詞彙的同義詞集（synsets）以及連繫各詞集的語意關係；透過語意關係，將各個同義詞集連接起來，形成語意網絡。</p>
-        <p>中文詞彙網路累積了近二十年的研究成果，起初由中研院語言學研究所推動，於 2010 年完成，目前中文詞彙網路由臺大語言所負責維護，並著力開發更廣泛且靈活的工具資源以供使用，例如：XML 檔案、PyCWN 套件、（連結指到
-          Downloads）。</p>
-        <p>由於詞網只收錄實詞（open class），亦即名詞、動詞、形容詞及副詞，最新的詞彙統計資料，可至 Data Statistics 查看。第一次使用中文詞網，可以參考新手教學、快速上手/小工具。</p>
+        <p>中文詞彙網路（Chinse Wordnet，CWN），是一項試圖解決詞義（sense）以及詞彙語意關係（lexical semantic relations）的語言知識資源。中文詞網的核心元素是中文詞彙的同義詞集（synsets）以及連繫各詞集的語意關係；透過語意關係，將各個同義詞集連接起來，形成語意網絡。</p>
+        <p>中文詞彙網路累積了近二十年的研究成果，起初由中研院語言學研究所推動，於 2010 年完成，目前中文詞彙網路由臺大語言所負責維護，並著力開發更廣泛且靈活的工具資源以供使用，例如：XML、SQLite格式、WordNet LMF資料格式等等。</p>
+        <p>中文詞彙網絡收錄範圍為實詞（open class），亦即名詞、動詞、形容詞及副詞。第一次使用中文詞網，可以參考新手教學、快速上手/小工具。</p>
         <p>在數位人文的時代，附有標記的語料資料常是計算語言學與自然語言處理不可或缺的實用資源，更多語言的詞彙網路建立，也讓這項資源成為跨語言的研究素材。</p><br>
 
         <h4><b>架構</b></h4>
@@ -241,22 +239,34 @@
       <label class="i fas fa-search"></label>
     </div>
     <div class="">
-      <div id="senseNotFound" v-if="currentWord.length > 0 && senseData.length == 0">
+      <!-- <spinner> -->
+      <div class="lds-grid" v-if="isDataLoading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <!-- </spinner> -->
+      <div id="senseNotFound" v-if="!isDataLoading && (currentWord.length > 0 && senseData.length == 0)">
         無該字詞
       </div>
       <!-- <sense-group-wrapper -->
-      <div v-for="(grouped_senses, group_key) in senseGroups">
+      <div v-if="!isDataLoading" v-for="(grouped_senses, group_key) in senseGroups">
         <div class="group-header" v-if="Object.keys(senseGroups).length > 1">
           <span>{{currentWord}}（{{group_key}}） 有 {{grouped_senses.length}}個詞意</span>
         </div>
         <div id="senseResults" class="w3-row" v-if="senseData.length > 0">
           <!-- <sense-card-wrapper> -->
-          <div v-for="(sense, idx) in grouped_senses" 
-            class="w3-col l4 m6 s12 w3-padding" :ref="'sense-'+sense.cwn_id">
+          <div v-for="(sense, idx) in grouped_senses" class="w3-col l4 m6 s12 w3-padding" :ref="'sense-'+sense.cwn_id">
             <div class="sense-wrapper w3-padding w3-white w3-card w3-display-container"
               :class="{senseFocus: isSenseFocus(sense)}">
               <div class="pos-label w3-medium w3-display-topright"
-                :title="sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(按一下複製詞意連結)'" 
+                :title="sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(按一下複製詞意連結)'"
                 @click="copySenseUrl(sense)">
                 {{sense.pos}}</div>
               <div class="sense-head">
@@ -268,8 +278,7 @@
                 </div>
 
                 <div v-if="toShowFullExamples(sense.cwn_id)" class="full-example-wrapper w3-display-container">
-                  <div class="collapse-examples"
-                    @click="()=>toggleShowFullExamples(sense.cwn_id)">
+                  <div class="collapse-examples" @click="()=>toggleShowFullExamples(sense.cwn_id)">
                     <i class="fa fa-angle-double-up"></i> &nbsp; 收起例句 &nbsp;
                     <i class="fa fa-angle-double-up"></i>
                   </div>

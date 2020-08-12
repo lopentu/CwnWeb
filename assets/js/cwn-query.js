@@ -8,7 +8,8 @@ const CwnQuery = {
       senseData: [],
       senseGroups: {},
       showFullExamples: {},
-      queryCursor: {}
+      queryCursor: {},
+      isDataLoading: false
     }
   },
 
@@ -61,11 +62,13 @@ const CwnQuery = {
     },
 
     querySenseData(word) {
-      CwnDataIO.fetchWordData(word).then(data => {        
+      this.isDataLoading = true;
+      CwnDataIO.fetchWordData(word).then(data => {                
         this.senseData = data;        
-        this.senseGroups = CwnDataIO.groupByZhuYin(data);
+        this.senseGroups = CwnDataIO.groupByZhuYin(data);        
         // console.log(this.senseGroups);
         this.currentWord = word;
+        this.isDataLoading = false;
       }).catch((err) => {
         console.error(err);
       });
