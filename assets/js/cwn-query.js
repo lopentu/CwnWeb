@@ -135,7 +135,7 @@ const CwnDataIO = {
         return resp.json();
       }).then((data) => {        
         const idx = data[word];
-        return idx ? idx : null;
+        return typeof(idx)!='undefined' ? idx : null;
       }).catch((err) => {
         console.error(err)
         return null;
