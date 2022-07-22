@@ -1,496 +1,546 @@
 <!DOCTYPE html>
 <html>
-<title>中文詞彙網路 2.0</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="image/png" href="assets/img/cwn-logo-256.png">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/cwn-query.css">
-<script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.prod.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>中文詞彙網路 2.0</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/img/cwn-logo-256.png">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/cwn-query.css">
+  <link rel="stylesheet" href="assets/css/sense-tagger.css">
+  <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.prod.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<style>
+  <style>
 
-</style>
+  </style>
 
-<body>
+  <body>
 
-  <!-- Navbar (sit on top) -->
-  <div class="w3-top">
-    <div class="w3-bar w3-card" id="myNavbar">
-      <a href="#home" class="w3-bar-item w3-button w3-wide">中文詞彙網路 CWN 2.0</a>
-      <!-- Right-sided navbar links -->
-      <div class="w3-right w3-hide-small">
-        <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-user"></i> 關於（About）</a>
-        <a href="#cwn-query" class="w3-bar-item w3-button"><i class="fas fa-search"></i> 查詢（Query）</a>
-        <a href="#download" class="w3-bar-item w3-button"><i class="fas fa-download"></i> 下載（Download）</a>
-      </div>
-      <!-- Hide right-floated links on small screens and replace them with a menu icon -->
-
-      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
-        onclick="w3_open()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-  </div>
-
-  <!-- Sidebar on small screens when clicking the menu icon -->
-  <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
-    style="display:none" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">結束選單 ×</a>
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">關於（About）</a>
-    <a href="#query" onclick="w3_close()" class="w3-bar-item w3-button">查詢（Query）</a>
-    <a href="#download" onclick="w3_close()" class="w3-bar-item w3-button">下載（Download）</a>
-  </nav>
-
-  <!-- Header with full-height image -->
-  <header class="w3-display-container bg-grey" style="padding:128px 16px 64px 16px" id="home">
-    <div class="w3-row-padding">
-      <div class="w3-col m6">
-        <img class="w3-image w3-round-large" src="assets/img/cwn-logo-main.svg" alt="CWN Logo" width="560" height="200">
-      </div>
-      <div class="w3-col m6" style="margin:5px -16px">
-        <h3>最新消息</h3>
-        <table class="w3-table w3-striped w3-white">
-         <tr>
-            <td><i class="fa fa-bullhorn"></i></td>
-            <td>CWN2.0 v.2022.07資料更新！</td>
-            <td><i>2022/07/15</i></td>
-          </tr>
-         <tr>
-            <td><i class="fa fa-bullhorn"></i></td>
-            <td>釋義語言統計分析圖表已釋出</td>
-            <td><i>2022/06/25</i></td>
-          </tr>
-         <tr>
-            <td><i class="fa fa-bullhorn"></i></td>
-            <td>CwnGraph 0.3.0 已釋出</td>
-            <td><i>2022/04/22</i></td>
-          </tr>
-         <tr>
-            <td><i class="fa fa-bullhorn"></i></td>
-            <td>歡迎參與CWN詞意標記工作小組！</td>
-            <td><i>2022/02/01</i></td>
-          </tr>
-          
-        </table>
-        <br>
-        <p>
-          <a href="#download" class="w3-button w3-black w3-right" href="https://lopentu.github.com/CwnGraph">
-            <i class="fa fa-download"></i> 直接下載 CWN 資料</a>
-          <a class="w3-button w3-black w3-right" style="margin-right: 24px;" href="https://github.com/lopentu/CwnGraph"
-            target="_blank">
-            <i class="fab fa-github"></i> CwnGraph Github</a>
-
-        </p>
-      </div>
-    </div>
-  </header>
-
-  <!-- Promo Section "Statistics" -->
-  <div class="w3-container w3-row w3-center w3-lime w3-padding-32">
-    <div class="w3-quarter">
-      <span class="w3-xxlarge">29,321</span>
-      <br>收錄詞條
-    </div>
-    <div class="w3-quarter">
-      <span class="w3-xxlarge">29,433</span>
-      <br>詞意數量
-    </div>
-    <div class="w3-quarter">
-      <span class="w3-xxlarge">12,620</span>
-      <br>同義詞集
-    </div>
-    <div class="w3-quarter">
-      <span class="w3-xxlarge">59,993</span>
-      <br>詞意關係
-    </div>
-  </div>
-
-  <!-- About Section -->
-  <div class="w3-container" style="padding:64px 16px" id="about">
-    <h2 class="w3-center">關於 中文詞彙網路</h2>
-
-    <div class="w3-bar w3-center">
-      <button class="w3-button" onclick="openContent(event, 'Intro')" id="defaultOpen">ＣＷＮ 簡介</button>
-      <button class="w3-button" onclick="openContent(event, 'People')">相關人員</button>
-      <button class="w3-button" onclick="openContent(event, 'Research')">研究發表</button>
-      <button class="w3-button" onclick="openContent(event, 'MetaLanguage')">釋義語言統計分析</button>
-    </div>
-
-    <div class="w3-row" style="padding:20px">
-      <div id="Intro" class="tabcontent">
-        <span class="w3-xlarge w3-padding-small tabtitle border-primary">ＣＷＮ 簡介</span>
-        <p>中文詞彙網路（Chinse Wordnet，CWN），是一項試圖解決詞義（sense）以及詞彙語意關係（lexical semantic relations）的語言知識資源。中文詞網的核心元素是中文詞彙的同義詞集（synsets）以及連繫各詞集的語意關係；透過語意關係，將各個同義詞集連接起來，形成語意網絡。</p>
-        <p>中文詞彙網路累積了近二十年的研究成果，起初由中研院語言學研究所推動，於 2010 年完成。臺大語言所目前負責維護中文詞彙網路，並著力開發更廣泛且靈活的工具資源，例如：XML、SQLite格式、WordNet LMF資料格式等等。在數位人文的時代，附有標記的語料資料常是計算語言學與自然語言處理不可或缺的資源，更多語言的詞彙網路建立，也讓這項資源成為跨語言的研究素材。</p>
-        <p>中文詞彙網絡收錄範圍為實詞（open class），亦即名詞、動詞、形容詞及副詞。第一次使用中文詞網，可以參考新手教學、快速上手/小工具。</p>
-        <br>
-
-        <h4><b>架構</b></h4>
-        <p>CWN裡的單詞之間主要關係是同義關係，例如「關和閉」、「車子和車」等同義詞。同義詞指的是表示相同概念，並且在許多情況下可以互換的無序單詞集合（同義詞集）。 CWN的1.2萬個同義詞集中的每一個都通過少量的「概念關係」連結到其他同義詞集。此外，同義詞集包含一個簡短定義（「釋義」），並且在大多數情況下，一個或多個簡短的句子說明了同義詞集中的單詞的用法。至於有多種不同含義的單詞形式，會以多種不同的同義詞集表示。因此，CWN中的每個形式含義對都是唯一的。
-
-        </p><br>
-        <h4><b>語意關係</b></h4>
-        <p>
-          同義詞集之間最頻繁編碼的關係是超從屬關係（也稱為上下位或ISA關係）。它將相對籠統的同義詞集（例如{植物}）連結到相對具體的同義詞集（例如{花}和{杜鵑花}）。因此，在CWN中，植物類別包括花，而花又包括杜鵑花。相對而言，花和杜鵑花等概念構成了植物類別。所有名詞層次最終都在根節點{事物}上。上下關係是遞移性的：如果杜鵑花是一種花，而花是一種植物，那麼杜鵑花是一種植物。
-          CWN區分類型（通用名詞）和實例（特定人員、國家/地區和地理實體）。因此，杜鵑花是花的一種，波蘭是國家的一個實例。實例和下位詞在其層次結構中始終是下位（子）節點。</p>
-        <p>
-          另外一個語意關係是反義關係。成對的“直接”反義詞，例如乾-濕和老-少，反映了強烈的語義對比。這些極性形容詞中的每一個又與許多“在語義上相似”的形容詞相關：老與長、大、邁，少與小相關。語義上相似的形容詞是其另一極“形容詞”的“間接反義詞”。</p><br>
-        <h4><b>跨詞性關係</b></h4>
-        <p>
-          CWN的大多數關係都將來自同一詞性（POS）的詞連結起來。因此，CWN實際上包含四個子網，每個子網分別用於名詞、動詞、形容詞和副詞，跨POS的關係很少。</p><br><br>
-      </div>
-
-      <div id="People" class="tabcontent">
-        <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">相關人員</span>
-        <div class="w3-row-padding" style="margin-top:12px">
-
-          <div class="w3-col m4" style="margin:5px -16px">
-            <h4 class="w3-amber w3-padding-small"><b>現任維護團隊</b></h4>
-            <table class="w3-table w3-striped w3-white">
-              <tr>
-                <td>謝舒凱 ---- LOPE 實驗室 主持人</td>
-              </tr>
-              <tr>
-                <td>曾昱翔 ---- LOPE 實驗室 博士後研究人員</td>
-              </tr>
-	      <tr>
-                <td>江琼玉 ---- LOPE 實驗室 研究人員</td>
-              </tr>
-              <tr>
-                <td>古貿昌 ---- LOPE 實驗室 博士生</td>
-              </tr>
-              <tr>
-                <td>王伯雅 ---- LOPE 實驗室 博士生</td>
-              </tr>
-              <tr>
-                <td>張鈺琳 ---- LOPE 實驗室 碩士生</td>
-              </tr>
-              <tr>
-                <td>陳品而 ---- LOPE 實驗室 碩士生</td>
-              </tr>
-              <tr>
-                <td>周昕妤 ---- LOPE 實驗室 碩士生</td>
-              </tr>
-
-              </table>
-          </div>
-          <div class="w3-col m8" style="margin:5px">
-            <div class="w3-col m6" style="padding:5px">
-              <h4 class="w3-pale-yellow w3-padding-small"><b>曾參與計畫之貢獻者</b></h4>
-              <table class="w3-table w3-striped w3-white">
-                <tr>
-                  <td>李智堯 ---- LOPE 實驗室 博士生</td>
-                </tr>
-                <tr>
-                  <td>張瑜芸 ---- 政大語言所助理教授</td>
-                </tr>
-                <tr>
-                  <td>施孟賢 ---- 政大博士後研究員</td>
-                </tr> 
-		<tr>
-                  <td>陳蓓怡 ---- LOPE 實驗室 碩士生</td>
-                </tr>
-		<tr>
-                  <td>石晴方 ---- LOPE 實驗室 碩士生</td>
-               </tr>
-	        <tr>
-                  <td>廖永賦 ---- LOPE 實驗室 碩士生</td>
-                </tr>
-
-              </table>
-
-            </div>
-            <div class="w3-col m6" style="padding:5px">
-              <h4 class="w3-pale-yellow w3-padding-small"><b>中文詞庫小組（資源建構者）</b></h4>
-              <table class="w3-table w3-striped w3-white">
-                <tr>
-                  <td>黃居仁 ---- 香港理工大學教授</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-
+    <!-- Navbar (sit on top) -->
+    <div class="w3-top">
+      <div class="w3-bar w3-card" id="myNavbar">
+        <a href="#home" class="w3-bar-item w3-button w3-wide">中文詞彙網路 CWN 2.0</a>
+        <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+          <a href="#about" class="w3-bar-item w3-button"><i class="fa fa-user"></i> 關於（About）</a>
+          <a href="#cwn-query" class="w3-bar-item w3-button"><i class="fas fa-search"></i> 查詢（Query）</a>
+          <a href="#download" class="w3-bar-item w3-button"><i class="fas fa-download"></i> 下載（Download）</a>
         </div>
-      </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-      <div id="Research" class="tabcontent">
-        <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">研究發表</span>
-        <div class="w3-row-padding" style="margin-top:12px">
-          <h4><b>2019</b></h4>
-          <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2019). <b>Modeling the Idiomaticity of Chinese
-              Quadra-syllabic Idiomatic Expressions.</b> Paper presented in the 33rd Pacific Asia Conference on
-            Language, Information and Computation. Hakodate, Japan.</p>
-          <p>Tseng, Y. H. &amp; Hsieh, S. K. (2019). <b>Augmenting Chinese WordNet semantic relations with
-              contextualized embeddings.</b> Paper presented in the 10th Global WordNet Conference. Wroclaw, Poland.</p>
-          <h4><b>2018</b></h4>
-          <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2018). <b>Fluid Annotation: A
-              Granularity-aware Annotation Tool for Chinese Word Fluidity.</b> Paper presented in Eleventh International
-            Conference on Language Resources and Evaluation. Miyazaki, Japan.</p>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+          onclick="w3_open()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+      style="display:none" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">結束選單 ×</a>
+      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">關於（About）</a>
+      <a href="#query" onclick="w3_close()" class="w3-bar-item w3-button">查詢（Query）</a>
+      <a href="#download" onclick="w3_close()" class="w3-bar-item w3-button">下載（Download）</a>
+    </nav>
+
+    <!-- Header with full-height image -->
+    <header class="w3-display-container bg-grey" style="padding:128px 16px 64px 16px" id="home">
+      <div class="w3-row-padding">
+        <div class="w3-col m6">
+          <img class="w3-image w3-round-large" src="assets/img/cwn-logo-main.svg" alt="CWN Logo" width="560"
+            height="200">
         </div>
-      </div>
+        <div class="w3-col m6" style="margin:5px -16px">
+          <h3>最新消息</h3>
+          <table class="w3-table w3-striped w3-white">
+            <tr>
+              <td><i class="fa fa-bullhorn"></i></td>
+              <td>CWN2.0 v.2022.07資料更新！</td>
+              <td><i>2022/07/15</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bullhorn"></i></td>
+              <td>釋義語言統計分析圖表已釋出</td>
+              <td><i>2022/06/25</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bullhorn"></i></td>
+              <td>CwnGraph 0.3.0 已釋出</td>
+              <td><i>2022/04/22</i></td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-bullhorn"></i></td>
+              <td>歡迎參與CWN詞意標記工作小組！</td>
+              <td><i>2022/02/01</i></td>
+            </tr>
 
-      <div id="MetaLanguage" class="tabcontent">
-        <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">釋義語言統計分析</span>
-        <div class="w3-row-padding" style="margin-top:12px">
+          </table>
+          <br>
           <p>
-            在CWN用於釋義的釋義語言當中，目前總共有160,538個單詞，包含14,961個不重複的中文詞彙，在這160,538個單詞當中，名詞的數量最多，共71,600個名詞，佔45%。其次為動詞，共44,179個動詞，佔28%。其餘有7,240個副詞，佔5%。4,729個形容詞，佔3%。剩下大約20%則不屬此四個詞類之一。詳細比例見下圖所示。</p>
-          <img src="assets/img/pie.png" width="750">
-          <p>
-            以下圖表為CWN釋義語言中，使用次數最多的前10個名詞、形容詞、副詞、以及動詞。</p>
-          <img src="assets/img/meta_word_freq.png" width="750">
+            <a href="#download" class="w3-button w3-black w3-right" href="https://lopentu.github.com/CwnGraph">
+              <i class="fa fa-download"></i> 直接下載 CWN 資料</a>
+            <a class="w3-button w3-black w3-right" style="margin-right: 24px;"
+              href="https://github.com/lopentu/CwnGraph" target="_blank">
+              <i class="fab fa-github"></i> CwnGraph Github</a>
+
+          </p>
         </div>
       </div>
+    </header>
 
-      <hr>
+    <!-- Promo Section "Statistics" -->
+    <div class="w3-container w3-row w3-center w3-lime w3-padding-32">
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">29,321</span>
+        <br>收錄詞條
+      </div>
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">29,433</span>
+        <br>詞意數量
+      </div>
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">12,620</span>
+        <br>同義詞集
+      </div>
+      <div class="w3-quarter">
+        <span class="w3-xxlarge">59,993</span>
+        <br>詞意關係
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="w3-container" style="padding:64px 16px" id="about">
+      <h2 class="w3-center">關於 中文詞彙網路</h2>
+
       <div class="w3-bar w3-center">
         <button class="w3-button" onclick="openContent(event, 'Intro')" id="defaultOpen">ＣＷＮ 簡介</button>
         <button class="w3-button" onclick="openContent(event, 'People')">相關人員</button>
         <button class="w3-button" onclick="openContent(event, 'Research')">研究發表</button>
         <button class="w3-button" onclick="openContent(event, 'MetaLanguage')">釋義語言統計分析</button>
+        <button class="w3-button" onclick="openContent(event, 'SenseTagger')">詞意自動標記模型</button>
       </div>
-    </div>
-  </div>
 
-  <hr class="dotted">
-  <!-- query section-->
-  <div class="w3-container w3-center w3-padding-64" ref="vue-cwn-query" id="cwn-query"
-    style="background-color: #EDEDED">
-    <h2 class="w3-center">線上查詢</h2>
-    <div class="w3-section w3-row-padding w3-center w3-text">
-      <input id="cwn-query-word-input" placeholder="請輸入查詢字詞" @keyup="onQuerWordKeyup" v-model="queryWord" />
-      <label class="i fas fa-search"></label>
-    </div>
-    <div class="">
-      <!-- <spinner> -->
-      <div class="lds-grid" v-if="isDataLoading">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <!-- </spinner> -->
-      <div id="senseNotFound" v-if="!isDataLoading && (currentWord.length > 0 && senseData.length == 0)">
-        無該字詞
-      </div>
-      <!-- <sense-group-wrapper -->
-      <div v-if="!isDataLoading" v-for="(grouped_senses, group_key) in senseGroups">
-        <div class="group-header" v-if="Object.keys(senseGroups).length > 1">
-          <span>{{currentWord}}（{{group_key}}） 有 {{grouped_senses.length}}個詞意</span>
+      <div class="w3-row" style="padding:20px">
+        <div id="Intro" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small tabtitle border-primary">ＣＷＮ 簡介</span>
+          <p>中文詞彙網路（Chinse Wordnet，CWN），是一項試圖解決詞義（sense）以及詞彙語意關係（lexical semantic
+            relations）的語言知識資源。中文詞網的核心元素是中文詞彙的同義詞集（synsets）以及連繫各詞集的語意關係；透過語意關係，將各個同義詞集連接起來，形成語意網絡。</p>
+          <p>中文詞彙網路累積了近二十年的研究成果，起初由中研院語言學研究所推動，於 2010 年完成。臺大語言所目前負責維護中文詞彙網路，並著力開發更廣泛且靈活的工具資源，例如：XML、SQLite格式、WordNet
+            LMF資料格式等等。在數位人文的時代，附有標記的語料資料常是計算語言學與自然語言處理不可或缺的資源，更多語言的詞彙網路建立，也讓這項資源成為跨語言的研究素材。</p>
+          <p>中文詞彙網絡收錄範圍為實詞（open class），亦即名詞、動詞、形容詞及副詞。第一次使用中文詞網，可以參考新手教學、快速上手/小工具。</p>
+          <br>
+
+          <h4><b>架構</b></h4>
+          <p>CWN裡的單詞之間主要關係是同義關係，例如「關和閉」、「車子和車」等同義詞。同義詞指的是表示相同概念，並且在許多情況下可以互換的無序單詞集合（同義詞集）。
+            CWN的1.2萬個同義詞集中的每一個都通過少量的「概念關係」連結到其他同義詞集。此外，同義詞集包含一個簡短定義（「釋義」），並且在大多數情況下，一個或多個簡短的句子說明了同義詞集中的單詞的用法。至於有多種不同含義的單詞形式，會以多種不同的同義詞集表示。因此，CWN中的每個形式含義對都是唯一的。
+
+          </p><br>
+          <h4><b>語意關係</b></h4>
+          <p>
+            同義詞集之間最頻繁編碼的關係是超從屬關係（也稱為上下位或ISA關係）。它將相對籠統的同義詞集（例如{植物}）連結到相對具體的同義詞集（例如{花}和{杜鵑花}）。因此，在CWN中，植物類別包括花，而花又包括杜鵑花。相對而言，花和杜鵑花等概念構成了植物類別。所有名詞層次最終都在根節點{事物}上。上下關係是遞移性的：如果杜鵑花是一種花，而花是一種植物，那麼杜鵑花是一種植物。
+            CWN區分類型（通用名詞）和實例（特定人員、國家/地區和地理實體）。因此，杜鵑花是花的一種，波蘭是國家的一個實例。實例和下位詞在其層次結構中始終是下位（子）節點。</p>
+          <p>
+            另外一個語意關係是反義關係。成對的“直接”反義詞，例如乾-濕和老-少，反映了強烈的語義對比。這些極性形容詞中的每一個又與許多“在語義上相似”的形容詞相關：老與長、大、邁，少與小相關。語義上相似的形容詞是其另一極“形容詞”的“間接反義詞”。
+          </p><br>
+          <h4><b>跨詞性關係</b></h4>
+          <p>
+            CWN的大多數關係都將來自同一詞性（POS）的詞連結起來。因此，CWN實際上包含四個子網，每個子網分別用於名詞、動詞、形容詞和副詞，跨POS的關係很少。</p><br><br>
         </div>
-        <div id="senseResults" class="w3-row" v-if="senseData.length > 0">
-          <!-- <sense-card-wrapper> -->
-          <div v-for="(sense, idx) in grouped_senses" class="w3-col l4 m6 s12 w3-padding" :ref="'sense-'+sense.cwn_id">
-            <div class="sense-wrapper w3-padding w3-white w3-card w3-display-container"
-              :class="{senseFocus: isSenseFocus(sense)}">
-              <div class="pos-label w3-medium w3-display-topright"
-                :title="sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(按一下複製詞意連結)'"
-                @click="copySenseUrl(sense)">
-                {{sense.pos}}</div>
-              <div class="sense-head">
-                {{idx+1}}. {{sense.definition}}
-              </div>
-              <div class="sense-examples">
-                <div v-if="!toShowFullExamples(sense.cwn_id)" @click="()=>toggleShowFullExamples(sense.cwn_id)"
-                  class="example-preview">{{sense.examples[0]}}<div class="fadeout"></div>
-                </div>
 
-                <div v-if="toShowFullExamples(sense.cwn_id)" class="full-example-wrapper w3-display-container">
-                  <div class="collapse-examples" @click="()=>toggleShowFullExamples(sense.cwn_id)">
-                    <i class="fa fa-angle-double-up"></i> &nbsp; 收起例句 &nbsp;
-                    <i class="fa fa-angle-double-up"></i>
-                  </div>
-                  <p v-for="example in sense.examples">{{example}}</p>
-                </div>
+        <div id="People" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">相關人員</span>
+          <div class="w3-row-padding" style="margin-top:12px">
+
+            <div class="w3-col m4" style="margin:5px -16px">
+              <h4 class="w3-amber w3-padding-small"><b>現任維護團隊</b></h4>
+              <table class="w3-table w3-striped w3-white">
+                <tr>
+                  <td>謝舒凱 ---- LOPE 實驗室 主持人</td>
+                </tr>
+                <tr>
+                  <td>曾昱翔 ---- LOPE 實驗室 博士後研究人員</td>
+                </tr>
+                <tr>
+                  <td>江琼玉 ---- LOPE 實驗室 研究人員</td>
+                </tr>
+                <tr>
+                  <td>古貿昌 ---- LOPE 實驗室 博士生</td>
+                </tr>
+                <tr>
+                  <td>王伯雅 ---- LOPE 實驗室 博士生</td>
+                </tr>
+                <tr>
+                  <td>張鈺琳 ---- LOPE 實驗室 碩士生</td>
+                </tr>
+                <tr>
+                  <td>陳品而 ---- LOPE 實驗室 碩士生</td>
+                </tr>
+                <tr>
+                  <td>周昕妤 ---- LOPE 實驗室 碩士生</td>
+                </tr>
+
+              </table>
+            </div>
+            <div class="w3-col m8" style="margin:5px">
+              <div class="w3-col m6" style="padding:5px">
+                <h4 class="w3-pale-yellow w3-padding-small"><b>曾參與計畫之貢獻者</b></h4>
+                <table class="w3-table w3-striped w3-white">
+                  <tr>
+                    <td>李智堯 ---- LOPE 實驗室 博士生</td>
+                  </tr>
+                  <tr>
+                    <td>張瑜芸 ---- 政大語言所助理教授</td>
+                  </tr>
+                  <tr>
+                    <td>施孟賢 ---- 政大博士後研究員</td>
+                  </tr>
+                  <tr>
+                    <td>陳蓓怡 ---- LOPE 實驗室 碩士生</td>
+                  </tr>
+                  <tr>
+                    <td>石晴方 ---- LOPE 實驗室 碩士生</td>
+                  </tr>
+                  <tr>
+                    <td>廖永賦 ---- LOPE 實驗室 碩士生</td>
+                  </tr>
+
+                </table>
+
               </div>
-              <div class="sense-relations">
-                <cwn-relation :sense="sense" relation="synonym" :key="sense.cwn_id + 'syn'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="hypernym" :key="sense.cwn_id + 'hyper'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="hyponym" :key="sense.cwn_id + 'hypo'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="holonym" :key="sense.cwn_id + 'holo'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="meronym" :key="sense.cwn_id + 'mero'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="antonym" :key="sense.cwn_id + 'anto'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="paranym" :key="sense.cwn_id + 'para'"></cwn-relation>
-                <cwn-relation :sense="sense" relation="nearsynonym" :key="sense.cwn_id + 'near'"></cwn-relation>
+              <div class="w3-col m6" style="padding:5px">
+                <h4 class="w3-pale-yellow w3-padding-small"><b>中文詞庫小組（資源建構者）</b></h4>
+                <table class="w3-table w3-striped w3-white">
+                  <tr>
+                    <td>黃居仁 ---- 香港理工大學教授</td>
+                  </tr>
+                </table>
               </div>
             </div>
-          </div> <!-- </sense-card-wrapper> -->
-        </div> <!-- </sense-group-wrapper> -->
-      </div>
 
-    </div>
-  </div>
+          </div>
+        </div>
 
-  <hr class="dotted">
-  <!-- Download Section -->
-  <div class="w3-container" style="padding:64px 16px" id="download">
-    <h2 class="w3-center">下載資料</h2>
-    <p class="w3-center w3-large">使用下載資料請先閱讀<a href="#citing" class="w3-border w3-padding-small w3-pale-red">引用方式</a>與<a
-        href="#licence" class="w3-border w3-padding-small w3-pale-red">授權方式</a></p>
-    <div class="w3-row" style="padding:20px">
-      <!-- 須再整理一下現有網頁的下載節點與資料 -->
-      <div class="w3-row">
-        <div class="w3-col m2 text-center">
-          <img src="assets/img/cwn-logo-256.png" width="100px">
+        <div id="Research" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">研究發表</span>
+          <div class="w3-row-padding" style="margin-top:12px">
+            <h4><b>2019</b></h4>
+            <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2019). <b>Modeling the Idiomaticity of
+                Chinese
+                Quadra-syllabic Idiomatic Expressions.</b> Paper presented in the 33rd Pacific Asia Conference on
+              Language, Information and Computation. Hakodate, Japan.</p>
+            <p>Tseng, Y. H. &amp; Hsieh, S. K. (2019). <b>Augmenting Chinese WordNet semantic relations with
+                contextualized embeddings.</b> Paper presented in the 10th Global WordNet Conference. Wroclaw, Poland.
+            </p>
+            <h4><b>2018</b></h4>
+            <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2018). <b>Fluid Annotation: A
+                Granularity-aware Annotation Tool for Chinese Word Fluidity.</b> Paper presented in Eleventh
+              International
+              Conference on Language Resources and Evaluation. Miyazaki, Japan.</p>
+          </div>
         </div>
-        <div class="w3-col m10 w3-container">
-          <h4>CWN 2.0 v2022.04 <span class="w3-opacity w3-medium">Apr, 2022</span>
-            <a href="https://drive.google.com/file/d/1C_Hg3ZCKjAe6mVbo-EA7a-AZdpjr5wd-/view?usp=sharing">
-              <i class="fa fa-download w3-text-red"></i>
-            </a>
-          </h4>
-          <p>最新釋出的版本，需搭配CwnGraph</p>
-        </div>
-      </div>
-      <div class="w3-row">
-        <div class="w3-col m2 text-center">
-          <img src="assets/img/cwn-logo-256.png" width="100px">
-        </div>
-        <div class="w3-col m10 w3-container">
-          <h4>CWNGraph 0.3.0 <span class="w3-opacity w3-medium">Apr, 2022</span>
-            <a href="https://github.com/lopentu/CwnGraph">
-              <i class="fab fa-github w3-text-red"></i>
-            </a>
-          </h4>
-          <p>CWN Python API</p>
-        </div>
-      </div>
 
-      <div class="w3-row">
-        <div class="w3-col m2 text-center">
-          <img src="assets/img/cwn-1.0-logo.png"
-            style="object-fit:cover;object-position: 0% 0%; width: 100px; height: 100px;">
+        <div id="MetaLanguage" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">釋義語言統計分析</span>
+          <div class="w3-row-padding" style="margin-top:12px">
+            <p>
+              在CWN用於釋義的釋義語言當中，目前總共有160,538個單詞，包含14,961個不重複的中文詞彙，在這160,538個單詞當中，名詞的數量最多，共71,600個名詞，佔45%。其次為動詞，共44,179個動詞，佔28%。其餘有7,240個副詞，佔5%。4,729個形容詞，佔3%。剩下大約20%則不屬此四個詞類之一。詳細比例見下圖所示。
+            </p>
+            <img src="assets/img/pie.png" width="750">
+            <p>
+              以下圖表為CWN釋義語言中，使用次數最多的前10個名詞、形容詞、副詞、以及動詞。</p>
+            <img src="assets/img/meta_word_freq.png" width="750">
+          </div>
         </div>
-        <div class="w3-col m10 w3-container">
-          <h4>CWN 1.0 SQLite <span class="w3-opacity w3-medium">Sep 28, 2010</span></h4>
+
+        <div id="SenseTagger" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">詞意自動標記模型（CWN Sense Tagger）</span>
+          <div class="w3-row-padding" style="margin-top:12px"></div>
+          <p>
+            Word Sense Disambiguaion by Chinese Word Net
+            Chinese word sense disambiguation has been known to a very difficult problem since Chinese is a complicated
+            language. A word can have dozens or even hundreds of meanings on different occasions. Manually labels the
+            senses of the words is labor-intensive and inefficient.
+          </p>
+          <br>
+          <div class="w3-center">
+            <!-- <form action="/to-be-filled" id="input-sent"></form>      <div id="all-tokens"></div>-->
+            <input type="textarea" name="input" id="sense-tagger-input" placeholder="請輸入一個句子" onchange="displayToken()">
+            <label class="i fas fa-search"></label>
+
+            <input type="checkbox" id="display-all-button" onchange="displayAll()">
+            <label for="display-all-button">顯示全部</label>
+          </div>
+          <br>
+          <div id="output-tokens" class="w3-center"></div>
+          <div id="all-sense-cards"></div>
+
+          <br>
+          <div>
+            <p>更多資訊可以前往
+              <a href="https://github.com/lopentu/CwnSenseTagger">Cwn Sense Tagger</a>
+              查詢。
+            </p>
+          </div>
           <br>
         </div>
+
+        <hr>
+        <div class="w3-bar w3-center">
+          <button class="w3-button" onclick="openContent(event, 'Intro')" id="defaultOpen">ＣＷＮ 簡介</button>
+          <button class="w3-button" onclick="openContent(event, 'People')">相關人員</button>
+          <button class="w3-button" onclick="openContent(event, 'Research')">研究發表</button>
+          <button class="w3-button" onclick="openContent(event, 'MetaLanguage')">釋義語言統計分析</button>
+          <button class="w3-button" onclick="openContent(event, 'SenseTagger')">詞意自動標記模型</button>
+        </div>
       </div>
+    </div>
 
-
-      <div class="w3-row" style="padding-top: 100px;" id="citing">
-        <span class="w3-xlarge w3-padding-small border-primary tabtitle">引用方式</span>
-        <ul>
-          <li>黃居仁 (2007-2009) 、謝舒凱 (2009-2010) ：跨語言知識表徵基礎架構─面向多語化與全球化的語言學研究。國科會專題補助計畫 (NSC 96-2411-H-003-061-MY3)
-          </li>
-          <li>Chu-Ren Huang and Shu-Kai Hsieh. (2010). Infrastructure for Cross-lingual Knowledge Representation ─
-            Towards Multilingualism in Linguistic Studies. Taiwan NSC-granted Research Project (NSC
-            96-2411-H-003-061-MY3)</li>
-          <li>黃居仁, 謝舒凱, 洪嘉馡, 陳韻竹, 蘇依莉, 陳永祥, 黃勝偉. 中文詞彙網路:跨語言知識處理基礎架構的設計理念與實踐. 中國語文，24卷第二期</li>
-        </ul>
+    <hr class="dotted">
+    <!-- query section-->
+    <div class="w3-container w3-center w3-padding-64" ref="vue-cwn-query" id="cwn-query"
+      style="background-color: #EDEDED">
+      <h2 class="w3-center">線上查詢</h2>
+      <div class="w3-section w3-row-padding w3-center w3-text">
+        <input id="cwn-query-word-input" placeholder="請輸入查詢字詞" @keyup="onQuerWordKeyup" v-model="queryWord" />
+        <label class="i fas fa-search"></label>
       </div>
+      <div class="">
+        <!-- <spinner> -->
+        <div class="lds-grid" v-if="isDataLoading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <!-- </spinner> -->
+        <div id="senseNotFound" v-if="!isDataLoading && (currentWord.length > 0 && senseData.length == 0)">
+          無該字詞
+        </div>
+        <!-- <sense-group-wrapper -->
+        <div v-if="!isDataLoading" v-for="(grouped_senses, group_key) in senseGroups">
+          <div class="group-header" v-if="Object.keys(senseGroups).length > 1">
+            <span>{{currentWord}}（{{group_key}}） 有 {{grouped_senses.length}}個詞意</span>
+          </div>
+          <div id="senseResults" class="w3-row" v-if="senseData.length > 0">
+            <!-- <sense-card-wrapper> -->
+            <div v-for="(sense, idx) in grouped_senses" class="w3-col l4 m6 s12 w3-padding"
+              :ref="'sense-'+sense.cwn_id">
+              <div class="sense-wrapper w3-padding w3-white w3-card w3-display-container"
+                :class="{senseFocus: isSenseFocus(sense)}">
+                <div class="pos-label w3-medium w3-display-topright"
+                  :title="sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(按一下複製詞意連結)'"
+                  @click="copySenseUrl(sense)">
+                  {{sense.pos}}
+                </div>
+                <div class="sense-head">
+                  {{idx+1}}. {{sense.definition}}
+                </div>
+                <div class="sense-examples">
+                  <div v-if="!toShowFullExamples(sense.cwn_id)" @click="()=>toggleShowFullExamples(sense.cwn_id)"
+                    class="example-preview">{{sense.examples[0]}}
+                    <div class="fadeout"></div>
+                  </div>
 
-      <div class="w3-row" style="padding-top: 100px;" id="licence">
-        <span class="w3-xlarge w3-padding-small border-primary tabtitle">致謝</span>
-        <ul>
-          <li>詞彙網絡計畫2.0感謝科技部計畫「建構概念為本且具語義結合性的中文
-          知識庫」的支持</li>
-        </ul>
+                  <div v-if="toShowFullExamples(sense.cwn_id)" class="full-example-wrapper w3-display-container">
+                    <div class="collapse-examples" @click="()=>toggleShowFullExamples(sense.cwn_id)">
+                      <i class="fa fa-angle-double-up"></i> &nbsp; 收起例句 &nbsp;
+                      <i class="fa fa-angle-double-up"></i>
+                    </div>
+                    <p v-for="example in sense.examples">{{example}}</p>
+                  </div>
+                </div>
+                <div class="sense-relations">
+                  <cwn-relation :sense="sense" relation="synonym" :key="sense.cwn_id + 'syn'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="hypernym" :key="sense.cwn_id + 'hyper'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="hyponym" :key="sense.cwn_id + 'hypo'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="holonym" :key="sense.cwn_id + 'holo'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="meronym" :key="sense.cwn_id + 'mero'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="antonym" :key="sense.cwn_id + 'anto'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="paranym" :key="sense.cwn_id + 'para'"></cwn-relation>
+                  <cwn-relation :sense="sense" relation="nearsynonym" :key="sense.cwn_id + 'near'"></cwn-relation>
+                </div>
+              </div>
+            </div> <!-- </sense-card-wrapper> -->
+          </div> <!-- </sense-group-wrapper> -->
+        </div>
+
       </div>
+    </div>
 
-      <div class="w3-row" style="padding-top: 100px;" id="licence">
-        <span class="w3-xlarge w3-padding-small border-primary tabtitle">授權方式</span>
-        <h4><b>「中文詞彙網路」資料使用規範 (Terms of Use of CWN)</b></h4>
-        <ol>
-          <li>中文詞彙網路是國科會計畫的工作成果。 (CWN is an NSC-sponsored project.)</li>
-          <li>中文詞彙網路之語料與程式皆可自由下載，但僅供學術研究之用，不得有任何商業行為。 (The corpus data and applications of CWN can be freely
-            downloaded
-            and used for academic purposes. No commercial use is allowed.)</li>
-          <li>未獲同意，不得將中文詞彙網路資料轉載。 (Without permission, reproducing the contents of CWN is prohibited.)</li>
-          <li>因中文詞彙網路而產生任何研究成果，請在論文中引用以下論文或計畫名稱： (Any research studies with results derived from CWN should
-            include the
-            following citations of papers/projects:)</li>
+    <hr class="dotted">
+    <!-- Download Section -->
+    <div class="w3-container" style="padding:64px 16px" id="download">
+      <h2 class="w3-center">下載資料</h2>
+      <p class="w3-center w3-large">使用下載資料請先閱讀<a href="#citing"
+          class="w3-border w3-padding-small w3-pale-red">引用方式</a>與<a href="#licence"
+          class="w3-border w3-padding-small w3-pale-red">授權方式</a></p>
+      <div class="w3-row" style="padding:20px">
+        <!-- 須再整理一下現有網頁的下載節點與資料 -->
+        <div class="w3-row">
+          <div class="w3-col m2 text-center">
+            <img src="assets/img/cwn-logo-256.png" width="100px">
+          </div>
+          <div class="w3-col m10 w3-container">
+            <h4>CWN 2.0 v2022.04 <span class="w3-opacity w3-medium">Apr, 2022</span>
+              <a href="https://drive.google.com/file/d/1C_Hg3ZCKjAe6mVbo-EA7a-AZdpjr5wd-/view?usp=sharing">
+                <i class="fa fa-download w3-text-red"></i>
+              </a>
+            </h4>
+            <p>最新釋出的版本，需搭配CwnGraph</p>
+          </div>
+        </div>
+        <div class="w3-row">
+          <div class="w3-col m2 text-center">
+            <img src="assets/img/cwn-logo-256.png" width="100px">
+          </div>
+          <div class="w3-col m10 w3-container">
+            <h4>CWNGraph 0.3.0 <span class="w3-opacity w3-medium">Apr, 2022</span>
+              <a href="https://github.com/lopentu/CwnGraph">
+                <i class="fab fa-github w3-text-red"></i>
+              </a>
+            </h4>
+            <p>CWN Python API</p>
+          </div>
+        </div>
+
+        <div class="w3-row">
+          <div class="w3-col m2 text-center">
+            <img src="assets/img/cwn-1.0-logo.png"
+              style="object-fit:cover;object-position: 0% 0%; width: 100px; height: 100px;">
+          </div>
+          <div class="w3-col m10 w3-container">
+            <h4>CWN 1.0 SQLite <span class="w3-opacity w3-medium">Sep 28, 2010</span></h4>
+            <br>
+          </div>
+        </div>
+
+
+        <div class="w3-row" style="padding-top: 100px;" id="citing">
+          <span class="w3-xlarge w3-padding-small border-primary tabtitle">引用方式</span>
           <ul>
-            <li>黃居仁 (2007-2009) 、謝舒凱 (2009-2010) ：跨語言知識表徵基礎架構─面向多語化與全球化的語言學研究。國科會專題補助計畫 (NSC
-              96-2411-H-003-061-MY3)</li>
-            <li>Chu-Ren Huang and Shu-Kai Hsieh. (2010). Infrastructure for Cross-lingual Knowledge Representation
-              ─
+            <li>黃居仁 (2007-2009) 、謝舒凱 (2009-2010) ：跨語言知識表徵基礎架構─面向多語化與全球化的語言學研究。國科會專題補助計畫 (NSC 96-2411-H-003-061-MY3)
+            </li>
+            <li>Chu-Ren Huang and Shu-Kai Hsieh. (2010). Infrastructure for Cross-lingual Knowledge Representation ─
               Towards Multilingualism in Linguistic Studies. Taiwan NSC-granted Research Project (NSC
               96-2411-H-003-061-MY3)</li>
             <li>黃居仁, 謝舒凱, 洪嘉馡, 陳韻竹, 蘇依莉, 陳永祥, 黃勝偉. 中文詞彙網路:跨語言知識處理基礎架構的設計理念與實踐. 中國語文，24卷第二期</li>
           </ul>
-        </ol>
+        </div>
+
+        <div class="w3-row" style="padding-top: 100px;" id="licence">
+          <span class="w3-xlarge w3-padding-small border-primary tabtitle">致謝</span>
+          <ul>
+            <li>詞彙網絡計畫2.0感謝科技部計畫「建構概念為本且具語義結合性的中文
+              知識庫」的支持</li>
+          </ul>
+        </div>
+
+        <div class="w3-row" style="padding-top: 100px;" id="licence">
+          <span class="w3-xlarge w3-padding-small border-primary tabtitle">授權方式</span>
+          <h4><b>「中文詞彙網路」資料使用規範 (Terms of Use of CWN)</b></h4>
+          <ol>
+            <li>中文詞彙網路是國科會計畫的工作成果。 (CWN is an NSC-sponsored project.)</li>
+            <li>中文詞彙網路之語料與程式皆可自由下載，但僅供學術研究之用，不得有任何商業行為。 (The corpus data and applications of CWN can be freely
+              downloaded
+              and used for academic purposes. No commercial use is allowed.)</li>
+            <li>未獲同意，不得將中文詞彙網路資料轉載。 (Without permission, reproducing the contents of CWN is prohibited.)</li>
+            <li>因中文詞彙網路而產生任何研究成果，請在論文中引用以下論文或計畫名稱： (Any research studies with results derived from CWN should
+              include the
+              following citations of papers/projects:)</li>
+            <ul>
+              <li>黃居仁 (2007-2009) 、謝舒凱 (2009-2010) ：跨語言知識表徵基礎架構─面向多語化與全球化的語言學研究。國科會專題補助計畫 (NSC
+                96-2411-H-003-061-MY3)</li>
+              <li>Chu-Ren Huang and Shu-Kai Hsieh. (2010). Infrastructure for Cross-lingual Knowledge Representation
+                ─
+                Towards Multilingualism in Linguistic Studies. Taiwan NSC-granted Research Project (NSC
+                96-2411-H-003-061-MY3)</li>
+              <li>黃居仁, 謝舒凱, 洪嘉馡, 陳韻竹, 蘇依莉, 陳永祥, 黃勝偉. 中文詞彙網路:跨語言知識處理基礎架構的設計理念與實踐. 中國語文，24卷第二期</li>
+            </ul>
+          </ol>
+        </div>
       </div>
     </div>
-  </div>
 
 
 
-  <!-- Footer -->
-  <footer class="bg-main w3-padding-64" style="color: white">
-    <div class="w3-row w3-third w3-left w3-padding-large">
-      <h3>相關連結</h3>
-      <a href="https://lope.linguistics.ntu.edu.tw/">
-        <h4>LOPE ＠ NTU</h4>
-      </a>
-      <a href="https://wordnet.princeton.edu/">
-        <h4>English WordNet</h4>
-      </a>
-      <a href="http://globalwordnet.org/">
-        <h4>Global WordNet Association</h4>
-      </a>
-    </div>
-    <div class="w3-row w3-twothird w3-padding-large">
-      <div class="w3-col m3 w3-text-left">
-        <h5>首頁</h5>
-        <a href="#home">
-          <h6>最新公告</h6>
+    <!-- Footer -->
+    <footer class="bg-main w3-padding-64" style="color: white">
+      <div class="w3-row w3-third w3-left w3-padding-large">
+        <h3>相關連結</h3>
+        <a href="https://lope.linguistics.ntu.edu.tw/">
+          <h4>LOPE ＠ NTU</h4>
+        </a>
+        <a href="https://wordnet.princeton.edu/">
+          <h4>English WordNet</h4>
+        </a>
+        <a href="http://globalwordnet.org/">
+          <h4>Global WordNet Association</h4>
         </a>
       </div>
-      <div class="w3-col m3 w3-text-left">
-        <h5>關於</h5>
-        <a href="#Intro">
-          <h6>CWN 簡介</h6> <a href="#Peolple">
-            <h6>相關人員</h6>
+      <div class="w3-row w3-twothird w3-padding-large">
+        <div class="w3-col m3 w3-text-left">
+          <h5>首頁</h5>
+          <a href="#home">
+            <h6>最新公告</h6>
           </a>
-          <a href="#Research">
-            <h6>研究發表</h6>
+        </div>
+        <div class="w3-col m3 w3-text-left">
+          <h5>關於</h5>
+          <a href="#Intro">
+            <h6>CWN 簡介</h6> <a href="#Peolple">
+              <h6>相關人員</h6>
+            </a>
+            <a href="#Research">
+              <h6>研究發表</h6>
+            </a>
+        </div>
+        <div class="w3-col m3 w3-text-left">
+          <h5>查詢</h5>
+          <a href="#query">
+            <h6>線上查詢</h6>
           </a>
+          <a href="#">
+            <h6>新手教學</h6>
+          </a>
+        </div>
+        <div class="w3-col m3 w3-text-left">
+          <h5>下載</h5>
+          <a href="#download">
+            <h6>資料下載</h6>
+          </a>
+          <a href="#citing">
+            <h6>引用方式</h6>
+          </a>
+          <a href="#licence">
+            <h6>授權方式</h6>
+          </a>
+        </div>
       </div>
-      <div class="w3-col m3 w3-text-left">
-        <h5>查詢</h5>
-        <a href="#query">
-          <h6>線上查詢</h6>
-        </a>
-        <a href="#">
-          <h6>新手教學</h6>
-        </a>
+
+      <div class="w3-row w3-center">
+        <a href="#home" class="w3-button w3-light-grey w3-round-medium"><i class="fa fa-arrow-up w3-margin-right"></i>To
+          the top</a>
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+            class="w3-hover-text-green">w3.css</a></p>
       </div>
-      <div class="w3-col m3 w3-text-left">
-        <h5>下載</h5>
-        <a href="#download">
-          <h6>資料下載</h6>
-        </a>
-        <a href="#citing">
-          <h6>引用方式</h6>
-        </a>
-        <a href="#licence">
-          <h6>授權方式</h6>
-        </a>
-      </div>
-    </div>
-
-    <div class="w3-row w3-center">
-      <a href="#home" class="w3-button w3-light-grey w3-round-medium"><i class="fa fa-arrow-up w3-margin-right"></i>To
-        the top</a>
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
-          class="w3-hover-text-green">w3.css</a></p>
-    </div>
-  </footer>
+    </footer>
 
 
 
-  <!-- partial -->
-  <script src="./assets/js/cwn-query.js"></script>
-  <script src="./assets/js/main.js"></script>
-</body>
+    <!-- partial -->
+    <script src="./assets/js/cwn-query.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./assets/js/sense-tagger.js"></script>
+  </body>
 
 </html>
