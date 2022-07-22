@@ -85,16 +85,10 @@ const displayToken = async () => {
             let pos = document.createElement('div');
             let gloss = document.createElement('div');
             lemma.innerHTML = lemmas[i];
-            lemma.setAttribute('class', 'lemma');
             pos.innerHTML = poss[i];
-            pos.setAttribute('class', 'pos');
-
-            /*   if (glosss[i] == '') {
-                   gloss.innerHTML = '無該字詞';
-               } else {
-                   gloss.innerHTML = glosss[i];
-               }*/
             gloss.innerHTML = glosss[i];
+            lemma.setAttribute('class', 'lemma');
+            pos.setAttribute('class', 'pos');
             gloss.setAttribute('class', 'gloss');
             output.setAttribute('class', 'card-unique');
             lemmaPos.setAttribute('class', 'lemma-pos');
@@ -104,6 +98,7 @@ const displayToken = async () => {
             output.appendChild(lemmaPos);
             output.appendChild(gloss);
             card.appendChild(output);
+            card.setAttribute('class', 'w3-center');
         }
 
         outputToken.appendChild(sent);
@@ -152,11 +147,7 @@ const displaySenseCard = async () => {
         queryButton.innerHTML = '前往字詞查詢';
         queryButton.setAttribute('class', 'query-button w3-display-bottomright');
 
-        if (glosss[i] == '') {
-            gloss.innerHTML = '無該字詞';
-        } else {
-            gloss.innerHTML = glosss[i];
-        }
+        gloss.innerHTML = glosss[i];
         gloss.setAttribute('class', 'gloss');
 
         lemmaPos.appendChild(lemma);
