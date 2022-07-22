@@ -89,11 +89,12 @@ const displayToken = async () => {
             pos.innerHTML = poss[i];
             pos.setAttribute('class', 'pos');
 
-            if (glosss[i] == '') {
-                gloss.innerHTML = '無該字詞';
-            } else {
-                gloss.innerHTML = glosss[i];
-            }
+            /*   if (glosss[i] == '') {
+                   gloss.innerHTML = '無該字詞';
+               } else {
+                   gloss.innerHTML = glosss[i];
+               }*/
+            gloss.innerHTML = glosss[i];
             gloss.setAttribute('class', 'gloss');
             output.setAttribute('class', 'card-unique');
             lemmaPos.setAttribute('class', 'lemma-pos');
