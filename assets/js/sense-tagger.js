@@ -11,7 +11,7 @@ form.addEventListener('submit', function (e) {
 */
 
 // 他回到家，一開了門，就放首歌來聽
-console.log('hi');
+console.log('他回到家，一開了門，就放首歌來聽');
 
 // Read testing json file
 const getResult = async (url, position) => {
