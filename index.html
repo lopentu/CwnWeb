@@ -259,6 +259,7 @@
         <div id="SenseTagger" class="tabcontent">
           <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">詞意自動標記模型（CWN Sense Tagger）</span>
           <div class="w3-row-padding" style="margin-top:12px"></div>
+          <div class="w3-panel w3-leftbar w3-border-lime">此為CWN詞義消岐模型靜態展示頁面。線上展示將於近期上線。</div>
           <p>
             Word Sense Disambiguaion by Chinese Word Net
             Chinese word sense disambiguation has been known to a very difficult problem since Chinese is a complicated
@@ -268,7 +269,10 @@
           <br>
           <div class="w3-center">
             <!-- <form action="/to-be-filled" id="input-sent"></form>      <div id="all-tokens"></div>-->
-            <input type="textarea" name="input" id="sense-tagger-input" placeholder="請輸入一個句子" onchange="displayToken()">
+            <input type="textarea" size="32" name="input" id="sense-tagger-input" 
+                   placeholder="他回到家，一開了門，就放首歌來聽" 
+                   value="他回到家，一開了門，就放首歌來聽"                   
+                   onkeyup="on_input_keyup(event)">
             <label class="i fas fa-search"></label>
 
             <input type="checkbox" id="display-all-button" onchange="displayAll()">
@@ -276,7 +280,7 @@
           </div>
           <br>
           <div id="output-tokens" class="w3-center"></div>
-          <div id="all-sense-cards"></div>
+          <div id="all-sense-cards" class="w3-container"></div>
 
           <br>
           <div>

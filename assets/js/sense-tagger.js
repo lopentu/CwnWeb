@@ -11,7 +11,6 @@ form.addEventListener('submit', function (e) {
 */
 
 // 他回到家，一開了門，就放首歌來聽
-console.log('他回到家，一開了門，就放首歌來聽');
 
 // Read testing json file
 const getResult = async (url, position) => {
@@ -35,6 +34,10 @@ const getResult = async (url, position) => {
     } catch (e) {
         console.log('ERROR', e);
     }
+}
+
+const on_input_keyup = async (e) => {
+    if(e.keyCode == 13) displayToken();
 }
 
 // Turn all the input tokens into buttons
