@@ -1,0 +1,123 @@
+/* 
+First-trial colors combination: 
+ - token buttons: #9cafb7 
+ - token buttons hover: rgb(84, 175, 188)
+ - cards: background #4281a4 box-shadow #E6B89C
+ - cards hover: background #E6B89C box-shadow #4281a4
+
+ Alternative color combinations:
+ - token buttons: #9cafb7 
+ - token buttons hover: rgb(84, 175, 188)
+ - cards: background #9cafb7  box-shadow #4281a4
+ - cards hover: background #E6B89C box-shadow #4281a4
+*/
+
+#display-all-button {
+    background-color: black;
+    border: 2px solid #4281a4;
+    padding-left: 20px;
+}
+
+.all-tokens {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tokens {
+    color: white;
+    /* background-color: rgba(84, 175, 188, 0.7);*/
+    background-color: #9cafb7;
+    border: 1px solid white;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    border-radius: 8%;
+}
+
+.tokens:hover {
+    background-color: rgb(84, 175, 188);
+    transform: translateY(-0.25em);
+    cursor: pointer;
+}
+
+.card {
+    display: block;
+    width: 200px;
+    height: 120px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    margin: 0.5em;
+    background-color: #4281a4;
+    box-shadow: 5px 5px #E6B89C;
+}
+
+.query-button {
+    display: none;
+    font-size: x-small;
+    background-color: rgba(66, 129, 164, 0.8);
+    color: white;
+    border: 1px solid white;
+    margin: 1px;
+}
+
+.card:hover .query-button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #E6B89C;
+    box-shadow: 5px 5px #4281a4;
+    transform: translateY(-0.25em);
+}
+
+.card-unique {
+    display: block;
+    width: 200px;
+    height: 120px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    margin: 0.5em;
+    background-color: #4281a4;
+    box-shadow: 5px 5px #E6B89C;
+}
+
+.card-unique:hover {
+    background-color: #E6B89C;
+    box-shadow: 5px 5px #4281a4;
+    transform: translateY(-0.25em);
+}
+
+.lemma {
+    font-size: 1.25em;
+    font-weight: 450;
+    color: white;
+    font: bold;
+}
+
+.pos {
+    font-size: 1em;
+    padding-left: 2px;
+    padding-top: 2px;
+    color: #E6B89C;
+}
+
+.card:hover .pos {
+    color: #4281a4;
+}
+
+.card-unique:hover .pos {
+    color: #4281a4;
+}
+
+.lemma-pos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gloss {
+    color: white;
+}
