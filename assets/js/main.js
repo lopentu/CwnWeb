@@ -1,5 +1,5 @@
 // 查詢_api 網址
-var apiurl={
+var apiurl = {
   itemdata: "http://140.112.147.120:5201/search/%E8%A9%9E",
   itemsdata: "https://awiclass.monoame.com/api/command.php?type=get&name=itemdata"
 };
@@ -26,7 +26,7 @@ function w3_open() {
 
 // Close the sidebar with the close button
 function w3_close() {
-    mySidebar.style.display = "none";
+  mySidebar.style.display = "none";
 }
 
 // Create tabs on click 
@@ -47,6 +47,72 @@ function openContent(evt, tabName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 
+// Make the interactive wordcloud
+anychart.onDocumentReady(function () {
+
+  anychart.data.loadJsonFile(
+    './anyCloud.json',
+    function (data) {
+      var dataSet = anychart.data.set(data);
+      var colors = anychart.scales
+        .ordinalColor()
+        .colors(['#26959f', '#f18126', '#3b8ad8', '#60727b', '#e24b26']);
+
+      var chart = anychart.tagCloud(dataSet);
+      chart
+        // .title('CWN Team')
+        .data(dataSet)
+        .colorScale(colors)
+        // option1- .angles([0])
+        .fromAngle(-60)
+        .toAngle(60)
+        .anglesCount(5)
+        .legend(true)
+        .textSpacing(5)
+        .mode('spiral');
+
+      var tooltip = chart.tooltip();
+      // set the tooltip content
+      tooltip
+        .titleFormat('團隊成員: {%x}！')
+        .format('擔任角色：{%category}')
+        .fontColor('#f18126');
+
+      var legend = chart.legend();
+      legend
+        .itemsLayout('vertical-expandable')
+        .position('right')
+        .drag(true);
+
+      /*   // get the color range
+         var colorRange = chart.colorRange();
+         // enabled color range
+         colorRange
+           .enabled(true)
+           // sets color line size
+           .colorLineSize(15);*/
+
+      // display the word cloud chart
+      chart.container("wordcloud");
+      chart.draw();
+    })
+});
+
+// Create tabs for people on click 
+const peopletab = document.querySelectorAll(".peopleTab");
+for (i = 0; i < peopletab.length; i++) {
+  peopletab[i].style.display = "none";
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultPeople").click();
+function openPeopleTab(tabName) {
+  const peopletab = document.querySelectorAll(".peopleTab");
+  for (i = 0; i < peopletab.length; i++) {
+    peopletab[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+
 // redirect if request are query
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -56,12 +122,18 @@ const word = urlParams.get("query");
 const pos = urlParams.get("pos");
 const cwnId = urlParams.get("cwnid");
 let cwnQueryCursor = {}
-if(word !== null){
+if (word !== null) {
   // window.location.replace("http://lope.linguistics.ntu.edu.tw/cwnvis_beta/index.php/lemmas?word=" + queryParam);
-  cwnQueryCursor = {word, pos, cwnId};
+  cwnQueryCursor = { word, pos, cwnId };
   document.getElementById("cwn-query").scrollIntoView();
 }
 
 const app = Vue.createApp(CwnQuery);
 app.component('cwn-relation', CwnRelation);
 app.mount("#cwn-query");
+
+const newCWNSearch = document.querySelector('#newSearch');
+newCWNSearch.addEventListener('click', function () {
+  var newtab = window.open("https://lopentu.github.io/CwnVisualize/#/", "_blank");
+  newtab.focus();
+});

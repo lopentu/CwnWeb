@@ -1,13 +1,22 @@
-:root{
+:root {
   --main-color: #434343;
   --primary-color: #54afbc;
   --secondary-color: #ffb449;
   --highlight-color: #fe5c36;
 }
 
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif
+}
 
-body, html {
+body,
+html {
   height: 100%;
   line-height: 1.8;
 }
@@ -21,22 +30,77 @@ body, html {
   min-height: 100%;
 }
 
-.w3-bar .w3-button {  
+.w3-bar .w3-button {
   padding: 8px;
-  border: 1px solid var(--main-color); 
+  border: 1px solid var(--main-color);
   border-radius: 10px;
 }
 
-#myNavbar{
+#myNavbar {
   background: var(--main-color);
   color: white;
 }
 
-.bg-main { background-color: var(--main-color); }
-.bg-grey {  background-color: #FEFEFE; }
-.bg-secondary { background-color: var(--secondary-color); }
-.bg-primary { background-color: var(--primary-color); }
+.bg-main {
+  background-color: var(--main-color);
+}
 
-.tabcontent{ margin: 0px 3%; }
-.tabtitle {margin-bottom: 1em; display: block; border-bottom: 4px solid}
-.border-primary {border-color: var(--primary-color) !important}
+.bg-grey {
+  background-color: #FEFEFE;
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.tabcontent {
+  margin: 0px 3%;
+}
+
+.tabtitle {
+  margin-bottom: 1em;
+  display: block;
+  border-bottom: 4px solid
+}
+
+.border-primary {
+  border-color: var(--primary-color) !important
+}
+
+.peopleTab table td {
+  padding: .25em .5em;
+  text-align: left;
+  background-color: #eee;
+}
+
+.peopleTab table th {
+  padding: .25em .5em;
+  text-align: left;
+  background-color: #54afbc;
+  color: #fff;
+}
+
+.zigzag {
+  border-collapse: separate;
+  border-spacing: .25em 1em;
+}
+
+.zigzag tbody tr:nth-child(odd) {
+  transform: rotate(2deg);
+}
+
+.zigzag thead tr,
+tbody tr:nth-child(even) {
+  transform: rotate(-2deg);
+}
+
+#wordcloud {
+  width: 100%;
+  height: 600px;
+  margin: 0;
+  padding: 0;
+}
