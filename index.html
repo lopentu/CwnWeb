@@ -232,108 +232,105 @@
               </tbody>
             </table>
           </div>
-        </div>
 
-        <div id="previousTeam" class="peopleTab">
-          <!--  <img src="assets/img/wordcloud-2.png" width="100%"> 
+
+          <div id="previousTeam" class="peopleTab">
+            <!--  <img src="assets/img/wordcloud-2.png" width="100%"> 
           <img src="assets/img/wordcloud-2000-1.png" width="100%">-->
-          <div id="wordcloud"></div>
+            <div id="wordcloud"></div>
+          </div>
+
+          <div id="creator" class="peopleTab" style="padding:5px">
+            <table class="zigzag">
+              <thead>
+                <tr>
+                  <th class="header" style="font-size: 20px">資源建構者</th>
+                  <th class="header" style="font-size: 20px">現職</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-size: larger">黃居仁</td>
+                  <td>香港理工大學教授</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
 
-        <div id="creator" class="peopleTab" style="padding:5px">
-          <table class="zigzag">
-            <thead>
-              <tr>
-                <th class="header" style="font-size: 20px">資源建構者</th>
-                <th class="header" style="font-size: 20px">現職</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="font-size: larger">黃居仁</td>
-                <td>香港理工大學教授</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="Research" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">研究發表</span>
+          <div class="w3-row-padding" style="margin-top:12px">
+            <h4><b>2019</b></h4>
+            <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2019). <b>Modeling the Idiomaticity of
+                Chinese
+                Quadra-syllabic Idiomatic Expressions.</b> Paper presented in the 33rd Pacific Asia Conference on
+              Language, Information and Computation. Hakodate, Japan.</p>
+            <p>Tseng, Y. H. &amp; Hsieh, S. K. (2019). <b>Augmenting Chinese WordNet semantic relations with
+                contextualized embeddings.</b> Paper presented in the 10th Global WordNet Conference. Wroclaw,
+              Poland.
+            </p>
+            <h4><b>2018</b></h4>
+            <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2018). <b>Fluid Annotation: A
+                Granularity-aware Annotation Tool for Chinese Word Fluidity.</b> Paper presented in Eleventh
+              International
+              Conference on Language Resources and Evaluation. Miyazaki, Japan.</p>
+          </div>
         </div>
 
+        <div id="MetaLanguage" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">釋義語言統計分析</span>
+          <div class="w3-row-padding" style="margin-top:12px">
+            <p>
+              在CWN用於釋義的釋義語言當中，目前總共有160,538個單詞，包含14,961個不重複的中文詞彙，在這160,538個單詞當中，名詞的數量最多，共71,600個名詞，佔45%。其次為動詞，共44,179個動詞，佔28%。其餘有7,240個副詞，佔5%。4,729個形容詞，佔3%。剩下大約20%則不屬此四個詞類之一。詳細比例見下圖所示。
+            </p>
+            <img src="assets/img/pie.png" width="750">
+            <p>
+              以下圖表為CWN釋義語言中，使用次數最多的前10個名詞、形容詞、副詞、以及動詞。</p>
+            <img src="assets/img/meta_word_freq.png" width="750">
+          </div>
+        </div>
+
+        <div id="SenseTagger" class="tabcontent">
+          <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">詞意自動標記模型（CWN Sense Tagger）</span>
+          <div class="w3-row-padding" style="margin-top:12px"></div>
+          <p>
+            詞意消岐（Word Sense Disambiguation,
+            WSD）是自然語言處理的一個頗具挑戰性也趣味十足的任務。中文的詞意消岐任務意在讓機器能辨別出語言中的多義現象，例如，人能從句子上下文中輕鬆的理解出「蘋果」指的是可食用的水果，抑或者是銷售手機、電腦等產品的公司，甚至於是指涉蘋果公司所生產的產品本身。本團隊利用中文詞彙網路所收錄的詞彙語意資料訓練BERT模型，在詞意消岐的任務可達大約82%的正確率。目前可在本靜態展示網頁中以例句「他回到家，一開了門，就放首歌來聽」看到詞意自動標記的結果。
+          </p>
+          <br>
+          <div class="w3-center">
+            <!-- <form action="/to-be-filled" id="input-sent"></form>      <div id="all-tokens"></div>-->
+            <input type="textarea" name="input" id="sense-tagger-input" placeholder="請輸入一個句子" onchange="displayToken()">
+            <label class="i fas fa-search"></label>
+
+            <input type="checkbox" id="display-all-button" onchange="displayAll()">
+            <label for="display-all-button">顯示全部</label>
+          </div>
+          <br>
+          <div id="output-tokens" class="w3-center"></div>
+          <div id="all-sense-cards"></div>
+
+          <br>
+          <div>
+            <p>更多資訊可以前往
+              <a href="https://github.com/lopentu/CwnSenseTagger">Cwn Sense Tagger</a>
+              查詢。
+            </p>
+          </div>
+          <br>
+        </div>
+
+        <hr>
+        <div class="w3-bar w3-center">
+          <button class="w3-button" onclick="openContent(event, 'Intro')" id="defaultOpen">ＣＷＮ 簡介</button>
+          <button class="w3-button" onclick="openContent(event, 'People')">相關人員</button>
+          <button class="w3-button" onclick="openContent(event, 'Research')">研究發表</button>
+          <button class="w3-button" onclick="openContent(event, 'MetaLanguage')">釋義語言統計分析</button>
+          <button class="w3-button" onclick="openContent(event, 'SenseTagger')">詞意自動標記模型</button>
+        </div>
       </div>
-
-    </div>
-    </div>
-
-    <div id="Research" class="tabcontent">
-      <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">研究發表</span>
-      <div class="w3-row-padding" style="margin-top:12px">
-        <h4><b>2019</b></h4>
-        <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2019). <b>Modeling the Idiomaticity of
-            Chinese
-            Quadra-syllabic Idiomatic Expressions.</b> Paper presented in the 33rd Pacific Asia Conference on
-          Language, Information and Computation. Hakodate, Japan.</p>
-        <p>Tseng, Y. H. &amp; Hsieh, S. K. (2019). <b>Augmenting Chinese WordNet semantic relations with
-            contextualized embeddings.</b> Paper presented in the 10th Global WordNet Conference. Wroclaw,
-          Poland.
-        </p>
-        <h4><b>2018</b></h4>
-        <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2018). <b>Fluid Annotation: A
-            Granularity-aware Annotation Tool for Chinese Word Fluidity.</b> Paper presented in Eleventh
-          International
-          Conference on Language Resources and Evaluation. Miyazaki, Japan.</p>
-      </div>
-    </div>
-
-    <div id="MetaLanguage" class="tabcontent">
-      <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">釋義語言統計分析</span>
-      <div class="w3-row-padding" style="margin-top:12px">
-        <p>
-          在CWN用於釋義的釋義語言當中，目前總共有160,538個單詞，包含14,961個不重複的中文詞彙，在這160,538個單詞當中，名詞的數量最多，共71,600個名詞，佔45%。其次為動詞，共44,179個動詞，佔28%。其餘有7,240個副詞，佔5%。4,729個形容詞，佔3%。剩下大約20%則不屬此四個詞類之一。詳細比例見下圖所示。
-        </p>
-        <img src="assets/img/pie.png" width="750">
-        <p>
-          以下圖表為CWN釋義語言中，使用次數最多的前10個名詞、形容詞、副詞、以及動詞。</p>
-        <img src="assets/img/meta_word_freq.png" width="750">
-      </div>
-    </div>
-
-    <div id="SenseTagger" class="tabcontent">
-      <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">詞意自動標記模型（CWN Sense Tagger）</span>
-      <div class="w3-row-padding" style="margin-top:12px"></div>
-      <p>
-        詞意消岐（Word Sense Disambiguation,
-        WSD）是自然語言處理的一個頗具挑戰性也趣味十足的任務。中文的詞意消岐任務意在讓機器能辨別出語言中的多義現象，例如，人能從句子上下文中輕鬆的理解出「蘋果」指的是可食用的水果，抑或者是銷售手機、電腦等產品的公司，甚至於是指涉蘋果公司所生產的產品本身。本團隊利用中文詞彙網路所收錄的詞彙語意資料訓練BERT模型，在詞意消岐的任務可達大約82%的正確率。目前可在本靜態展示網頁中以例句「他回到家，一開了門，就放首歌來聽」看到詞意自動標記的結果。
-      </p>
-      <br>
-      <div class="w3-center">
-        <!-- <form action="/to-be-filled" id="input-sent"></form>      <div id="all-tokens"></div>-->
-        <input type="textarea" name="input" id="sense-tagger-input" placeholder="請輸入一個句子" onchange="displayToken()">
-        <label class="i fas fa-search"></label>
-
-        <input type="checkbox" id="display-all-button" onchange="displayAll()">
-        <label for="display-all-button">顯示全部</label>
-      </div>
-      <br>
-      <div id="output-tokens" class="w3-center"></div>
-      <div id="all-sense-cards"></div>
-
-      <br>
-      <div>
-        <p>更多資訊可以前往
-          <a href="https://github.com/lopentu/CwnSenseTagger">Cwn Sense Tagger</a>
-          查詢。
-        </p>
-      </div>
-      <br>
-    </div>
-
-    <hr>
-    <div class="w3-bar w3-center">
-      <button class="w3-button" onclick="openContent(event, 'Intro')" id="defaultOpen">ＣＷＮ 簡介</button>
-      <button class="w3-button" onclick="openContent(event, 'People')">相關人員</button>
-      <button class="w3-button" onclick="openContent(event, 'Research')">研究發表</button>
-      <button class="w3-button" onclick="openContent(event, 'MetaLanguage')">釋義語言統計分析</button>
-      <button class="w3-button" onclick="openContent(event, 'SenseTagger')">詞意自動標記模型</button>
-    </div>
-    </div>
     </div>
 
     <hr class="dotted">
