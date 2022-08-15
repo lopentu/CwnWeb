@@ -56,17 +56,18 @@ anychart.onDocumentReady(function () {
       var dataSet = anychart.data.set(data);
       var colors = anychart.scales
         .ordinalColor()
-        .colors(['#26959f', '#f18126', '#3b8ad8', '#60727b', '#e24b26']);
+        // .colors(['#26959f', '#f18126', '#3b8ad8', '#60727b', '#e24b26']);
+        .colors(['#6B9080', '#f6bd60', '#5fa8d3', '#A4C3B2']);
 
       var chart = anychart.tagCloud(dataSet);
       chart
         // .title('CWN Team')
         .data(dataSet)
         .colorScale(colors)
-        // option1- .angles([0])
-        .fromAngle(-60)
+        .angles([0])
+        /*.fromAngle(-60)
         .toAngle(60)
-        .anglesCount(5)
+        .anglesCount(5)*/
         .legend(true)
         .textSpacing(5)
         .mode('spiral');
