@@ -104,3 +104,26 @@ tbody tr:nth-child(even) {
   margin: 0;
   padding: 0;
 }
+
+#defaultPeople {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+#queryContainer {
+  margin: auto;
+  width: 70px;
+  background-color: #ffb449;
+  border-radius: 1em;
+  transition: all .2s ease-in-out;
+}
+
+#queryContainer:hover {
+  background-color: #f2b968;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+#newSearch {
+  color: #499eac;
+}

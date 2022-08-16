@@ -342,7 +342,13 @@
     <div class="w3-container w3-center w3-padding-64" ref="vue-cwn-query" id="cwn-query"
       style="background-color: #EDEDED">
       <h2 class="w3-center">線上查詢</h2>
-      <span>動態搜尋<i class="i fas fa-search" id="newSearch"></i></span>
+      <div id="queryContainer">
+        <span><i class="i fas fa-search"></i></span>
+        <br>
+        <span>動態查詢</span>
+        <div id="stretchLine"></div>
+      </div>
+
       <div class="w3-section w3-row-padding w3-center w3-text">
         <input id="cwn-query-word-input" placeholder="請輸入查詢字詞" @keyup="onQuerWordKeyup" v-model="queryWord" />
         <label class="i fas fa-search"></label>

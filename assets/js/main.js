@@ -133,8 +133,8 @@ const app = Vue.createApp(CwnQuery);
 app.component('cwn-relation', CwnRelation);
 app.mount("#cwn-query");
 
-const newCWNSearch = document.querySelector('#newSearch');
-newCWNSearch.addEventListener('click', function () {
+const newSearch = document.querySelector('#queryContainer');
+newSearch.addEventListener('click', function () {
   var newtab = window.open("https://lopentu.github.io/CwnVisualize/#/", "_blank");
   newtab.focus();
 });
