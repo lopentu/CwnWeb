@@ -1,17 +1,3 @@
-/* 
-First-trial colors combination: 
- - token buttons: #9cafb7 
- - token buttons hover: rgb(84, 175, 188)
- - cards: background #4281a4 box-shadow #E6B89C
- - cards hover: background #E6B89C box-shadow #4281a4
-
- Alternative color combinations:
- - token buttons: #9cafb7 
- - token buttons hover: rgb(84, 175, 188)
- - cards: background #9cafb7  box-shadow #4281a4
- - cards hover: background #E6B89C box-shadow #4281a4
-*/
-
 #display-all-button {
     background-color: black;
     border: 2px solid #4281a4;

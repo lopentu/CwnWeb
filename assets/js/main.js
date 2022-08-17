@@ -61,13 +61,9 @@ anychart.onDocumentReady(function () {
 
       var chart = anychart.tagCloud(dataSet);
       chart
-        // .title('CWN Team')
         .data(dataSet)
         .colorScale(colors)
         .angles([0])
-        /*.fromAngle(-60)
-        .toAngle(60)
-        .anglesCount(5)*/
         .legend(true)
         .textSpacing(5)
         .mode('spiral');
@@ -84,14 +80,6 @@ anychart.onDocumentReady(function () {
         .itemsLayout('vertical-expandable')
         .position('right')
         .drag(true);
-
-      /*   // get the color range
-         var colorRange = chart.colorRange();
-         // enabled color range
-         colorRange
-           .enabled(true)
-           // sets color line size
-           .colorLineSize(15);*/
 
       // display the word cloud chart
       chart.container("wordcloud");
