@@ -341,7 +341,7 @@
               <div class="sense-wrapper w3-padding w3-white w3-card w3-display-container"
                 :class="{senseFocus: isSenseFocus(sense)}">
                 <div class="pos-label w3-medium w3-display-topright"
-                  :title="sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(按一下複製詞意連結)'"
+                  :title= "sense.pos.split(',').map((x)=>posLabels[x]).join('、') + '(' + sense.cwn_id + ')'"
                   @click="copySenseUrl(sense)">
                   {{sense.pos}}
                 </div>
