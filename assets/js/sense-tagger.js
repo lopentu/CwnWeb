@@ -112,7 +112,7 @@ btn.addEventListener('click', async () => {
 
         const lemmas = [], poss = [], glosss = [], senseIds = [], confidences = [];
         for (let tags of tagging) {
-            console.log(tags['lemma']);
+            console.log('Finish tagging!');
             lemmas.push(tags['lemma']);
             poss.push(tags['pos']);
             glosss.push(tags['gloss']);
