@@ -107,3 +107,7 @@
 .gloss {
     color: white;
 }
+
+#test_api:hover {
+    cursor: pointer;
+}

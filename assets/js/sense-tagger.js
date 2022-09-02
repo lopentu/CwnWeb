@@ -82,7 +82,8 @@ const displayAll = () => {
     if (checkbox.checked == true) {
         for (let card of cards) {
             card.removeAttribute('style');
-            card.setAttribute('style', 'display:flex ')
+            card.setAttribute('style', 'display:flex ');
+            card.setAttribute('class', 'card-unique w3-col l2 m3 s6 w3-padding');
         }
     }
     else if (checkbox.checked == false) {
@@ -105,7 +106,7 @@ btn.addEventListener('click', async () => {
         // Get user input
         const inputSent = document.querySelector('#tagger-input');
         const data = inputSent.value;
-        const url = `http://140.112.147.132:5000/${data}`;
+        const url = `http://140.112.147.132:5655/${data}`;
         console.log(`Sending request to sense tagger: ${url}, please patiently wait for the result!`);
         const tagging = await requestApi(url);
 
