@@ -77,7 +77,7 @@ const displayToken = async (lemmas, poss, glosss) => {
 const displayAll = () => {
 
     const cards = document.querySelectorAll('.card-unique');
-    let checkbox = document.querySelector('#display-all-button2');
+    let checkbox = document.querySelector('#display-all-button');
 
     if (checkbox.checked == true) {
         for (let card of cards) {
