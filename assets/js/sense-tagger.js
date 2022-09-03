@@ -106,7 +106,8 @@ btn.addEventListener('click', async () => {
         // Get user input
         const inputSent = document.querySelector('#tagger-input');
         const data = inputSent.value;
-        const url = `http://140.112.147.132:5655/${data}`;
+        // const url = `http://140.112.147.132:5655/${data}`;
+        const url = `https://lopen.linguistics.ntu.edu.tw/cwntagger/${data}`;
         console.log(`Sending request to sense tagger: ${url}, please patiently wait for the result!`);
         const tagging = await requestApi(url);
 
