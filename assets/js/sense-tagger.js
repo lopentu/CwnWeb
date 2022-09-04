@@ -8,6 +8,7 @@ const requestApi = async (url) => {
         console.log(e);
     }
 }
+
 // Turn all the input tokens into buttons
 const displayToken = async (lemmas, poss, glosss) => {
 
