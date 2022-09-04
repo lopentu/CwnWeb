@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/cwn-query.css">
   <link rel="stylesheet" href="assets/css/sense-tagger.css">
   <script src="https://unpkg.com/vue@3.0.0-rc.5/dist/vue.global.prod.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <style>
 
   </style>
@@ -153,93 +159,178 @@
 
         <div id="People" class="tabcontent">
           <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">相關人員</span>
-          <div class="w3-row-padding" style="margin-top:12px">
+          <div></div>
+          <div></div>
 
-            <div class="w3-col m4" style="margin:5px -16px">
-              <h4 class="w3-amber w3-padding-small"><b>現任維護團隊</b></h4>
-              <table class="w3-table w3-striped w3-white">
-                <tr>
-                  <td>謝舒凱 ---- LOPE 實驗室 主持人</td>
-                </tr>
-                <tr>
-                  <td>曾昱翔 ---- LOPE 實驗室 博士後研究人員</td>
-                </tr>
-                <tr>
-                  <td>江琼玉 ---- LOPE 實驗室 研究人員</td>
-                </tr>
-                <tr>
-                  <td>古貿昌 ---- LOPE 實驗室 博士生</td>
-                </tr>
-                <tr>
-                  <td>王伯雅 ---- LOPE 實驗室 博士生</td>
-                </tr>
-                <tr>
-                  <td>張鈺琳 ---- LOPE 實驗室 碩士生</td>
-                </tr>
-                <tr>
-                  <td>陳品而 ---- LOPE 實驗室 碩士生</td>
-                </tr>
-                <tr>
-                  <td>周昕妤 ---- LOPE 實驗室 碩士生</td>
-                </tr>
-
-              </table>
-            </div>
-            <div class="w3-col m8" style="margin:5px">
-              <div class="w3-col m6" style="padding:5px">
-                <h4 class="w3-pale-yellow w3-padding-small"><b>曾參與計畫之貢獻者</b></h4>
-                <table class="w3-table w3-striped w3-white">
-                  <tr>
-                    <td>李智堯 ---- LOPE 實驗室 博士生</td>
-                  </tr>
-                  <tr>
-                    <td>張瑜芸 ---- 政大語言所助理教授</td>
-                  </tr>
-                  <tr>
-                    <td>施孟賢 ---- 政大博士後研究員</td>
-                  </tr>
-                  <tr>
-                    <td>陳蓓怡 ---- LOPE 實驗室 碩士生</td>
-                  </tr>
-                  <tr>
-                    <td>石晴方 ---- LOPE 實驗室 碩士生</td>
-                  </tr>
-                  <tr>
-                    <td>廖永賦 ---- LOPE 實驗室 碩士生</td>
-                  </tr>
-
-                </table>
-
-              </div>
-              <div class="w3-col m6" style="padding:5px">
-                <h4 class="w3-pale-yellow w3-padding-small"><b>中文詞庫小組（資源建構者）</b></h4>
-                <table class="w3-table w3-striped w3-white">
-                  <tr>
-                    <td>黃居仁 ---- 香港理工大學教授</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-
+          <div>
+            <button class="w3-button w3-amber w3-padding-small w3-left" onclick="openPeopleTab('currentTeam')"
+              id="defaultPeople"><b>現任維護團隊</b></button><br>
+            <button class="w3-button w3-pale-yellow w3-padding-small w3-left"
+              onclick="openPeopleTab('creator')"><b>中文詞庫小組（資源建構者）</b></button><br>
+            <button class="w3-button w3-pale-yellow w3-padding-small w3-left"
+              onclick="openPeopleTab('previousTeam')"><b>所有曾參與計畫之貢獻者</b></button><br>
           </div>
+
+          <div id="currentTeam" class="peopleTab" style="margin:5px -16px">
+            <table class="zigzag">
+              <thead>
+                <tr>
+                  <th class="header" style="font-size: 20px">Member</th>
+                  <th class="header" style="font-size: 20px">Position</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-size: 20px" width="20%">謝舒凱 </td>
+                  <td>LOPE 實驗室 主持人</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">曾昱翔</td>
+                  <td>LOPE 實驗室 博士後研究人員</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">江琼玉</td>
+                  <td>LOPE 實驗室 研究人員</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">張淳涵</td>
+                  <td>LOPE 實驗室 研究人員</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">古貿昌</td>
+                  <td>LOPE 實驗室 博士生</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">王伯雅</td>
+                  <td>LOPE 實驗室 博士生</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">陳韋伶</td>
+                  <td>LOPE 實驗室 博士生</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">張鈺琳</td>
+                  <td>LOPE 實驗室 碩士生</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">陳品而</td>
+                  <td>LOPE 實驗室 碩士生</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">周昕妤</td>
+                  <td>LOPE 實驗室 碩士生</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">莊詠甯</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">謝心默</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">許博翔</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div id="previousTeam" class="peopleTab">
+            <div id="wordcloud"></div>
+          </div>
+
+          <div id="creator" class="peopleTab" style="padding:5px">
+            <table class="zigzag">
+              <thead>
+                <tr>
+                  <th class="header" style="font-size: 20px">Ｍember</th>
+                  <th class="header" style="font-size: 20px">Position</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-size: larger">黃居仁</td>
+                  <td>中央研究院語言學研究所， 2000-2009</td>
+                </tr>
+                <tr>
+                  <td style="font-size: larger">謝舒凱</td>
+                  <td>國立台灣大學語言學研究所，2009-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
         </div>
 
         <div id="Research" class="tabcontent">
           <span class="w3-xlarge w3-padding-small w3-border-teal w3-bottombar">研究發表</span>
           <div class="w3-row-padding" style="margin-top:12px">
+            <h4><b>2020</b></h4>
+            <p>Hsieh, Shu-Kai, Yu-Hsiang Tseng, Chiung-Yu Chiang, Richard Lian, Yong-fu Liao, Mao-Chang Ku, Ching-Fang
+              Shih. (2020). <b>From Sense to Action: A Word-Action Disambiguation Task in NLP.</b> The 34th Pacific Asia
+              Conferenceon Language, Information and Computation(PACLIC34). online. (Vietnam).</p>
             <h4><b>2019</b></h4>
             <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2019). <b>Modeling the Idiomaticity of
                 Chinese
                 Quadra-syllabic Idiomatic Expressions.</b> Paper presented in the 33rd Pacific Asia Conference on
               Language, Information and Computation. Hakodate, Japan.</p>
             <p>Tseng, Y. H. &amp; Hsieh, S. K. (2019). <b>Augmenting Chinese WordNet semantic relations with
-                contextualized embeddings.</b> Paper presented in the 10th Global WordNet Conference. Wroclaw, Poland.
+                contextualized embeddings.</b> Paper presented in the 10th Global WordNet Conference. Wroclaw,
+              Poland.
             </p>
             <h4><b>2018</b></h4>
+            <p>Lee, Chih-Yao and Shu-Kai Hsieh. (2018). <b>Sinitic Wordnet: Laying the Groundwork with Chinese Varieties
+                Written in Traditional Characters.</b> Global WordNet Conference.</p>
             <p>Hsieh, S. K., Tseng, Y. H., Lee, C. Y., &amp; Chiang, C. Y. (2018). <b>Fluid Annotation: A
                 Granularity-aware Annotation Tool for Chinese Word Fluidity.</b> Paper presented in Eleventh
               International
               Conference on Language Resources and Evaluation. Miyazaki, Japan.</p>
+            <h4><b>2017</b></h4>
+            <p>謝舒凱，<b>中文語料與詞彙知識地圖</b>。陳浩然主編：語料庫與華語教學。高等教育出版社。
+            </p>
+            <h4><b>2016</b></h4>
+            <p>Hsieh, Shu-Kai. (2016). <b>Chinese Semantics</b>. In: Sin-Wai Chan (ed). The Routledge Encyclopedia of
+              the
+              Chinese Language.</p>
+            <p>Chu-Ren Huang, Shu-Kai Hsieh and Ruying Chang. (2016). <b>From Classical Poetry to Modern Ontology:
+                Bridging
+                the knowledge divide with a linked data approach</b>. In: C.R.Huang(ed). Digital Humanities: Bridging
+              the
+              Divide. The Humanities in Asia Book Series. Springer.</p>
+            <p>Chen, Min-Hsin and Shu-Kai Hsieh. (2016). <b>Degree Modification in Mandarin: A Case Study of Creative
+                Degree Modifier 各種 [Gezhong]</b>. In: Chinese Lexical Semantics, Volume 9332 of the series Lecture Notes
+              in
+              Computer Science. pp 255-261. Springer.</p>
+            <p>Huang, Tzu-Yun, H. C. Wu, C. C. Lee, S. M. Lee, G. W. Lee and Shu-Kai Hsieh. (2016). <b>Crowdsourcing
+                Experiment Designs for Chinese Word Sense Annotation</b>. In: Proceedings of ROCLING XXIII: Conference
+              on
+              Computational Linguistics and Speech Processing.</p>
+            <p>Liu, Yu-Wen and Shu-Kai Hsieh. (2016). <b>An Alternative Approach to Word Sense Disambiguation:
+                Revisiting
+                Sense Prototypicality in the Chinese Wordnet from Perspectives of Natural Language Acquisition</b>. The
+              15th
+              International Symposium on Chinese Languages and Linguistics (IsCLL-15).</p>
+            <h4><b>2015</b></h4>
+            <p>Huang, C. R. and Shu-Kai Hsieh. (2015). <b>Chinese Lexical Semantics</b>. In: William S-Y Wang and Chao
+              Fen-Sun
+              (eds). The Oxford Handbook of Chinese Linguistics. Oxford University Press. ISBN:978-0-19-985633-6.</p>
+            <p>Lee, Chi-Yao and Shu-Kai Hsieh. (2015). Linguistic Linked Data in Chinese. The 4th Workshop on Linked
+              Data in Linguistics, ACL 2015.</p>
+            <h4><b>2014</b></h4>
+            <p>Hsieh, Shu-Kai and Yu-Yun Chang. (2014). <b>Leveraging Morpho-semantics for the Discovery of Relations in
+                Chinese Wordnet</b>. In: Proceedings of the 7th International Global WordNet Conference. Tartu, Estonia.
+            </p>
+            <p>Francis Bond, Christiane Fellbaum, Shu-Kai Hsieh, Chu-Ren Huang, Adam Pease and Piek Vossen. (2014). <b>A
+                Multilingual Lexico-Semantic Database and Ontology</b>. In: P. Buitelaar and P. Cimiano (eds). Toward
+              the
+              Multilingual Semantic Web: Principles, Methods and Applications. Springer. ISBN978-3-662-43584-7.</p>
+            <h4><b>2008</b></h4>
+            <p>Hsieh, Shu-Kai. (2008). <b>Formal Description of Lexical Semantic Relations</b>. Concentric, Vol: 35. 1,
+              87-109.
+              Taipei, Taiwan.</p>
+            <p>Sue-Jin Ker, Chu-Ren Huang, Jia-Fei Hong, Shi-Yin Liu, Hui-Ling Jian, I-Li Su and Shu-Kai Hsieh. (2008).
+              <b>Design and Prototype of a Large-scale and Fully Sense-tagged Corpus</b>. Lecture Notes in Artificial
+              Intelligence (LNAI-4938), 186-193. Springer-Verlag. ISBN:0302-9743.
+            </p>
           </div>
         </div>
 
@@ -261,34 +352,26 @@
           <div class="w3-row-padding" style="margin-top:12px"></div>
           <div class="w3-panel w3-leftbar w3-border-lime">此為CWN詞義消岐模型靜態展示頁面。線上展示將於近期上線。</div>
           <p>
-            Word Sense Disambiguaion by Chinese Word Net
-            Chinese word sense disambiguation has been known to a very difficult problem since Chinese is a complicated
-            language. A word can have dozens or even hundreds of meanings on different occasions. Manually labels the
-            senses of the words is labor-intensive and inefficient.
+            詞意消岐（Word Sense Disambiguation,
+            WSD）是自然語言處理的一個頗具挑戰性也趣味十足的任務。中文的詞意消岐任務意在讓機器能辨別出語言中的多義現象，例如，人能從句子上下文中輕鬆的理解出「蘋果」指的是可食用的水果，抑或者是銷售手機、電腦等產品的公司，甚至於是指涉蘋果公司所生產的產品本身。本團隊利用中文詞彙網路所收錄的詞彙語意資料訓練BERT模型，在詞意消岐的任務可達大約82%的正確率。目前可在本靜態展示網頁中以例句「他回到家，一開了門，就放首歌來聽」看到詞意自動標記的結果。
+          </p>
+          <p>更多資訊可以前往
+            <a href="https://github.com/lopentu/CwnSenseTagger">Cwn Sense Tagger</a>
+            查詢。
           </p>
           <br>
           <div class="w3-center">
-            <!-- <form action="/to-be-filled" id="input-sent"></form>      <div id="all-tokens"></div>-->
-            <input type="textarea" size="32" name="input" id="sense-tagger-input" 
-                   placeholder="他回到家，一開了門，就放首歌來聽" 
-                   value="他回到家，一開了門，就放首歌來聽"                   
-                   onkeyup="on_input_keyup(event)">
-            <label class="i fas fa-search"></label>
+
+            <input type="textarea" name="input" id="tagger-input" placeholder="請輸入一個句子">
+            <label class="i fas fa-search" id="test_api"></label>
 
             <input type="checkbox" id="display-all-button" onchange="displayAll()">
             <label for="display-all-button">顯示全部</label>
           </div>
           <br>
           <div id="output-tokens" class="w3-center"></div>
-          <div id="all-sense-cards" class="w3-container"></div>
-
           <br>
-          <div>
-            <p>更多資訊可以前往
-              <a href="https://github.com/lopentu/CwnSenseTagger">Cwn Sense Tagger</a>
-              查詢。
-            </p>
-          </div>
+          <br>
           <br>
         </div>
 
@@ -308,6 +391,13 @@
     <div class="w3-container w3-center w3-padding-64" ref="vue-cwn-query" id="cwn-query"
       style="background-color: #EDEDED">
       <h2 class="w3-center">線上查詢</h2>
+      <div id="queryContainer">
+        <span><i class="i fas fa-search"></i></span>
+        <br>
+        <span>動態查詢</span>
+        <div id="stretchLine"></div>
+      </div>
+
       <div class="w3-section w3-row-padding w3-center w3-text">
         <input id="cwn-query-word-input" placeholder="請輸入查詢字詞" @keyup="onQuerWordKeyup" v-model="queryWord" />
         <label class="i fas fa-search"></label>
