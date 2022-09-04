@@ -135,6 +135,8 @@ textarea.addEventListener('keydown', async (e) => {
 
     if (e.keyCode === 13) {
 
+        alert('enter works');
+
         try {
             // first clean up the content of output-tokens (for multiple searches)
             const outputToken = document.querySelector('#output-tokens');
@@ -164,6 +166,9 @@ textarea.addEventListener('keydown', async (e) => {
             console.log('ERROR!!!');
             console.log(e);
         }
+    }
+    else {
+        alert('not working')
     }
 });
 
