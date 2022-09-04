@@ -131,9 +131,9 @@ btn.addEventListener('click', async () => {
 });
 
 const textarea = document.querySelector('#tagger-input');
-textarea.addEventListener('keypress', async (e) => {
+textarea.addEventListener('keydown', async (e) => {
 
-    if (e.key === 'Enter') {
+    if (e.keyCode === 13) {
 
         try {
             // first clean up the content of output-tokens (for multiple searches)
