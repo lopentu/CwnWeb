@@ -131,38 +131,40 @@ btn.addEventListener('click', async () => {
 });
 
 const textarea = document.querySelector('#tagger-input');
-textarea.addEventListener('keyup', async () => {
+textarea.addEventListener('keypress', async (e) => {
 
-    try {
-        // first clean up the content of output-tokens (for multiple searches)
-        const outputToken = document.querySelector('#output-tokens');
-        outputToken.innerHTML = '';
+    if (e.key === 'Enter') {
 
-        // Get user input
-        const inputSent = document.querySelector('#tagger-input');
-        const data = inputSent.value;
-        // const url = `http://140.112.147.132:5655/${data}`;
-        const url = `https://lopen.linguistics.ntu.edu.tw/cwntagger/${data}`;
-        console.log(`Sending request to sense tagger: ${url}, please patiently wait for the result!`);
-        const tagging = await requestApi(url);
+        try {
+            // first clean up the content of output-tokens (for multiple searches)
+            const outputToken = document.querySelector('#output-tokens');
+            outputToken.innerHTML = '';
 
-        const lemmas = [], poss = [], glosss = [], senseIds = [], confidences = [];
-        for (let tags of tagging) {
-            console.log('Finish tagging!');
-            lemmas.push(tags['lemma']);
-            poss.push(tags['pos']);
-            glosss.push(tags['gloss']);
-            senseIds.push(tags['senseID']);
-            confidences.push(tags['confidence']);
+            // Get user input
+            const inputSent = document.querySelector('#tagger-input');
+            const data = inputSent.value;
+            // const url = `http://140.112.147.132:5655/${data}`;
+            const url = `https://lopen.linguistics.ntu.edu.tw/cwntagger/${data}`;
+            console.log(`Sending request to sense tagger: ${url}, please patiently wait for the result!`);
+            const tagging = await requestApi(url);
+
+            const lemmas = [], poss = [], glosss = [], senseIds = [], confidences = [];
+            for (let tags of tagging) {
+                console.log('Finish tagging!');
+                lemmas.push(tags['lemma']);
+                poss.push(tags['pos']);
+                glosss.push(tags['gloss']);
+                senseIds.push(tags['senseID']);
+                confidences.push(tags['confidence']);
+            }
+
+            return displayToken(lemmas, poss, glosss);
+
+        } catch (e) {
+            console.log('ERROR!!!');
+            console.log(e);
         }
-
-        return displayToken(lemmas, poss, glosss);
-
-    } catch (e) {
-        console.log('ERROR!!!');
-        console.log(e);
     }
-
 });
 
 /*
