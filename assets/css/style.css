@@ -94,7 +94,7 @@ html {
 }
 
 .zigzag thead tr,
-tbody tr:nth-child(even) {
+.zigzag tbody tr:nth-child(even) {
   transform: rotate(-2deg);
 }
 
