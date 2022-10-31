@@ -1,0 +1,279 @@
+---
+title: "Chinese(s) in Chinese Wordnet" 
+subtitle: "Synchronic and Diachronic Perspectives"
+author: "Shu-Kai Hsieh"
+institute: "National Taiwan University"
+logo: lope.png
+date: 'Nov 2, 2022'
+format: 
+  revealjs:
+    theme: simple
+execute: 
+  enable: false
+  cache: true
+
+number-sections: false
+bibliography: "/Users/shukai/Dropbox/BIB/cwn20.bib"
+engine: knitr
+page-layout: full
+---
+
+<!-- # Abstract -->
+
+<!-- In this talk, I'll first present the current status of Chinese Wordnet (CWN 2.0), including the manually created sense-related resources and their computational representations (sense embeddings, gloss vectors, sense-tagged corpus) and applications (WSD, etc.). Then I'll discuss the challenges of developing wordnet-like resources in the Chinese context from diachronic and synchronic perspectives. -->
+
+# TOC
+
+-   Background
+-   Chinese Wordnet 2.0
+-   Challenges and Future Work
+
+::: notes
+奇怪
+:::
+
+# Background
+
+`Sinica BOW` (@huang2004sinica)
+
+`Chinese Wordnet at Academia Sinica`
+
+`Chinese Wordnet at NTU Taiwan`
+
+::: callout-note
+Note that there are many Chinese Wordnet(s).
+:::
+
+## WordNet architecture
+
+-   synset (synonymous set)
+-   Lexical relations
+
+![](./figures/wn.graph.png){fig-align="right"}
+
+# Chinese Wordnet
+
+-   Follow PWN (in comparison with Sinica BOW)
+
+-   Word segmentation principle [@chu2017mandarin]
+
+-   Corpus-based decision
+
+-   Manually created (sense distinction, gloss with controlled vocabulary, etc)
+
+## History and Status qua
+
+-   latest release 2022
+
+![](./figures/cwn.png)
+
+## CWN 2.0
+
+-   The most comprehensive and fine-grained sense repository and network in Chinese
+
+![](./figures/eat.png)
+
+# Theories
+
+## Meaning facets vs senses
+
+(co-predication)
+
+## Gloss as lexicographic resources with add-ons annotations
+
+# Data Statistics
+
+## Zipf's law (no surprise)
+
+-   Most words have small number of senses (Zipf's law)
+
+![](figures/comp.jpg)
+
+## Comparison with others
+
+-   CWN is the best candidate
+
+<p align="center">
+
+<img src="./figures/eHowNet.png" alt="drawing" style="width:300px;"/> <img src="./figures/moe.png" alt="drawing" style="width:300px;"/> <img src="./figures/cwnSense.png" alt="drawing" style="width:500px;"/>
+
+</p>
+
+## test
+
+```{ojs}
+//| panel: input
+viewof bill_length_min = Inputs.range(
+  [32, 50], 
+  {value: 35, step: 1, label: "Bill length (min):"}
+)
+viewof islands = Inputs.checkbox(
+  ["Torgersen", "Biscoe", "Dream"], 
+  { value: ["Torgersen", "Biscoe"], 
+    label: "Islands:"
+  }
+)
+```
+
+::: panel-tabset
+## Plot
+
+```{ojs}
+Plot.rectY(filtered, 
+  Plot.binX(
+    {y: "count"}, 
+    {x: "body_mass_g", fill: "species", thresholds: 20}
+  ))
+  .plot({
+    facet: {
+      data: filtered,
+      x: "sex",
+      y: "species",
+      marginRight: 80
+    },
+    marks: [
+      Plot.frame(),
+    ]
+  }
+)
+```
+
+## Data
+
+```{ojs}
+Inputs.table(filtered)
+```
+:::
+
+```{ojs}
+data = FileAttachment("penguins.csv").csv({ typed: true })
+```
+
+```{ojs}
+filtered = data.filter(function(penguin) {
+  return bill_length_min < penguin.bill_length_mm &&
+         islands.includes(penguin.island);
+})
+```
+
+## Gloss statistics
+
+@fig-airquality further explores the impact of temperature on ozone level.
+
+```{r}
+#| label: fig-airquality
+#| fig-cap: Temperature and ozone level.
+#| warning: false
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+## test py
+
+```{python}
+print("hello")
+```
+
+# GraphAPI and Visualization
+
+![](./figures/cwnvis.png)
+
+## Network Visualization
+
+```{r}
+#library(visNetwork)
+#visNetwork(nodes, links, width="100%", height="400px", background="#eeefff",
+#           main="Network", submain="And what a great network it is!",
+#           footer= "Hyperlinks and mentions among media sources")
+
+
+```
+
+# Computational Semantic Representations
+
+-   open-sourced ([github](https://github.com/lopentu))
+
+## `SemCor` manually sense-tagged corpus
+
+![](figures/senseanno.png){fig-align="left"}
+
+![](figures/semcor.png){fig-align="right"}
+
+## Word Sense Tagger
+
+WSD: The Problems
+
+-   The task as currently defined does not allow for generalization over different words $\rightarrow$ learning is word-specific.
+
+-   Need training data for every sense of every word, and no chance with unknown words. (unsupervised approaches perform consistently worse than supervised approaches)
+
+-   Cannot capture the sense alternation regularities
+
+<p align="center">
+
+<img src="./figures/wsd.png" alt="drawing" style="width:500px;"/>
+
+</p>
+
+## Distributed approach to model the 'Gradience'
+
+-   *gradience* is found is many linguistic categories.
+
+-   Regular polysemy detection: Using word vector [@di2013regular]or sense vector [@lopukhina2016regular] to detect sense alternations (such as `FOOD` or `ANIMAL`)
+
+-   Recent **(contextualized) vector representation** could help us in locating where a word meaning is on the continuum (/in the multidimensional semantic space).
+
+## WSD with Transformer (1)
+
+-   Leveraging wordnet *glosses*. using `GlossBert` [@huang2019glossbert]
+    -   a BERT model for word sense disambiguation with gloss knowledge.
+-   Our extended `GlossBert` model on CWN gloss+SemCor reports 82% accuracy.
+
+::: notes
+conducting *context-gloss* pairs, and fine-tune the pre-trained BERT model on SemCor3.0 training corpus, and achieves SOTA performance on several English all-words WSD tasks.
+:::
+
+![](figures/glossB.png)
+
+## Word Sense frequencies
+
+## Word Sense Embeddings
+
+## Others
+
+-   `gloss2vec`
+-   Jacob character: -Chinese character (root morpheme) lies in the meaning core
+
+# Challenges and On-going Works
+
+> `wordhood` haunting issues `Ontolex`
+
+## Construction Sense Disambiguation
+
+-   Construction has its own sense
+    -   ( '還在那邊')
+
+## Archaic and Modern sense
+
+## Diachronic word sense tracking
+
+## Mandarin Varieties
+
+-   '真香'，
+-   chivar
+
+## Ontologies
+
+-   synset-structured (lexicalized) ontology doesn't work well
+
+# Conclusions
+
+-   Chinese(s) are neighbors themselves.
+
+-   Wordnet framework serves as a mirror for Chinese synchronic and diachronic varieties.
+
+# Reference
