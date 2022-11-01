@@ -1,10 +1,10 @@
 ---
-title: "Chinese(s) in Chinese Wordnet" 
-subtitle: "Synchronic and Diachronic Perspectives"
+title: "Chinese Wordnet 2.0" 
+subtitle: "Toward a dynamic interface of lexical synchrony and diachrony"
 author: "Shu-Kai Hsieh"
 institute: "National Taiwan University"
 logo: lope.png
-date: 'Nov 2, 2022'
+date: 'Sinofon@Olomouch, Nov 2, 2022'
 format: 
   revealjs:
     theme: simple
@@ -79,13 +79,19 @@ Note that there are many Chinese Wordnet(s).
 
 (co-predication)
 
-
 ## Leveraging Morpho-semantic relations
 
 
-
+:: notes
+之前？
+::
 
 ## Gloss as lexicographic resources with add-ons annotations
+
+
+:: notes
+gloss2vec
+::
 
 # Data Statistics
 
@@ -164,21 +170,23 @@ filtered = data.filter(function(penguin) {
 
 ## Gloss statistics
 
-@fig-airquality further explores the impact of temperature on ozone level.
-
-```{r}
-#| label: fig-airquality
-#| fig-cap: Temperature and ozone level.
-#| warning: false
-
-library(ggplot2)
-
-ggplot(airquality, aes(Temp, Ozone)) + 
-  geom_point() + 
-  geom_smooth(method = "loess")
-```
 
 
+![](./figures/glossStat.png)
+
+<!-- @fig-airquality further explores the impact of temperature on ozone level. -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-airquality -->
+<!-- #| fig-cap: Temperature and ozone level. -->
+<!-- #| warning: false -->
+
+<!-- library(ggplot2) -->
+
+<!-- ggplot(airquality, aes(Temp, Ozone)) +  -->
+<!--   geom_point() +  -->
+<!--   geom_smooth(method = "loess") -->
+<!-- ``` -->
 
 # GraphAPI and Visualization
 
@@ -197,9 +205,8 @@ ggplot(airquality, aes(Temp, Ozone)) +
 
 # Computational Semantic Representations
 
-
-- human curated and machine generated lexical semantic resources
-- open-sourced ([github](https://github.com/lopentu))
+-   human curated and machine generated lexical semantic resources
+-   open-sourced ([github](https://github.com/lopentu))
 
 ## `SemCor` manually sense-tagged corpus
 
@@ -215,9 +222,7 @@ WSD: The Problems
 
 -   Need training data for every sense of every word, and no chance with unknown words. (unsupervised approaches perform consistently worse than supervised approaches)
 
--   Cannot capture the sense alternation regularities
-![](./figures/nlpPipe.png)
-
+-   Cannot capture the sense alternation regularities ![](./figures/nlpPipe.png)
 
 ## Distributed approach to model the 'Gradience'
 
@@ -241,9 +246,8 @@ conducting *context-gloss* pairs, and fine-tune the pre-trained BERT model on Se
 
 ## Word Sense Tagger
 
-- APIs (GlossBert version) released in 2021   
-<img src="./figures/tagger.png" alt="drawing" style="width:100px;"/>
-
+-   APIs (GlossBert version) released in 2021\
+    <img src="./figures/tagger.png" alt="drawing" style="width:100px;"/>
 
 ```{python}
 #| eval: false
@@ -259,17 +263,13 @@ tagged = tagger.tag("<raw text>")
 sense_tagged = senseTag(tagged)
 ```
 
-
 ![](./figures/senseTag.png)
-
-
-
 
 ## Word Sense frequencies
 
-- Now we have chance to *empirically* explore the **dominancy** of word senses. For both lexical semantics and psycholinguistics
+-   Now we have chance to *empirically* explore the **dominancy** of word senses. For both lexical semantics and psycholinguistics
 
-  - e.g., '開' (kai1,'open') has more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
+    -   e.g., '開' (kai1,'open') has more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
 
 ![](./figures/senseFreq.png)
 
@@ -279,53 +279,58 @@ sense_tagged = senseTag(tagged)
 
 ## Word Sense Embeddings
 
-- we use our tagger to automatically tag ca. 5 millions word tokens in ASBC, indexed the annotated sense.
-  - **word sense frequency data** are calculated out via the tags.
-  - tokenize the index and use **word2vec** to get the word sense embeddings.
+-   we use our tagger to automatically tag ca. 5 millions word tokens in ASBC, indexed the annotated sense.
+    -   **word sense frequency data** are calculated out via the tags.
+    -   tokenize the index and use **word2vec** to get the word sense embeddings.
 
 ::: notes
-藉由詞意標記模型，我們對平衡語料庫中約500萬字的語料進行詞意自動標記。藉由這些標記，我們可計算出每個詞意在語料庫中的出現頻率。
-標記完成之後，每個被標定詞意的詞，都會在該詞之後註明其詞意序號，例如：
-「一切（Neqa）　公私（Na）　關係（Na）」
-「一切-03049601　公私　關係-05186502」
-把每個包含詞意序號的詞當成token，我們就可藉由word2vec計算其word (sense) embeddings
+藉由詞意標記模型，我們對平衡語料庫中約500萬字的語料進行詞意自動標記。藉由這些標記，我們可計算出每個詞意在語料庫中的出現頻率。 標記完成之後，每個被標定詞意的詞，都會在該詞之後註明其詞意序號，例如： 「一切（Neqa）　公私（Na）　關係（Na）」 「一切-03049601　公私　關係-05186502」 把每個包含詞意序號的詞當成token，我們就可藉由word2vec計算其word (sense) embeddings
 :::
-
-
-
 
 ## Other related works
 
-- Resolving Regular Polysemy in Named Entities (Hsieh et al. submitted)
-- `gloss2vec`
-- Jacob character: -Chinese character (root morpheme) lies in the meaning core
-
+-   Resolving Regular Polysemy in Named Entities (Hsieh et al. submitted)
+-   `gloss2vec`
+-   Jacob character: -Chinese character (root morpheme) lies in the meaning core
 
 ## Regular Polysemy
 
 ![](./figures/ner.wsd.png)
 
-
 # Challenges and On-going Works
 
-> `wordhood` haunting issues `Ontolex`
+> The haunting issues of `wordhood`
 
 ## Construction Sense Disambiguation
 
 -   Construction has its own sense
     -   ( '還在那邊')
 
+-
+
+::notes
+晴方
+::
+
+# Chinese(s) in Synchrony and Diachrony
+
+-   *Gradualness* change and *continual* variations
+
 ## Archaic and Modern sense
+
+- 懂得與使用
 
 ## Diachronic word sense tracking
 
 ![](./figures/jia_en.png)
 
-
 ## Mandarin Varieties
 
--   '真香'，
--   chivar
+-  lexical levels to construction levels ('真香')
+
+
+![](./figures/chivar.png)
+
 
 ## Ontologies
 
