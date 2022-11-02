@@ -80,7 +80,7 @@ Two core components:
 # Theories
 
 ::: callout-tip
-## Some new perspetives in CWN
+## Some new perspectives in CWN
 
 sense granularity, relation discovery, and gloss with annotation
 :::
@@ -142,7 +142,7 @@ Different leveraging methods
 
 ## Data summary 1/1
 
-@fig-cwn1 shows the lemma ans sense data distribution
+@fig-cwn1 shows the lemma and sense data distribution
 
 ```{r}
 #| label: fig-cwn1
@@ -166,7 +166,7 @@ ggplot(df) +
 
 ## Data summary 2/2
 
-@fig-cwn2 further explores the impact of temperature on ozone level.
+@fig-cwn2 further demonstrates the distribution of different types of relations
 
 ```{r}
 #| label: fig-cwn2
@@ -188,7 +188,7 @@ Gloss statistics
 
 # GraphAPI and Visualization
 
-![](./figures/cwnvis.png)
+![](./figures/cwnVis.png)
 
 # Computational Semantic Representations
 
@@ -221,7 +221,7 @@ WSD: The Problems
 
 ## WSD with Transformer (1)
 
--   Leveraging wordnet *glosses*. using `GlossBert` [@huang2019glossbert]
+-   Leveraging wordnet *glosses* using `GlossBert` [@huang2019glossbert]
     -   a BERT model for word sense disambiguation with gloss knowledge.
 -   Our extended `GlossBert` model on CWN gloss+SemCor reports 82% accuracy.
 
@@ -254,9 +254,9 @@ sense_tagged = senseTag(tagged)
 
 ## Word Sense frequencies
 
--   Now we have chance to *empirically* explore the **dominancy** of word senses. For both lexical semantics and psycholinguistics
+-   Now we have chance to *empirically* explore the **dominancy** of word senses, which is essential for both lexical semantic and psycholinguistic studies.
 
-    -   e.g., '開' (kai1,'open') has more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
+    -   e.g., '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
 
 ![](./figures/senseFreq.png){fig-align="center"}
 
@@ -266,7 +266,7 @@ sense_tagged = senseTag(tagged)
 
 ## Word Sense Embeddings
 
--   we use our tagger to automatically tag ca. 5 millions word tokens in ASBC, indexed the annotated sense.
+-   We use our tagger to automatically tag ca. 5 millions word tokens in Academia Sinica Balanced Corpus, and indexed the annotated sense.
     -   **word sense frequency data** are calculated out via the tags.
     -   tokenize the index and use **word2vec** to get the word sense embeddings.
 
@@ -321,13 +321,13 @@ The puzzle of `affixoid`
 用論文講久一點
 :::
 
-## Contemporary Mandarin Chinese Dynamics
+## Dynamics in Contemporary Mandarin Chinese(s)
 
 [【真香】 ('zhēn xiāng', soappetizing)](https://baike.baidu.hk/item/%E7%9C%9F%E9%A6%99/22700736)
 
 ![](./figures/zhenXiang.png)
 
-## Contemporary Mandarin Chinese Dynamics
+## Dynamics in Contemporary Mandarin Chinese(s)
 
 word, construction, word senses
 
