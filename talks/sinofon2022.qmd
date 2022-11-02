@@ -81,14 +81,14 @@ Note that there are many Chinese Wordnet(s).
 
 ## Leveraging Morpho-semantic relations
 
-::: notes 
-之前paper？ 
+::: notes
+之前paper？
 :::
 
 ## Gloss as lexicographic resources with add-ons annotations
 
-:::notes 
-gloss2vec 
+::: notes
+gloss2vec
 :::
 
 # Data Statistics
@@ -299,12 +299,6 @@ sense_tagged = senseTag(tagged)
 
 ![](./figures/ner.wsd.png)
 
-
-
-## Diachronic word sense tracking
-
-![](./figures/jia_en.png)
-
 # Chinese(s) in Synchrony and Diachrony
 
 > *Gradualness* change and *continual* variations
@@ -316,12 +310,27 @@ sense_tagged = senseTag(tagged)
     -   resulting in (*expressive vs receptive* word senses)
     -   例子
 
--   Linguistically, $<bound root, affixoid>$
+::: notes
+languages strive for diversity XD 懂得與使用, not written vs oral distinction Expressive vocabulary refers to the words that we use to express our thoughts and ideas. That is all the words that we use for "speaking" and "writing" fall under the expressive category. Receptive vocabulary, on the other hand, refers to all the words that you understand while "reading" books or "listening" to someone speak.
+:::
 
-    -   paper and 例子
+## Contemporary Mandarin Varieties
+
+The puzzle of `affixoid`
+
+> The morphological status of affixes in Chinese has long been a matter of debate. How one might apply the conventional criteria of free/bound and content/function features to distinguish word-forming affixes from bound roots in Chinese is still far from clear. Issues involving polysemy and diachronic dynamics further blur the boundaries. [@tseng2020computational]
+
+-   例子
+
+## Change of affixiod status in diachrony
+
+-   The indeterminate nature of Chinese affixoids
+-   Sense status of 家 jiā from the Tang dynasty to the 1980s
+
+![](./figures/jia_en.png){fig-align="center"}
 
 ::: notes
-languages strive for diversity XD 懂得與使用, not written vs oral distinction Expressive vocabulary refers to the words that we use to express our thoughts and ideas. That is all the words that we use for "speaking" and "writing" fall under the expressive category. Receptive vocabulary, on the other hand, refers to all the words that you understand while "reading" books or "listening" to someone speak. 
+用論文講久一點
 :::
 
 ## Contemporary Mandarin Chinese Dynamics
@@ -345,30 +354,45 @@ word, construction, word senses
 
 -   A *intralingual* Machine Translation system has been developed and Sense Mapping/Inducing system is in process.
 
+------------------------------------------------------------------------
+
 ![](./figures/chivar.png)
-
-
 
 # Challenges and On-going Works
 
-> The haunting issues of `wordhood`
+> The haunting issues of `wordhood` (and the beautiful scene it has brought us into)
 
-## Construction Sense Disambiguation
+## Re-theorizing
+
+`Chinese Wordnet beyond word`
+
+-   Form-meaning pairs
 
 -   Construction has its own sense
-    -   ( '還在那邊')
--   
 
-::: notes 
-晴方 
+    -   ( '還在那邊')
+
+-   Need to broaden the concept of word
+
+-   Construction Sense Disambiguation
+
+::: notes
+晴方
 :::
 
-## Ontologies
+## Re-structuring Ontologies
 
 -   synset-structured (lexicalized) ontology doesn't (seem) work well
 
--   unlabeled root- vs body
+-   unlabeled root vs embodied body 
 
+::: {layout-ncol="3"}
+![sumo](./figures/sumo.png)
+
+![dolce](./figures/dolce.png)
+
+![quantum](./figures/quantumTensor.png)
+:::
 
 # Conclusions
 
