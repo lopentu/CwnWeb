@@ -8,7 +8,7 @@ title-slide-attributes:
 author: "Shu-Kai Hsieh"
 institute: "National Taiwan University"
 logo: lope.png
-date: 'Sinofon@Olomouch, Nov 2, 2022'
+date: 'Sinofon@Olomouc, Nov 2, 2022'
 format: 
   revealjs:
     theme: simple
