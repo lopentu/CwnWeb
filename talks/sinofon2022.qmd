@@ -1,6 +1,10 @@
 ---
 title: "Chinese Wordnet 2.0" 
 subtitle: "Toward a dynamic interface of lexical synchrony and diachrony"
+title-slide-attributes:
+    data-background-image: ./figures/gil.jpg
+    data-background-size: contain
+    data-background-opacity: "0.3"
 author: "Shu-Kai Hsieh"
 institute: "National Taiwan University"
 logo: lope.png
@@ -18,11 +22,7 @@ engine: knitr
 page-layout: full
 ---
 
-<!-- # Abstract -->
-
-<!-- In this talk, I'll first present the current status of Chinese Wordnet (CWN 2.0), including the manually created sense-related resources and their computational representations (sense embeddings, gloss vectors, sense-tagged corpus) and applications (WSD, etc.). Then I'll discuss the challenges of developing wordnet-like resources in the Chinese context from diachronic and synchronic perspectives. -->
-
-# TOC
+## Outline
 
 -   Background
 -   Chinese Wordnet 2.0: Concepts and Implmentation
@@ -41,13 +41,15 @@ page-layout: full
 `Chinese Wordnet at NTU Taiwan` (2010-)
 
 ::: callout-note
-Note that there are many Chinese Wordnet(s).
+Note that there are more than one Chinese Wordnet.
 :::
 
 ## WordNet architecture
 
--   synset (synonymous set)
--   Lexical relations
+Two core components:
+
+-   Synset (synonymous set)
+-   Paradigmatic lexical (semantic) relations: hyponymy/hypernymy; meronymy/holonymy, etc
 
 ![](./figures/wn.graph.png){fig-align="right"}
 
@@ -61,35 +63,64 @@ Note that there are many Chinese Wordnet(s).
 
 -   Manually created (sense distinction, gloss with controlled vocabulary, etc)
 
-## History and Status qua
+## The status quo
 
 -   latest release 2022
+-   [website online](https://lopentu.github.io/CwnWeb/)
 
-![](./figures/cwn.png)
+![](./figures/cwn.png){fig-align="right"}
 
-## CWN 2.0
+## CWN 2.0 Programmable Search
 
 -   The most comprehensive and fine-grained sense repository and network in Chinese
+-   [API and doc](https://cwngraph.readthedocs.io/en/latest/) freely available
 
-![](./figures/eat.png)
+![](./figures/eat.png){fig-align="left"}
 
 # Theories
 
+::: callout-tip
+## Some new perspetives in CWN
+
+sense granularity, relation discovery, and gloss with annotation
+:::
+
 ## Meaning facets vs senses
 
-(co-predication)
+::: columns
+::: {.column width="50%"}
+![](./figures/co-predication.png)
+:::
 
-## Leveraging Morpho-semantic relations
+::: {.column width="50%"}
+> 埔里*種*的【茶】很*好喝*
+:::
+:::
 
-::: notes
-之前paper？
+::: callout-tip
+## Co-predicative Nouns
+
+a phenomenon where two or more predicates seem to require that their argument denotes different things.
+:::
+
+## Leveraging morpho-semantic relations
+
+::: {#fig-morsem layout-ncol="2"}
+![@hsieh2014leveraging](./figures/morSem1.png){#fig-surus}
+
+![@tseng2019augmenting](./figures/morSem2.png){#fig-hanno}
+
+Different leveraging methods
 :::
 
 ## Gloss as lexicographic resources with add-ons annotations
 
-::: notes
-gloss2vec
-:::
+-   Gloss (\`lexicographic definition') is carefully controlled with limited vocabulary and **patterns**, e.g.,
+
+    -   Verbs with `VH` tag (i.e., stative intransitive verbs) are glossed with "形容 or 比喻形容 ...".
+    -   Adverbs are glossed with "表..."
+
+-   collocational information, pragmatic information ('tone', etc) are recorded as additional annotation.
 
 # Data Statistics
 
@@ -109,101 +140,55 @@ gloss2vec
 
 </p>
 
-## test
+## Data summary 1/1
 
-```{ojs}
-//| panel: input
-viewof bill_length_min = Inputs.range(
-  [32, 50], 
-  {value: 35, step: 1, label: "Bill length (min):"}
+@fig-cwn1 shows the lemma ans sense data distribution
+
+```{r}
+#| label: fig-cwn1
+#| fig-cap: cwn sense data summary
+#| warning: false
+df <- tribble(
+  ~POS, ~count,
+  "Adj", 2714,
+  "Adv", 2057,
+  "N", 12519,
+  "V", 13511,
 )
-viewof islands = Inputs.checkbox(
-  ["Torgersen", "Biscoe", "Dream"], 
-  { value: ["Torgersen", "Biscoe"], 
-    label: "Islands:"
-  }
-)
+
+ggplot(df) +
+  geom_col(aes(x=reorder(POS, -count), y=count, fill=POS)) + 
+  labs(x="POS", y="count") + 
+  guides(fill="none") +
+  geom_text(aes(x=reorder(POS, -count), y=count+400, label=count)) +
+  labs(title = str_c("Total Sense Count = ", sum(df$count)))
 ```
 
-::: panel-tabset
-## Plot
+## Data summary 2/2
 
-```{ojs}
-Plot.rectY(filtered, 
-  Plot.binX(
-    {y: "count"}, 
-    {x: "body_mass_g", fill: "species", thresholds: 20}
-  ))
-  .plot({
-    facet: {
-      data: filtered,
-      x: "sex",
-      y: "species",
-      marginRight: 80
-    },
-    marks: [
-      Plot.frame(),
-    ]
-  }
-)
+@fig-cwn2 further explores the impact of temperature on ozone level.
+
+```{r}
+#| label: fig-cwn2
+#| fig-cap: cwn relation data summary
+#| warning: false
+
+library(tidyverse)
+library(ggplot2)
+
+df <- read_csv("./data/relations.csv") %>% rename(relation_type = sense_type)
+df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type, n), y=n, fill=relation_type)) + coord_flip() + labs(y="count", x="relation") + guides(fill="none") + theme(axis.title = element_text(size = 16), axis.text = element_text(size = 14)) 
 ```
 
-## Data
+## Data summary 3/3
 
-```{ojs}
-Inputs.table(filtered)
-```
-:::
-
-```{ojs}
-data = FileAttachment("penguins.csv").csv({ typed: true })
-```
-
-```{ojs}
-filtered = data.filter(function(penguin) {
-  return bill_length_min < penguin.bill_length_mm &&
-         islands.includes(penguin.island);
-})
-```
-
-## Gloss statistics
+Gloss statistics
 
 ![](./figures/glossStat.png)
-
-<!-- @fig-airquality further explores the impact of temperature on ozone level. -->
-
-<!-- ```{r} -->
-
-<!-- #| label: fig-airquality -->
-
-<!-- #| fig-cap: Temperature and ozone level. -->
-
-<!-- #| warning: false -->
-
-<!-- library(ggplot2) -->
-
-<!-- ggplot(airquality, aes(Temp, Ozone)) +  -->
-
-<!--   geom_point() +  -->
-
-<!--   geom_smooth(method = "loess") -->
-
-<!-- ``` -->
 
 # GraphAPI and Visualization
 
 ![](./figures/cwnvis.png)
-
-## Network Visualization
-
-```{r}
-#library(visNetwork)
-#visNetwork(nodes, links, width="100%", height="400px", background="#eeefff",
-#           main="Network", submain="And what a great network it is!",
-#           footer= "Hyperlinks and mentions among media sources")
-
-
-```
 
 # Computational Semantic Representations
 
@@ -224,7 +209,7 @@ WSD: The Problems
 
 -   Need training data for every sense of every word, and no chance with unknown words. (unsupervised approaches perform consistently worse than supervised approaches)
 
--   Cannot capture the sense alternation regularities ![](./figures/nlpPipe.png)
+-   Cannot capture the sense alternation regularities ![](./figures/nlpPipe.png){fig-align="right"}
 
 ## Distributed approach to model the 'Gradience'
 
@@ -249,7 +234,7 @@ conducting *context-gloss* pairs, and fine-tune the pre-trained BERT model on Se
 ## Word Sense Tagger
 
 -   APIs (GlossBert version) released in 2021\
-    <img src="./figures/tagger.png" alt="drawing" style="width:100px;"/>
+    <img src="./figures/tagger.png" alt="drawing" style="width:400px;"/>
 
 ```{python}
 #| eval: false
@@ -265,7 +250,7 @@ tagged = tagger.tag("<raw text>")
 sense_tagged = senseTag(tagged)
 ```
 
-![](./figures/senseTag.png)
+![](./figures/senseTag.png){fig-align="center"}
 
 ## Word Sense frequencies
 
@@ -273,7 +258,7 @@ sense_tagged = senseTag(tagged)
 
     -   e.g., '開' (kai1,'open') has more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
 
-![](./figures/senseFreq.png)
+![](./figures/senseFreq.png){fig-align="center"}
 
 ::: notes
 從平衡語料庫中取出 300 句包含「吃」或「開」的句子（一句可能含多個目標詞），用CwnSenseTagger 判斷該詞在脈絡中的詞意，並計算其頻率。以下列出頻率最高的 5 個詞意。
@@ -292,12 +277,16 @@ sense_tagged = senseTag(tagged)
 ## Other related works
 
 -   Resolving Regular Polysemy in Named Entities (Hsieh et al. submitted)
--   `gloss2vec`
--   Jacob character: -Chinese character (root morpheme) lies in the meaning core
-
-## Regular Polysemy
 
 ![](./figures/ner.wsd.png)
+
+---
+
+-   `Character Jacobian`: Chinese character (root morpheme) lies in the meaning core [@tseng2022character]
+
+-   `gloss2vec` (Hsieh et al. 2022. submitted)
+
+
 
 # Chinese(s) in Synchrony and Diachrony
 
@@ -307,8 +296,7 @@ sense_tagged = senseTag(tagged)
 
 -   Fusion of Archaic and Modern senses
 
-    -   resulting in (*expressive vs receptive* word senses)
-    -   例子
+    -   resulting in (*expressive vs receptive* word senses). E.g. 【打】水 (`to pump our water out of a well'.)
 
 ::: notes
 languages strive for diversity XD 懂得與使用, not written vs oral distinction Expressive vocabulary refers to the words that we use to express our thoughts and ideas. That is all the words that we use for "speaking" and "writing" fall under the expressive category. Receptive vocabulary, on the other hand, refers to all the words that you understand while "reading" books or "listening" to someone speak.
@@ -320,7 +308,7 @@ The puzzle of `affixoid`
 
 > The morphological status of affixes in Chinese has long been a matter of debate. How one might apply the conventional criteria of free/bound and content/function features to distinguish word-forming affixes from bound roots in Chinese is still far from clear. Issues involving polysemy and diachronic dynamics further blur the boundaries. [@tseng2020computational]
 
--   例子
+-   E.g. 【化】(huà, '-ize')
 
 ## Change of affixiod status in diachrony
 
@@ -384,7 +372,7 @@ word, construction, word senses
 
 -   synset-structured (lexicalized) ontology doesn't (seem) work well
 
--   unlabeled root vs embodied body 
+-   unlabeled root vs embodied body
 
 ::: {layout-ncol="3"}
 ![sumo](./figures/sumo.png)

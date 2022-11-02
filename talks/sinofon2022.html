@@ -401,14 +401,12 @@
       margin-right: 0; 
     }
   </style>
-  <script type="module" src="sinofon2022_files/libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-  <link href="sinofon2022_files/libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" data-background-image="./figures/gil.jpg" data-background-opacity="0.3" data-background-size="contain" class="center">
   <h1 class="title">Chinese Wordnet 2.0</h1>
   <p class="subtitle">Toward a dynamic interface of lexical synchrony and diachrony</p>
   <p class="author">Shu-Kai Hsieh</p>
@@ -416,13 +414,8 @@
   <p class="date">Sinofon@Olomouch, Nov 2, 2022</p>
 </section>
 
-<section class="slide level2">
-
-<!-- # Abstract -->
-<!-- In this talk, I'll first present the current status of Chinese Wordnet (CWN 2.0), including the manually created sense-related resources and their computational representations (sense embeddings, gloss vectors, sense-tagged corpus) and applications (WSD, etc.). Then I'll discuss the challenges of developing wordnet-like resources in the Chinese context from diachronic and synchronic perspectives. -->
-</section>
-<section id="toc" class="title-slide slide level1 center">
-<h1>TOC</h1>
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
 <ul>
 <li>Background</li>
 <li>Chinese Wordnet 2.0: Concepts and Implmentation</li>
@@ -442,7 +435,6 @@
           display:block!important;
       }</style></aside>
 </section>
-
 <section>
 <section id="history" class="title-slide slide level1 center">
 <h1>History</h1>
@@ -458,16 +450,17 @@
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Note that there are many Chinese Wordnet(s).</p>
+<p>Note that there are more than one Chinese Wordnet.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="wordnet-architecture" class="slide level2">
 <h2>WordNet architecture</h2>
+<p>Two core components:</p>
 <ul>
-<li>synset (synonymous set)</li>
-<li>Lexical relations</li>
+<li>Synset (synonymous set)</li>
+<li>Paradigmatic lexical (semantic) relations: hyponymy/hypernymy; meronymy/holonymy, etc</li>
 </ul>
 
 <img data-src="./figures/wn.graph.png" class="r-stretch quarto-figure-right"></section></section>
@@ -481,60 +474,100 @@
 <li><p>Manually created (sense distinction, gloss with controlled vocabulary, etc)</p></li>
 </ul>
 </section>
-<section id="history-and-status-qua" class="slide level2">
-<h2>History and Status qua</h2>
+<section id="the-status-quo" class="slide level2">
+<h2>The status quo</h2>
 <ul>
 <li>latest release 2022</li>
+<li><a href="https://lopentu.github.io/CwnWeb/">website online</a></li>
 </ul>
 
-<img data-src="./figures/cwn.png" class="r-stretch"></section>
-<section id="cwn-2.0" class="slide level2">
-<h2>CWN 2.0</h2>
+<img data-src="./figures/cwn.png" class="r-stretch quarto-figure-right"></section>
+<section id="cwn-2.0-programmable-search" class="slide level2">
+<h2>CWN 2.0 Programmable Search</h2>
 <ul>
 <li>The most comprehensive and fine-grained sense repository and network in Chinese</li>
+<li><a href="https://cwngraph.readthedocs.io/en/latest/">API and doc</a> freely available</li>
 </ul>
 
-<img data-src="./figures/eat.png" class="r-stretch"></section></section>
+<img data-src="./figures/eat.png" class="r-stretch quarto-figure-left"></section></section>
 <section>
 <section id="theories" class="title-slide slide level1 center">
 <h1>Theories</h1>
-
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Some new perspetives in CWN</strong></p>
+</div>
+<div class="callout-content">
+<p>sense granularity, relation discovery, and gloss with annotation</p>
+</div>
+</div>
+</div>
 </section>
 <section id="meaning-facets-vs-senses" class="slide level2">
 <h2>Meaning facets vs senses</h2>
-<p>(co-predication)</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="./figures/co-predication.png"></p>
+</div><div class="column" style="width:50%;">
+<blockquote>
+<p>埔里<em>種</em>的【茶】很<em>好喝</em></p>
+</blockquote>
+</div>
+</div>
+<div class="callout callout-tip callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Co-predicative Nouns</strong></p>
+</div>
+<div class="callout-content">
+<p>a phenomenon where two or more predicates seem to require that their argument denotes different things.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="leveraging-morpho-semantic-relations" class="slide level2">
-<h2>Leveraging Morpho-semantic relations</h2>
-<aside class="notes">
-<p>之前paper？</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<h2>Leveraging morpho-semantic relations</h2>
+<div id="fig-morsem" class="quarto-layout-panel">
+<figure>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-surus" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./figures/morSem1.png" data-ref-parent="fig-morsem"></p>
+<p></p><figcaption>(a) <span class="citation" data-cites="hsieh2014leveraging">Hsieh and Chang (<a href="#/reference" role="doc-biblioref" onclick="">2014</a>)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-hanno" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="./figures/morSem2.png" data-ref-parent="fig-morsem"></p>
+<p></p><figcaption>(b) <span class="citation" data-cites="tseng2019augmenting">Tseng and Hsieh (<a href="#/reference" role="doc-biblioref" onclick="">2019</a>)</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption>Figure&nbsp;1: Different leveraging methods</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="gloss-as-lexicographic-resources-with-add-ons-annotations" class="slide level2">
 <h2>Gloss as lexicographic resources with add-ons annotations</h2>
-<aside class="notes">
-<p>gloss2vec</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<ul>
+<li><p>Gloss (`lexicographic definition’) is carefully controlled with limited vocabulary and <strong>patterns</strong>, e.g.,</p>
+<ul>
+<li>Verbs with <code>VH</code> tag (i.e., stative intransitive verbs) are glossed with “形容 or 比喻形容 …”.</li>
+<li>Adverbs are glossed with “表…”</li>
+</ul></li>
+<li><p>collocational information, pragmatic information (‘tone’, etc) are recorded as additional annotation.</p></li>
+</ul>
 </section></section>
 <section>
 <section id="data-statistics" class="title-slide slide level1 center">
@@ -557,120 +590,26 @@
 </p><p><img src="./figures/eHowNet.png" alt="drawing" style="width:300px;"> <img src="./figures/moe.png" alt="drawing" style="width:300px;"> <img src="./figures/cwnSense.png" alt="drawing" style="width:500px;"></p>
 <p></p>
 </section>
-<section id="test" class="slide level2">
-<h2>test</h2>
-<div class="cell panel-input">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="116" data-source-offset="-0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 115;"><span id="cb1-116"><a href="#cb1-116"></a>viewof bill_length_min <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
-<span id="cb1-117"><a href="#cb1-117"></a>  [<span class="dv">32</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> </span>
-<span id="cb1-118"><a href="#cb1-118"></a>  {<span class="dt">value</span><span class="op">:</span> <span class="dv">35</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Bill length (min):"</span>}</span>
-<span id="cb1-119"><a href="#cb1-119"></a>)</span>
-<span id="cb1-120"><a href="#cb1-120"></a>viewof islands <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
-<span id="cb1-121"><a href="#cb1-121"></a>  [<span class="st">"Torgersen"</span><span class="op">,</span> <span class="st">"Biscoe"</span><span class="op">,</span> <span class="st">"Dream"</span>]<span class="op">,</span> </span>
-<span id="cb1-122"><a href="#cb1-122"></a>  { <span class="dt">value</span><span class="op">:</span> [<span class="st">"Torgersen"</span><span class="op">,</span> <span class="st">"Biscoe"</span>]<span class="op">,</span> </span>
-<span id="cb1-123"><a href="#cb1-123"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Islands:"</span></span>
-<span id="cb1-124"><a href="#cb1-124"></a>  }</span>
-<span id="cb1-125"><a href="#cb1-125"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-1" data-nodetype="declaration">
+<section id="data-summary-11" class="slide level2">
+<h2>Data summary 1/1</h2>
+<p><a href="#/fig-cwn1">Figure&nbsp;2</a> shows the lemma ans sense data distribution</p>
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
+<img data-src="sinofon2022_files/figure-revealjs/fig-cwn1-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;2: cwn sense data summary</p></section>
+<section id="data-summary-22" class="slide level2">
+<h2>Data summary 2/2</h2>
+<p><a href="#/fig-cwn2">Figure&nbsp;3</a> further explores the impact of temperature on ozone level.</p>
 
-</div>
-</div>
-</div>
-</div>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Plot</a></li><li><a href="#tabset-1-2">Data</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="131" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 130;"><span id="cb2-131"><a href="#cb2-131"></a>Plot<span class="op">.</span><span class="fu">rectY</span>(filtered<span class="op">,</span> </span>
-<span id="cb2-132"><a href="#cb2-132"></a>  Plot<span class="op">.</span><span class="fu">binX</span>(</span>
-<span id="cb2-133"><a href="#cb2-133"></a>    {<span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span>}<span class="op">,</span> </span>
-<span id="cb2-134"><a href="#cb2-134"></a>    {<span class="dt">x</span><span class="op">:</span> <span class="st">"body_mass_g"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"species"</span><span class="op">,</span> <span class="dt">thresholds</span><span class="op">:</span> <span class="dv">20</span>}</span>
-<span id="cb2-135"><a href="#cb2-135"></a>  ))</span>
-<span id="cb2-136"><a href="#cb2-136"></a>  <span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb2-137"><a href="#cb2-137"></a>    <span class="dt">facet</span><span class="op">:</span> {</span>
-<span id="cb2-138"><a href="#cb2-138"></a>      <span class="dt">data</span><span class="op">:</span> filtered<span class="op">,</span></span>
-<span id="cb2-139"><a href="#cb2-139"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"sex"</span><span class="op">,</span></span>
-<span id="cb2-140"><a href="#cb2-140"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"species"</span><span class="op">,</span></span>
-<span id="cb2-141"><a href="#cb2-141"></a>      <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">80</span></span>
-<span id="cb2-142"><a href="#cb2-142"></a>    }<span class="op">,</span></span>
-<span id="cb2-143"><a href="#cb2-143"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb2-144"><a href="#cb2-144"></a>      Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
-<span id="cb2-145"><a href="#cb2-145"></a>    ]</span>
-<span id="cb2-146"><a href="#cb2-146"></a>  }</span>
-<span id="cb2-147"><a href="#cb2-147"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-2" data-nodetype="expression">
+<img data-src="sinofon2022_files/figure-revealjs/fig-cwn2-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;3: cwn relation data summary</p></section>
+<section id="data-summary-33" class="slide level2">
+<h2>Data summary 3/3</h2>
+<p>Gloss statistics</p>
 
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-2">
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="153" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 152;"><span id="cb3-153"><a href="#cb3-153"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-3" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="158" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 157;"><span id="cb4-158"><a href="#cb4-158"></a>data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"penguins.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-4" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="162" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 161;"><span id="cb5-162"><a href="#cb5-162"></a>filtered <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(penguin) {</span>
-<span id="cb5-163"><a href="#cb5-163"></a>  <span class="cf">return</span> bill_length_min <span class="op">&lt;</span> penguin<span class="op">.</span><span class="at">bill_length_mm</span> <span class="op">&amp;&amp;</span></span>
-<span id="cb5-164"><a href="#cb5-164"></a>         islands<span class="op">.</span><span class="fu">includes</span>(penguin<span class="op">.</span><span class="at">island</span>)<span class="op">;</span></span>
-<span id="cb5-165"><a href="#cb5-165"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div id="ojs-cell-5" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-</section>
-<section id="gloss-statistics" class="slide level2">
-<h2>Gloss statistics</h2>
-
-<!-- @fig-airquality further explores the impact of temperature on ozone level. -->
-<!-- ```{r} -->
-<!-- #| label: fig-airquality -->
-<!-- #| fig-cap: Temperature and ozone level. -->
-<!-- #| warning: false -->
-<!-- library(ggplot2) -->
-<!-- ggplot(airquality, aes(Temp, Ozone)) +  -->
-<!--   geom_point() +  -->
-<!--   geom_smooth(method = "loess") -->
-<!-- ``` -->
 <img data-src="./figures/glossStat.png" class="r-stretch"></section></section>
-<section>
 <section id="graphapi-and-visualization" class="title-slide slide level1 center">
 <h1>GraphAPI and Visualization</h1>
 
 <img data-src="./figures/cwnvis.png" class="r-stretch"></section>
-<section id="network-visualization" class="slide level2">
-<h2>Network Visualization</h2>
-<div class="cell" data-hash="sinofon2022_cache/revealjs/unnamed-chunk-6_8f6eeb5cd4059eb9412d4593f48e82fa">
 
-</div>
-</section></section>
 <section>
 <section id="computational-semantic-representations" class="title-slide slide level1 center">
 <h1>Computational Semantic Representations</h1>
@@ -698,7 +637,7 @@
 <ul>
 <li><p>The task as currently defined does not allow for generalization over different words <span class="math inline">\(\rightarrow\)</span> learning is word-specific.</p></li>
 <li><p>Need training data for every sense of every word, and no chance with unknown words. (unsupervised approaches perform consistently worse than supervised approaches)</p></li>
-<li><p>Cannot capture the sense alternation regularities <img data-src="./figures/nlpPipe.png"></p></li>
+<li><p>Cannot capture the sense alternation regularities <img data-src="./figures/nlpPipe.png" data-fig-align="right"></p></li>
 </ul>
 </section>
 <section id="distributed-approach-to-model-the-gradience" class="slide level2">
@@ -737,20 +676,24 @@
 <h2>Word Sense Tagger</h2>
 <ul>
 <li>APIs (GlossBert version) released in 2021<br>
-<img src="./figures/tagger.png" alt="drawing" style="width:100px;"></li>
+<img src="./figures/tagger.png" alt="drawing" style="width:400px;"></li>
 </ul>
-<div class="cell" data-hash="sinofon2022_cache/revealjs/unnamed-chunk-7_221c88800d97b552982282e1268ddc33">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># pip install -U DistilTag SenseTagger</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> DistilTag</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="im">import</span> CwnSenseTagger</span>
-<span id="cb6-4"><a href="#cb6-4"></a>DistilTag.download()</span>
-<span id="cb6-5"><a href="#cb6-5"></a>CwnSenseTagger.download()</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>tagger <span class="op">=</span> DistilTag()</span>
-<span id="cb6-8"><a href="#cb6-8"></a>tagged <span class="op">=</span> tagger.tag(<span class="st">"&lt;raw text&gt;"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9"></a>sense_tagged <span class="op">=</span> senseTag(tagged)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="sinofon2022_cache/revealjs/unnamed-chunk-3_7babf7924b6ed39745f6025f3fa2e35b">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># pip install -U DistilTag SenseTagger</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> DistilTag</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> CwnSenseTagger</span>
+<span id="cb1-4"><a href="#cb1-4"></a>DistilTag.download()</span>
+<span id="cb1-5"><a href="#cb1-5"></a>CwnSenseTagger.download()</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>tagger <span class="op">=</span> DistilTag()</span>
+<span id="cb1-8"><a href="#cb1-8"></a>tagged <span class="op">=</span> tagger.tag(<span class="st">"&lt;raw text&gt;"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>sense_tagged <span class="op">=</span> senseTag(tagged)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="./figures/senseTag.png"></p>
+</figure>
+</div>
 </section>
 <section id="word-sense-frequencies" class="slide level2">
 <h2>Word Sense frequencies</h2>
@@ -761,7 +704,7 @@
 </ul></li>
 </ul>
 
-<img data-src="./figures/senseFreq.png" class="r-stretch"><aside class="notes">
+<img data-src="./figures/senseFreq.png" class="r-stretch quarto-figure-center"><aside class="notes">
 <p>從平衡語料庫中取出 300 句包含「吃」或「開」的句子（一句可能含多個目標詞），用CwnSenseTagger 判斷該詞在脈絡中的詞意，並計算其頻率。以下列出頻率最高的 5 個詞意。</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -802,14 +745,16 @@
 <h2>Other related works</h2>
 <ul>
 <li>Resolving Regular Polysemy in Named Entities (Hsieh et al.&nbsp;submitted)</li>
-<li><code>gloss2vec</code></li>
-<li>Jacob character: -Chinese character (root morpheme) lies in the meaning core</li>
 </ul>
-</section>
-<section id="regular-polysemy" class="slide level2">
-<h2>Regular Polysemy</h2>
 
-<img data-src="./figures/ner.wsd.png" class="r-stretch"></section></section>
+<img data-src="./figures/ner.wsd.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<ul>
+<li><p><code>Character Jacobian</code>: Chinese character (root morpheme) lies in the meaning core <span class="citation" data-cites="tseng2022character">(<a href="#/reference" role="doc-biblioref" onclick="">Tseng and Hsieh 2022</a>)</span></p></li>
+<li><p><code>gloss2vec</code> (Hsieh et al.&nbsp;2022. submitted)</p></li>
+</ul>
+</section></section>
 <section>
 <section id="chineses-in-synchrony-and-diachrony" class="title-slide slide level1 center">
 <h1>Chinese(s) in Synchrony and Diachrony</h1>
@@ -822,8 +767,7 @@
 <ul>
 <li><p>Fusion of Archaic and Modern senses</p>
 <ul>
-<li>resulting in (<em>expressive vs receptive</em> word senses)</li>
-<li>例子</li>
+<li>resulting in (<em>expressive vs receptive</em> word senses). E.g. 【打】水 (`to pump our water out of a well’.)</li>
 </ul></li>
 </ul>
 <aside class="notes">
@@ -847,7 +791,7 @@
 <p>The morphological status of affixes in Chinese has long been a matter of debate. How one might apply the conventional criteria of free/bound and content/function features to distinguish word-forming affixes from bound roots in Chinese is still far from clear. Issues involving polysemy and diachronic dynamics further blur the boundaries. <span class="citation" data-cites="tseng2020computational">(<a href="#/reference" role="doc-biblioref" onclick="">Tseng et al. 2020</a>)</span></p>
 </blockquote>
 <ul>
-<li>例子</li>
+<li>E.g. 【化】(huà, ‘-ize’)</li>
 </ul>
 </section>
 <section id="change-of-affixiod-status-in-diachrony" class="slide level2">
@@ -982,6 +926,9 @@
 <div id="ref-di2013regular" class="csl-entry" role="doc-biblioentry">
 DI PIETRO, GIULIA. 2013. <span>“Regular Polysemy: A Distributional Semantic Approach.”</span>
 </div>
+<div id="ref-hsieh2014leveraging" class="csl-entry" role="doc-biblioentry">
+Hsieh, Shu-Kai, and Yu-Yun Chang. 2014. <span>“Leveraging Morpho-Semantics for the Discovery of Relations in Chinese Wordnet.”</span> In <em>Proceedings of the Seventh Global Wordnet Conference</em>, 283–89.
+</div>
 <div id="ref-huang2004sinica" class="csl-entry" role="doc-biblioentry">
 Huang, Chu-Ren, Ru-Yng Chang, and Hshiang-Pin Lee. 2004. <span>“Sinica BOW (Bilingual Ontological Wordnet): Integration of Bilingual WordNet and SUMO.”</span> In <em>LREC</em>.
 </div>
@@ -993,6 +940,12 @@ Huang, Luyao, Chi Sun, Xipeng Qiu, and Xuanjing Huang. 2019. <span>“GlossBERT:
 </div>
 <div id="ref-lopukhina2016regular" class="csl-entry" role="doc-biblioentry">
 Lopukhina, Anastasiya, and Konstantin Lopukhin. 2016. <span>“Regular Polysemy: From Sense Vectors to Sense Patterns.”</span> In <em>Proceedings of the 5th Workshop on Cognitive Aspects of the Lexicon (CogALex-v)</em>, 19–23.
+</div>
+<div id="ref-tseng2019augmenting" class="csl-entry" role="doc-biblioentry">
+Tseng, Yu-Hsiang, and Shu-Kai Hsieh. 2019. <span>“Augmenting Chinese WordNet Semantic Relations with Contextualized Embeddings.”</span> In <em>Proceedings of the 10th Global Wordnet Conference</em>, 151–59.
+</div>
+<div id="ref-tseng2022character" class="csl-entry" role="doc-biblioentry">
+———. 2022. <span>“Character Jacobian: Modeling Chinese Character Meanings with Deep Learning Model.”</span> In <em>Proceedings of the 29th International Conference on Computational Linguistics</em>, 152–62.
 </div>
 <div id="ref-tseng2020computational" class="csl-entry" role="doc-biblioentry">
 Tseng, Yu-Hsiang, Shu-Kai Hsieh, Pei-Yi Chen, et al. 2020. <span>“Computational Modeling of Affixoid Behavior in Chinese Morphology.”</span> In <em>Proceedings of the 28th International Conference on Computational Linguistics</em>, 2879–88.
@@ -1209,17 +1162,6 @@ Tseng, Yu-Hsiang, Shu-Kai Hsieh, Pei-Yi Chen, et al. 2020. <span>“Computationa
           RevealZoom
         ]
       });
-    </script>
-    
-    <script type="ojs-module-contents">
-    {"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof bill_length_min = Inputs.range(\n  [32, 50], \n  {value: 35, step: 1, label: \"Bill length (min):\"}\n)\nviewof islands = Inputs.checkbox(\n  [\"Torgersen\", \"Biscoe\", \"Dream\"], \n  { value: [\"Torgersen\", \"Biscoe\"], \n    label: \"Islands:\"\n  }\n)\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"Plot.rectY(filtered, \n  Plot.binX(\n    {y: \"count\"}, \n    {x: \"body_mass_g\", fill: \"species\", thresholds: 20}\n  ))\n  .plot({\n    facet: {\n      data: filtered,\n      x: \"sex\",\n      y: \"species\",\n      marginRight: 80\n    },\n    marks: [\n      Plot.frame(),\n    ]\n  }\n)\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"Inputs.table(filtered)\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"data = FileAttachment(\"penguins.csv\").csv({ typed: true })\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"filtered = data.filter(function(penguin) {\n  return bill_length_min < penguin.bill_length_mm &&\n         islands.includes(penguin.island);\n})\n"},{"methodName":"interpretQuiet","source":"shinyInput('bill_length_min')"},{"methodName":"interpretQuiet","source":"shinyInput('islands')"}]}
-    </script>
-    <script type="module">
-    window._ojs.paths.runtimeToDoc = "../../..";
-    window._ojs.paths.runtimeToRoot = "../../..";
-    window._ojs.paths.docToRoot = "";
-    window._ojs.selfContained = false;
-    window._ojs.runtime.interpretFromScriptTags();
     </script>
     
     <script>
