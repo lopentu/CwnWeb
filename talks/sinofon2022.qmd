@@ -25,20 +25,20 @@ page-layout: full
 # TOC
 
 -   Background
--   Chinese Wordnet 2.0
--   Challenges and Future Work
+-   Chinese Wordnet 2.0: Concepts and Implmentation
+-   Challenges and Current Works
 
 ::: notes
 奇怪
 :::
 
-# Background
+# History
 
-`Sinica BOW` (@huang2004sinica)
+`Sinica BOW` (@huang2004sinica, 2000-2004)
 
-`Chinese Wordnet at Academia Sinica`
+`Chinese Wordnet at Academia Sinica` (2005-2010)
 
-`Chinese Wordnet at NTU Taiwan`
+`Chinese Wordnet at NTU Taiwan` (2010-)
 
 ::: callout-note
 Note that there are many Chinese Wordnet(s).
@@ -81,17 +81,15 @@ Note that there are many Chinese Wordnet(s).
 
 ## Leveraging Morpho-semantic relations
 
-
-:: notes
-之前？
-::
+::: notes 
+之前paper？ 
+:::
 
 ## Gloss as lexicographic resources with add-ons annotations
 
-
-:: notes
-gloss2vec
-::
+:::notes 
+gloss2vec 
+:::
 
 # Data Statistics
 
@@ -170,22 +168,26 @@ filtered = data.filter(function(penguin) {
 
 ## Gloss statistics
 
-
-
 ![](./figures/glossStat.png)
 
 <!-- @fig-airquality further explores the impact of temperature on ozone level. -->
 
 <!-- ```{r} -->
+
 <!-- #| label: fig-airquality -->
+
 <!-- #| fig-cap: Temperature and ozone level. -->
+
 <!-- #| warning: false -->
 
 <!-- library(ggplot2) -->
 
 <!-- ggplot(airquality, aes(Temp, Ozone)) +  -->
+
 <!--   geom_point() +  -->
+
 <!--   geom_smooth(method = "loess") -->
+
 <!-- ``` -->
 
 # GraphAPI and Visualization
@@ -297,6 +299,56 @@ sense_tagged = senseTag(tagged)
 
 ![](./figures/ner.wsd.png)
 
+
+
+## Diachronic word sense tracking
+
+![](./figures/jia_en.png)
+
+# Chinese(s) in Synchrony and Diachrony
+
+> *Gradualness* change and *continual* variations
+
+## Contemporary Mandarin Varieties
+
+-   Fusion of Archaic and Modern senses
+
+    -   resulting in (*expressive vs receptive* word senses)
+    -   例子
+
+-   Linguistically, $<bound root, affixoid>$
+
+    -   paper and 例子
+
+::: notes
+languages strive for diversity XD 懂得與使用, not written vs oral distinction Expressive vocabulary refers to the words that we use to express our thoughts and ideas. That is all the words that we use for "speaking" and "writing" fall under the expressive category. Receptive vocabulary, on the other hand, refers to all the words that you understand while "reading" books or "listening" to someone speak. 
+:::
+
+## Contemporary Mandarin Chinese Dynamics
+
+[【真香】 ('zhēn xiāng', soappetizing)](https://baike.baidu.hk/item/%E7%9C%9F%E9%A6%99/22700736)
+
+![](./figures/zhenXiang.png)
+
+## Contemporary Mandarin Chinese Dynamics
+
+word, construction, word senses
+
+-   originally appeared as a fixed phrase in MC (cannot be replaced with other synonymous phrases like 好香)
+-   gradually spread into TM, but diversified itself into new construction senses, as well as word sense.
+
+## World Chinese(s) and Construction Grammar (CxG)
+
+-   We've build a **parallel corpus** of Mandarin in Mainland China and Taiwan, and
+
+-   Corpus data collected from movie titles and TED talks.
+
+-   A *intralingual* Machine Translation system has been developed and Sense Mapping/Inducing system is in process.
+
+![](./figures/chivar.png)
+
+
+
 # Challenges and On-going Works
 
 > The haunting issues of `wordhood`
@@ -305,36 +357,18 @@ sense_tagged = senseTag(tagged)
 
 -   Construction has its own sense
     -   ( '還在那邊')
+-   
 
--
-
-::notes
-晴方
-::
-
-# Chinese(s) in Synchrony and Diachrony
-
--   *Gradualness* change and *continual* variations
-
-## Archaic and Modern sense
-
-- 懂得與使用
-
-## Diachronic word sense tracking
-
-![](./figures/jia_en.png)
-
-## Mandarin Varieties
-
--  lexical levels to construction levels ('真香')
-
-
-![](./figures/chivar.png)
-
+::: notes 
+晴方 
+:::
 
 ## Ontologies
 
 -   synset-structured (lexicalized) ontology doesn't (seem) work well
+
+-   unlabeled root- vs body
+
 
 # Conclusions
 
