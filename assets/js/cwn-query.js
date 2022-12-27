@@ -166,12 +166,20 @@ const CwnDataIO = {
   },
 
   groupByZhuYin(senseData) {
-    const senseGroups = senseData.reduce((obj, x)=>{
-      const zhuyin = x.zhuyin;      
-      obj[zhuyin] = obj[zhuyin] || [];
-      obj[zhuyin].push(x);
-      return obj;
-    }, {});
+    const senseGroups = senseData
+      .reduce((obj, x)=>{
+        const zhuyin = x.zhuyin;      
+        obj[zhuyin] = obj[zhuyin] || [];
+        obj[zhuyin].push(x);
+        return obj;
+      }, {});
+
+    Object.values(senseGroups)
+      .forEach((sense_list_x)=>{        
+        sense_list_x.sort((x, y)=>{
+          return x.cwn_id > y.cwn_id === true? 1:-1
+        });
+      });
     return senseGroups
   },
 
