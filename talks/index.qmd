@@ -1,0 +1,1275 @@
+---
+format: 
+  revealjs:
+    theme: ["theme/q-theme.scss"]
+    slide-number: c/t
+    logo: "https://lope.linguistics.ntu.edu.tw/static/media/logo_lope.e082917e.jpg"
+    footer: "[CWN2.0 ::: lopeGPT](https://lopentu.github.io/CwnWeb/)"
+    code-copy: true
+    center-title-slide: false
+    include-in-header: heading-meta.html
+    code-link: true
+    code-overflow: wrap
+    highlight-style: a11y
+    height: 1080
+    width: 1920
+    toc: true
+    toc-title: Contents
+    toc-depth: 1
+    toc_float: true
+    toc-location: left # default is right, option is 'body'
+execute: 
+  eval: true
+  echo: true
+bibliography: cllt_v2.bib
+---
+
+<h1>Language Resources with/in Language Models</h1>
+
+<h2>a case of `cwn`</h2>
+
+<hr>
+
+<h3>Shu-Kai Hsieh</h3>
+
+<h3>Graduate Institute of Linguistics, National Taiwan University</h3>
+
+<h4>2023/05/12, CBS Research Symposium, PolyU. Hong Kong</h4>
+
+<br>
+
+![](https://lopentu.github.io/CwnWeb/assets/img/cwn-logo-main.svg){.absolute top="600" left="1250" width="400"}
+
+![](langchain.webp){.absolute top="800" left="950" width="550"}
+
+
+# Where all starts with ..
+. . . 
+
+![](huang_cite.png){width="40%"}
+
+
+
+
+# Introduction
+
+- Language Resources 
+
+- Large Language Models
+
+- Proposed linkage
+
+
+
+# Language Resources
+in linguistics and language technology
+
+- Collection, processing and evaluation of digital form of language use.
+
+- **data, tools, advice**
+
+  - corpora and lexical (semantic) resources, ...
+  - tagger, parser, ...
+  - metadata, evaluation metrics, .....
+
+## WordNet architecture
+
+Two core components:
+
+-   Synset (synonymous set)
+-   Paradigmatic lexical (semantic) relations: hyponymy/hypernymy; meronymy/holonymy, etc
+
+![](wn.graph.png){fig-align="right"}
+
+
+## Chinese Wordnet: Brief History
+黃老師開始 lay the solid foundation 照片
+
+
+`Sinica BOW` [@huang2004sinica] (2000-2004)
+
+`Chinese Wordnet at Academia Sinica` (2005-2010)
+
+`Chinese Wordnet at NTU Taiwan` (2010-)
+
+::: callout-note
+Note that there are more than one Chinese Wordnet.
+:::
+
+
+## Chinese Wordnet
+
+-   Follow PWN (in comparison with Sinica BOW)
+
+-   Word segmentation principle [@chu2017mandarin]
+
+-   Corpus-based decision
+
+-   Manually created (sense distinction, gloss with controlled vocabulary, etc)
+
+- The status quo: latest release 2022, [website online](https://lopentu.github.io/CwnWeb/)
+
+![](cwn.png){fig-align="right"}
+
+## Gloss as lexicographic resources with add-ons annotations
+
+-   Gloss (`lexicographic definition') is carefully controlled with limited vocabulary and **patterns**, e.g.,
+
+    -   Verbs with `VH` tag (i.e., stative intransitive verbs) are glossed with "形容 or 比喻形容 ...".
+    -   Adverbs are glossed with "表..."
+
+-   collocational information, pragmatic information ('tone', etc) are recorded as additional annotation.
+
+
+
+![](glossStat.png)
+
+
+
+## CWN 2.0 Programmable Search
+
+-   The most comprehensive and fine-grained sense repository and network in Chinese
+-   [API and doc](https://cwngraph.readthedocs.io/en/latest/) freely available
+
+![](eat.png){fig-align="left"}
+
+
+## Comparison to others
+
+
+:::: {.columns .fragment fragment-index=0}
+
+::: {.column width="30%"}
+![cwn](cwn_sense.png)
+:::
+
+::: {.column width="30%"}
+
+![e-Hownet](ehownet_sen.png)
+:::
+
+::: {.column width="30%"}
+
+![MOE](meng.png)
+:::
+
+::::
+
+
+## Data summary 1/1
+
+
+:::: {.columns .fragment fragment-index=1}
+
+::: {.column width="30%"}
+![](cwn_sta.png){width=400}
+:::
+
+::: {.column width="70%"}
+
+
+```{r, echo=FALSE, cache=TRUE}
+#| label: fig-cwn1
+#| fig-cap: cwn sense data summary
+#| warning: false
+require(tibble)
+require(ggplot2)
+require(stringr)
+
+df <- tribble(
+  ~POS, ~count,
+  "Adj", 886,
+  "Adv", 1801,
+  "N", 12574,
+  "V", 13615,
+)
+
+ggplot(df) +
+  geom_col(aes(x=reorder(POS, -count), y=count, fill=POS)) + 
+  labs(x="POS", y="count") + 
+  guides(fill="none") +
+  geom_text(aes(x=reorder(POS, -count), y=count+400, label=count)) +
+  labs(title = str_c("Total Sense Count = ", sum(df$count)))
+```
+:::
+
+::::
+
+
+## Data summary 2/2
+
+@fig-cwn2 further demonstrates the distribution of different types of relations
+
+:::: {.columns .fragment fragment-index=1}
+
+::: {.column width="30%"}
+
+![](cwn_sta2.png)
+:::
+
+::: {.column width="70%"}
+
+```{r, echo=FALSE, cache=TRUE}
+#| label: fig-cwn2
+#| fig-cap: cwn relation data summary
+#| warning: false
+
+library(tidyverse)
+library(ggplot2)
+
+df <- read_csv("./data/cwn_relation_statistics.csv")
+df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type, n), y=n, fill=relation_type)) + coord_flip() + labs(y="count", x="relation") + guides(fill="none") + theme(axis.title = element_text(size = 16), axis.text = element_text(size = 14)) 
+```
+
+:::
+
+::::
+
+
+## CWN 2.0
+
+**Graph API (synsets and relations)**
+
+
+
+
+## CWN 2.0 
+**Visualization**
+
+![](cwnVis.png)
+
+
+## CWN 2.0
+**sense tagger and SemCor**
+
+- `SemCor` semi-automatically curated sense-tagged corpus
+
+![](senseanno.png){fig-align="left"}
+
+
+
+
+
+## CWN-based applications
+sense frequency distribution in corpus
+
+-   Now we have chance to *empirically* explore the **dominancy** of word senses, which is essential for both lexical semantic and psycholinguistic studies.
+
+    -   e.g., '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
+
+![](senseFreq.png){fig-align="center"}
+
+::: notes
+從平衡語料庫中取出 300 句包含「吃」或「開」的句子（一句可能含多個目標詞），用CwnSenseTagger 判斷該詞在脈絡中的詞意，並計算其頻率。以下列出頻率最高的 5 個詞意。
+:::
+
+
+
+## CWN-based applications
+tracking sense evolution
+
+-   The indeterminate nature of Chinese affixoids
+-   Sense status of 家 jiā from the Tang dynasty to the 1980s
+
+![](jia_en.png){fig-align="center"}
+
+
+
+# Large Language Models (LLMs)
+
+
+
+## LLM-based NLP: a new paradigm
+Pre-train, Prompt, and Predict [@liu2021pretrain]
+
+![Four paradims in NLP](nlp-paradigm.png)
+
+
+## Foundation Models
+From LLMs to FMs
+
+![](foundation_models.png)
+
+A foundation model can centralize the information from all the data from various modalities. This
+one model can then be adapted to a wide range of downstream tasks.[@bommasani2021opportunities]
+
+
+## 
+
+::: {.callout-note appearance="default"}
+
+I'd still call it LLMs because of the use of NL
+
+:::
+
+
+
+<!-- ## LLM-based NLP  -->
+<!-- easier version -->
+
+<!-- :::: {.columns .fragment fragment-index=1} -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- ![](nlp-1.png){width="600"} -->
+
+
+<!-- ![](nlp-2.png){width="600"} -->
+
+
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- ![](nlp-3.png){width="600"} -->
+<!-- ::: -->
+
+<!-- :::: -->
+
+
+
+
+
+## In-context Learning 
+
+> refers to methods for how to communicate with LLM to steer its behavior for desired outcomes without updating the model weights.
+
+<!-- LLM is a general store of information, and in-context learning allows us to access certain parts within this store without having to specialize the entire model towards each task. -->
+
+- Amazing performance with only zero/few-shot
+- Requires no parameter updates, just talk to them in natural language!
+- Prompt engineering: the process of creating a prompt that results in the most effective performance on the downstream task
+
+
+
+
+
+## Prompt and Prompt engineering
+
+::: {.callout-note appearance="default"}
+
+**prompt**: a natural language description of the task.
+
+**prompt engineering**: The approach of designing optimal prompts to instruct the model to perform a task.
+
+:::
+
+::: {.notes}
+Prompt Engineering is the way in which instruction and reference data is presented to the LLM.
+:::
+
+. . . 
+
+> (Text) Generation is a meta capability of Large Language Models & Prompt Engineering is the key to unlocking it. 
+
+
+## Prompt and Prompt engineering
+`basic elements`
+
+. . .
+
+A prompt is composed with the following components:
+
+
+![](prompt_elements.png)
+
+
+
+[source](www.promptingguide.ai/)
+
+## Prompt and Prompt engineering
+`typology`[@weng2023prompt]
+. . .
+
+- Zero shot learning 
+
+
+- Few shot learning
+
+
+## Prompt and Prompt engineering
+`typology`[@weng2023prompt]
+
+- **Chain-of-Thought (CoT)**
+
+
+## Prompt and Prompt engineering
+``typology`[@weng2023prompt]`
+
+- **Instruction prompting**
+
+
+
+## Prompt and Prompt engineering
+`typology`[@weng2023prompt]
+
+
+- **Self-consistency sampling**
+
+to sample multiple outputs with temperature > 0 and then selecting the best one out of these candidates. The criteria for selecting the best candidate can vary from task to task. A general solution is to pick majority vote. 
+
+
+
+
+## Prompt and Prompt engineering
+`Chain-of-Thought` [@wei2023chainofthought] 
+
+- generates a sequence of short sentences to describe reasoning logics step by step, known as reasoning chains or rationales, to eventually lead to the final answer. 
+
+- zero or few shot CoT
+
+
+## Prompt and Prompt engineering
+`Persona` setting is also important, *socio-linguistically* 
+
+. . .
+
+![awesome-chatgpt-prompts](pe1.png)
+
+
+
+
+## Prompting LLM for lexical semantic tasks
+`word sense disambiguation`
+
+
+![](wsd.jpeg){width="600"}
+
+## Prompting LLM for solve lexical semantic tasks
+`sense to action`
+![](sense2action.jpeg)
+
+## Prompting LLM for solve lexical semantic tasks
+`word sense induction`
+![](sense induction.jpeg){width=70%}
+
+
+## Prompting LLM for Wordnet data augmentation
+**Exploratory Prompting Analysis**
+
+- Prompting LLM becomes an empirical work and the effect of prompt engineering methods can vary a lot among models and tasks, thus requiring heavy experimentation and heuristics.
+
+. . . 
+
+圖示 few shot learning
+
+
+## Example
+
+
+
+## Human ratings
+
+
+## Neologism
+
+
+
+
+
+
+
+
+
+# Limitations
+
+- Hallucination
+
+> when the generated content is nonsensical or unfaithful to the provided source content.
+
+. . .
+
+![](hallucination.png){width=50%}
+
+
+
+<!-- reluctance to express uncertainty, to change premise, and caught in a lie -->
+
+
+
+
+# Limitations
+
+- incapable of accessing factual/updated information 
+
+![](llm_freq.png){width=70%}
+
+
+# A neuro-symbolic approach to rebuild the LR ecosystem
+Toward a more linguistic knowledge-aware LLMs
+
+- Mutually benificial
+
+- Grounded generation (Indexing LRs)
+
+- LLM-LR app stores: LR and LLM `langchain`ed
+
+- Using cwn and corpus as an case study
+
+![](augmented-llms.webp)
+
+
+
+
+
+
+## LLM apps (`Everything app` v.2) 
+
+
+
+- These plugins enable LLM (`chatGPT`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
+
+
+
+
+
+
+##  Everything app
+`another example`
+
+![HuggingGPT: workflow](hugginggpt_workflow.png)
+
+## 
+
+![an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT](hf_jarvis.jpeg)
+
+
+
+
+
+
+
+
+
+## Langchain
+
+> `langchain` is an open source framework that allows AI developers to combine LLMs like GPT-4 with external sources of computation and data.
+
+![Github repo star history](langchain_star.png){width="50%"}
+
+
+## Working with LLMs and your own data
+
+-   Good news for Language Resource developers
+
+<!-- Be data-aware: connect a language model to other sources of data -->
+<!-- Be agentic: allow a language model to interact with its environment -->
+
+. . .
+
+![自己改圖](langchain.png)
+
+## Architecture
+
+![](langchain_components.png)
+
+## Architecture
+
+![high level explanation](langchain_highlevel.png)
+
+## Chain
+
+有點像組合函數，裏面是 prompt template, 外面是 llm
+
+
+
+
+# CWN 2.0 and Corpus plugins for LLMs
+high-level architecture
+
+![lopeGPT](lopegpt.png){width=420%}
+
+
+
+
+
+
+
+## Experiments on Sense computing tasks
+
+- upload data to calculate (word frequency, word sense frequency, etc) via `llama-index` data loader.
+
+- compare the text 
+
+- given few shot, predict the sense and automatically generate the gloss (and relations to others)
+
+
+. . .
+
+::: {.callout-note appearance="default"}
+
+All examples are tested with `text-davinci-003` (using OpenAI's API…..) . It uses the default configurations, i.e., `temperature`=0.7 and `top-p`=1.
+
+:::
+
+
+
+## Final notes
+democratizing LLM
+
+- LLM chains
+
+- Agent network
+
+- Auto-GPT as Project Management (for a scaleable and manageable ecosystem for `LR + LLM` based applications
+
+
+
+## Web app demo 
+
+
+
+<!-- ## Next:  -->
+
+<!-- 如此一來，Auto-GPT 就能打造出一個閉環（closed loop），進而有能力應對更複雜的多步程序；我們也可以把 Auto-GPT 看作一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果。目前 Auto-GPT 能夠與線上和本地的應用程序、軟體和服務進行各種互動，例如網頁瀏覽器與文字處理器。 . . . -->
+
+<!-- Once you have explored and want to bring it into memory, it's also fast! -->
+
+
+# Conclusion
+
+
+- more resources and tools, games
+- exploring open-source LLMs chains
+- Sustanable / ?lifelong learning for Human and Machine
+
+
+
+
+## Acknowledgment
+
+連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！
+
+
+## Reference
+
+::: {#refs}
+:::
+
+
+# 祝黃老師 福如東海壽比南山   
+
+
+
+(找以前的相片) 慶生蛋糕
+
+##  {background-image="howard.jpg" background-size="contain"}
+
+
+
+<!-- ## Fill your quiver with `arrow`s -->
+
+<!-- ```{r} -->
+
+<!-- library(arrow)  # interface to arrow -->
+
+<!-- library(dplyr)  # expressive and consistent interface for data analysis -->
+
+<!-- library(tictoc) # timing out computations -->
+
+<!-- ``` -->
+
+<!-- [Using `tictoc` to [watch cute dog videos]{.fragment .strike fragment-index=2}]{.fragment fragment-index=1} [time our computations.]{.fragment fragment-index=2} -->
+
+<!-- :::: {.columns .fragment fragment-index=1} -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- ![](https://media0.giphy.com/media/EOIQA7mySTulzp7PoR/giphy.gif?cid=ecf05e47o0cq51yelvgpewdyud8ya013gejduf351z5233lq&rid=giphy.gif&ct=g){width="600"} -->
+
+<!-- ![](https://media4.giphy.com/media/DIrGyd84DwA48/giphy.gif?cid=ecf05e47977mxiw5gkfbd23znh0gxgra4kcqxa82c5e0laqs&rid=giphy.gif&ct=g){width="600"} -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- ![](https://media0.giphy.com/media/348lrWhJAUiuhkcePl/giphy.gif?cid=ecf05e476kk82d9kk7u3rub2wec0qpz2c32kxt2504hf1p7v&rid=giphy.gif&ct=g){width="600"} -->
+
+<!-- ![](https://media4.giphy.com/media/OVz2F93KQzSqQ/giphy.gif?cid=ecf05e476kk82d9kk7u3rub2wec0qpz2c32kxt2504hf1p7v&rid=giphy.gif&ct=g){width="600"} -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+<!-- ## On to `arrow` -->
+
+<!-- There are great examples of data analysis on big data (2 billion rows) in the [`arrow` docs](https://arrow.apache.org/docs/r/articles/dataset.html).  -->
+
+<!-- . . . -->
+
+<!-- For today, I'm going to focus on biggish data but manageable data! -->
+
+<!-- . . . -->
+
+<!-- <hr> -->
+
+<!-- If we were to use CSVs, this would be about 2.19 GB of data -->
+
+<!-- ```{r} -->
+
+<!-- fs::dir_info("data-csv") |> summarise(size = sum(size)) |> pull() -->
+
+<!-- ``` -->
+
+<!-- . . . -->
+
+<!-- But because we're using `arrow`, we can use more efficient parquet files. This data on disk is about 82% smaller at 388 MB. -->
+
+<!-- ```{r} -->
+
+<!-- fs::dir_info("data-parquet", recurse = TRUE) |> summarise(size = sum(size)) |> pull() -->
+
+<!-- ``` -->
+
+<!-- . . . -->
+
+<!-- So not _THAT_ big but 372 columns and 1.1 million rows is plenty. -->
+
+<!-- ```{r} -->
+
+<!-- tic() -->
+
+<!-- ds <- arrow::open_dataset("data-parquet", partitioning = "season") -->
+
+<!-- dims <- glue::glue( -->
+
+<!--   "{ds |> names() |> length()} cols by ", -->
+
+<!--   "{scales::label_number(big.mark = ',')(ds |> count() |> collect() |> pull())} rows" -->
+
+<!--   ) -->
+
+<!-- toc() -->
+
+<!-- ``` -->
+
+<!-- ```{r, echo = FALSE} -->
+
+<!-- dims -->
+
+<!-- ``` -->
+
+<!-- ## `nflfastR` data -->
+
+<!-- The data we're focused on today is big enough (1 million rows by 372 columns, about 2.2 GB uncompressed) and corresponds to _every_ NFL play in _every_ game from 1999 to 2021. The data is all available from the [{nflverse} Github](https://github.com/nflverse/nflfastR-data). -->
+
+<!-- . . . -->
+
+<!-- To use it efficiently, we've partitioned the data up into each season -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- ``` -->
+
+<!-- data-parquet/ -->
+
+<!-- ├── 1999 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2000 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2001 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2002 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2003 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2004 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2005 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2006 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2007 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2008 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2009 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2010 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2011 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2012 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2013 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2014 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- ``` -->
+
+<!-- ├── 2015 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2016 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2017 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2018 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2019 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- ├── 2020 -->
+
+<!-- │   └── data.parquet -->
+
+<!-- └── 2021 -->
+
+<!--     └── data.parquet -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+<!-- ## Nock the `arrow` -->
+
+<!-- We can prepare our data to be used with `arrow::open_dataset()` -->
+
+<!-- ```{r} -->
+
+<!-- ds <- open_dataset("data-parquet", partitioning = "season") -->
+
+<!-- ds -->
+
+<!-- ``` -->
+
+<!-- ## Pull the `arrow` back with `dplyr` -->
+
+<!-- ```{r} -->
+
+<!-- #| code-line-numbers: "|8" -->
+
+<!-- summarize_df <- ds |>  -->
+
+<!--   filter(season == 2021, play_type %in% c("pass", "run")) |>  -->
+
+<!--   filter(!is.na(epa)) |>  -->
+
+<!--   select(posteam, epa) |>  -->
+
+<!--   group_by(posteam) |>  -->
+
+<!--   summarize(n = n(), avg_epa = mean(epa)) -->
+
+<!-- print(summarize_df) -->
+
+<!-- ``` -->
+
+<!-- . . . -->
+
+<!-- Note that while the computation has occurred, we really haven't "seen it" yet. Printing just reports back the 3x columns and their type. -->
+
+<!-- ## Release the `arrow` into memory with `collect()` -->
+
+<!-- We can execute the `collect()` function to _finally_ pull the output into memory and display the result. -->
+
+<!-- . . . -->
+
+<!-- ```{r collectArrange} -->
+
+<!-- #| code-line-numbers: "|2" -->
+
+<!-- summarize_df |>  -->
+
+<!--   collect() |>  -->
+
+<!--   arrange(desc(avg_epa)) -->
+
+<!-- ``` -->
+
+<!-- ## Release the `arrow` into memory with `collect()` -->
+
+<!-- Once it's pulled into memory, it's like any other in-memory object! -->
+
+<!-- . . . -->
+
+<!-- ```{r, fig.dim=c(8,3), dpi=500, fig.align='center'} -->
+
+<!-- library(ggplot2) -->
+
+<!-- collect(summarize_df) |>  -->
+
+<!--   ggplot(aes(x = forcats::fct_reorder(posteam, desc(avg_epa)), y = avg_epa)) + -->
+
+<!--   theme_minimal() + geom_hline(yintercept = 0, color = "black") + -->
+
+<!--   geom_col(aes(color = posteam, fill = posteam), width = 0.75) + -->
+
+<!--   nflplotR::scale_fill_nfl(alpha = 0.75, aesthetics = c("color", "fill")) + -->
+
+<!--   guides(color = "none", fill = "none") + -->
+
+<!--   theme(axis.text.x = nflplotR::element_nfl_logo()) + -->
+
+<!--   labs(x = "", y = "Average Expected Points Added", title = "2021 Offensive Expected Points Added") -->
+
+<!-- ``` -->
+
+<!-- ## Bigger and faster -->
+
+<!-- We can operate across all the rows extremely quickly! -->
+
+<!-- ```{r} -->
+
+<!-- tic() -->
+
+<!-- all_comp <- ds |>  -->
+
+<!--   filter(!is.na(epa)) |>  -->
+
+<!--   group_by(posteam, play_type) |>  -->
+
+<!--   summarize( -->
+
+<!--     n = n(),  -->
+
+<!--     avg_epa = mean(epa), -->
+
+<!--     .groups = "drop" -->
+
+<!--     ) |>  -->
+
+<!--   collect() |>  -->
+
+<!--   mutate(total = scales::label_number(big.mark = ",")(sum(n))) -->
+
+<!-- toc() -->
+
+<!-- ``` -->
+
+<!-- ```{r, echo=FALSE} -->
+
+<!-- all_comp -->
+
+<!-- ``` -->
+
+<!-- ## Better exploratory data analysis -->
+
+<!-- While `arrow` + `dplyr` can be combined for extremely efficient and fast data analysis, having to `collect()` into memory when the results may be very large is not ideal. -->
+
+<!-- . . . -->
+
+<!-- Enter the [`arrow::to_duckdb()` function](https://arrow.apache.org/docs/r/reference/to_duckdb.html)! This is essentially a zero-cost operation that will treat the on-disk data in place as a [`duckdb` database](https://duckdb.org/)! -->
+
+<!-- . . . -->
+
+<!-- ```{r} -->
+
+<!-- tic() -->
+
+<!-- duck_out <- ds |>  -->
+
+<!--   select(posteam, play_type, season, defteam, epa) |>  -->
+
+<!--   filter(!is.na(epa)) |>  -->
+
+<!--   to_duckdb() |>  -->
+
+<!--   filter(epa >= 0)  -->
+
+<!-- toc() -->
+
+<!-- ``` -->
+
+<!-- ```{r, echo=FALSE} -->
+
+<!-- duck_out -->
+
+<!-- ``` -->
+
+<!-- ## More `arrow`s for more `duckdb`s -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ```{r} -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, season, epa) |>  -->
+
+<!--   filter( -->
+
+<!--     !is.na(epa),  -->
+
+<!--     play_type %in% c("run", "pass")) |>  -->
+
+<!--   to_duckdb() |>  -->
+
+<!--   filter(epa >= 0)  -->
+
+<!-- ``` -->
+
+<!-- `lazy query [?? x 4]` indicates a `dbplyr` connection, prints 10 rows and the remaining dataset hasn't been pulled into memory yet! -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+<!-- ## More `arrow`s for more `duckdb`s -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ```{r} -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, season, epa) |>  -->
+
+<!--   filter( -->
+
+<!--     !is.na(epa),  -->
+
+<!--     play_type %in% c("run", "pass")) |>  -->
+
+<!--   to_duckdb() |>  -->
+
+<!--   filter(epa >= 0)  -->
+
+<!-- ``` -->
+
+<!-- `lazy query [?? x 4]` indicates a `dbplyr` connection, prints 10 rows and the remaining dataset hasn't been pulled into memory yet! -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ```{r} -->
+
+<!-- #| code-line-numbers: "|9|10" -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, season, epa) |>  -->
+
+<!--   filter(!is.na(epa)) |>  -->
+
+<!--   to_duckdb() |>  -->
+
+<!--   filter( -->
+
+<!--     epa >= 0,  -->
+
+<!--     play_type %in% c("run", "pass") -->
+
+<!--     ) |>  -->
+
+<!--   arrange(desc(epa)) |>  -->
+
+<!--   print(n = 22) -->
+
+<!-- ``` -->
+
+<!-- We can easily print more! -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+<!-- ## Rapid fire question -> answer -->
+
+<!-- Just like with `dplyr` in memory, you can write and answer queries almost as fast as you can think them up! -->
+
+<!-- . . . -->
+
+<!-- ```{r} -->
+
+<!-- tic() -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, season, defteam, epa) |>  -->
+
+<!--   filter(!is.na(epa)) |>  -->
+
+<!--   to_duckdb() |>  -->
+
+<!--   filter(epa >= 5) -->
+
+<!-- toc() -->
+
+<!-- ``` -->
+
+<!-- ## `duckdb` adds more options -->
+
+<!-- Note that it _also_ opens up additional functions via `dbplyr` that may not be added yet into `arrow`'s conversion layer. -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ```{r, error=TRUE} -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, epa) |> -->
+
+<!--   mutate(total_n = n()) |>  -->
+
+<!--   group_by(posteam) |>  -->
+
+<!--   summarize(n = n(), total = min(total_n)) -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+<!-- ## `duckdb` adds more options -->
+
+<!-- Note that it _also_ opens up additional functions via `dbplyr` that may not be added yet into `arrow`'s conversion layer. -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ```{r, error=TRUE} -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, epa) |> -->
+
+<!--   mutate(total_n = n()) |>  -->
+
+<!--   group_by(posteam) |>  -->
+
+<!--   summarize(n = n(), total = min(total_n)) -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="45%"} -->
+
+<!-- ```{r, warning=FALSE} -->
+
+<!-- #| code-line-numbers: "|3" -->
+
+<!-- ds |>  -->
+
+<!--   select(posteam, play_type, epa) |> -->
+
+<!--   to_duckdb() |>  -->
+
+<!--   mutate(total_n = n()) |>  -->
+
+<!--   group_by(posteam) |>  -->
+
+<!--   summarize(n = n(), total = min(total_n)) -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- :::: -->
+
+
+
+<!-- ## We can `bench::mark()` -->
+
+<!-- ```{r, eval=FALSE,echo=FALSE} -->
+
+<!-- read_arrow <- \() all_21_arrow <- ds |> filter(season == 2021) |> collect() -->
+
+<!-- read_dt <- \() all_21_dt <- data.table::fread("data-csv/2021.csv", nThread = 10) -->
+
+<!-- read_vroom <- \() all_21_dt <- vroom::vroom("data-csv/2021.csv") -->
+
+<!-- read_csv_arrow <- \() all_21_dt <- arrow::read_csv_arrow("data-csv/2021.csv") -->
+
+<!-- ``` -->
+
+<!-- All are pretty fast! -->
+
+<!-- ```{r, cache=TRUE, message=FALSE, warning = FALSE} -->
+
+<!-- bench::mark( -->
+
+<!--   read_arrow(),     # arrow::open_dataset() -->
+
+<!--   read_dt(),        # data.table::fread() -->
+
+<!--   read_vroom(),     # vroom::vroom() -->
+
+<!--   read_csv_arrow(), # arrow::read_arrow_csv() -->
+
+<!--   read_csv_readr(), # readr::read_csv() -->
+
+<!--   min_time = 0.1, iterations = 10 -->
+
+<!-- ) |>  -->
+
+<!--   arrange(median) -->
+
+<!-- ``` -->
+
+<!-- . . . -->
+
+<!-- But again - the beauty of `arrow` is not just that it's fast! -->
+
+<!-- . . . -->
+
+<!-- It's fast at exploring the data _BEFORE_ even having to wait for long reads OR having to get a workstation with enough memory to read it all in and compute on it! -->
+
+<!-- . . . -->
+
+<!-- So go out and use `arrow` + `dplyr` with `duckdb` for outrageously efficient exploratory data analysis! -->
+
