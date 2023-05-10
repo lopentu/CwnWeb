@@ -1,6 +1,6 @@
 
-# arrow-dplyr
+# lopeGPT
 
-This is a brief, 10 min lightning talk for the DataThread conference by Voltron Data.
+This is a keynote talk for the CBS Research Symposium, "Above and Beyond: Chinese Linguistics in the Digital Era", to be held on 12 May 2023.
 
-[![Title slide screenshot](index-img.png)](https://jthomasmock.github.io/arrow-dplyr/)
+![](http://www.cbs.polyu.edu.hk/sympo2023/images/banner_v1.jpg)
