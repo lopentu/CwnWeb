@@ -548,6 +548,16 @@ Toward a more linguistic knowledge-aware LLMs
 ![Github repo star history](langchain_star.png){width="50%"}
 
 
+
+## Architecture
+
+![](langchain_components.png)
+
+<!-- ## Architecture -->
+
+<!-- ![high level explanation](langchain_highlevel.png) -->
+
+
 ## Working with LLMs and your own data
 
 -   Good news for Language Resource developers
@@ -559,17 +569,10 @@ Toward a more linguistic knowledge-aware LLMs
 
 ![自己改圖](langchain.png)
 
-## Architecture
 
-![](langchain_components.png)
+<!-- ## Chain -->
 
-## Architecture
-
-![high level explanation](langchain_highlevel.png)
-
-## Chain
-
-有點像組合函數，裏面是 prompt template, 外面是 llm
+<!-- 有點像組合函數，裏面是 prompt template, 外面是 llm -->
 
 
 
@@ -653,7 +656,7 @@ democratizing LLM
 
 (找以前的相片) 慶生蛋糕
 
-##  {background-image="howard.jpg" background-size="contain"}
+<!-- ##  {background-image="howard.jpg" background-size="contain"} -->
 
 
 
