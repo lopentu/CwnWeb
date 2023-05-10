@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #767676;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
+    div.sourceCode
+      { color: #545454; background-color: #fefefe; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -357,19 +422,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Contents</h2>
-<ul>
-<li><a href="#/where-all-starts-with-.." id="/toc-where-all-starts-with-..">Where all starts with ..</a></li>
-<li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
-<li><a href="#/language-resources" id="/toc-language-resources">Language Resources</a></li>
-<li><a href="#/large-language-models-llms" id="/toc-large-language-models-llms">Large Language Models (LLMs)</a></li>
-<li><a href="#/limitations" id="/toc-limitations">Limitations</a></li>
-<li><a href="#/limitations-1" id="/toc-limitations-1">Limitations</a></li>
-<li><a href="#/a-neuro-symbolic-approach-to-rebuild-the-lr-ecosystem" id="/toc-a-neuro-symbolic-approach-to-rebuild-the-lr-ecosystem">A neuro-symbolic approach to rebuild the LR ecosystem</a></li>
-<li><a href="#/cwn-2.0-and-corpus-plugins-for-llms" id="/toc-cwn-2.0-and-corpus-plugins-for-llms">CWN 2.0 and Corpus plugins for LLMs</a></li>
-<li><a href="#/conclusion" id="/toc-conclusion">Conclusion</a></li>
-<li><a href="#/%E7%A5%9D%E9%BB%83%E8%80%81%E5%B8%AB-%E7%A6%8F%E5%A6%82%E6%9D%B1%E6%B5%B7%E5%A3%BD%E6%AF%94%E5%8D%97%E5%B1%B1" id="/toc-祝黃老師-福如東海壽比南山">祝黃老師 福如東海壽比南山</a></li>
-</ul></nav></section><section class="slide level2"><h1>
+
+<section class="slide level2"><h1>
 Language Resources with/in Language Models
 </h1>
 <h2>
@@ -400,11 +454,11 @@ Graduate Institute of Linguistics, National Taiwan University
 </ul></section><section><section id="language-resources" class="title-slide slide level1"><h1>Language Resources</h1>
 <p>in linguistics and language technology</p>
 <ul>
-<li><p>Collection, processing and evaluation of digital form of language use.</p></li>
+<li><p>Collection, processing and evaluation of digital form of <span id="d-blue">language use</span>.</p></li>
 <li>
 <p><strong>data, tools, advice</strong></p>
 <ul>
-<li>corpora and lexical (semantic) resources, …</li>
+<li>corpora and lexical (semantic) resources (e.g.&nbsp;<span id="magenta">wordnet</span>), …</li>
 <li>tagger, parser, …</li>
 <li>metadata, evaluation metrics, …..</li>
 </ul>
@@ -417,20 +471,23 @@ Graduate Institute of Linguistics, National Taiwan University
 </ul>
 
 <img data-src="wn.graph.png" class="r-stretch quarto-figure-right"></section><section id="chinese-wordnet-brief-history" class="slide level2"><h2>Chinese Wordnet: Brief History</h2>
-<p>黃老師開始 lay the solid foundation 照片</p>
-<p><code>Sinica BOW</code> <span class="citation" data-cites="huang2004sinica">(<a href="#/reference" role="doc-biblioref" onclick="">Huang, Chang, and Lee 2004</a>)</span> (2000-2004)</p>
-<p><code>Chinese Wordnet at Academia Sinica</code> (2005-2010)</p>
-<p><code>Chinese Wordnet at NTU Taiwan</code> (2010-)</p>
-<div class="callout callout-note callout-titled callout-style-default">
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="huang.png"></p>
+</div><div class="column" style="width:65%;">
+<ul>
+<li><p><code>Sinica BOW</code> <span class="citation" data-cites="huang2004sinica">(<a href="#/reference" role="doc-biblioref" onclick="">Huang, Chang, and Lee 2004</a>)</span> (2000-2004)</p></li>
+<li><p><code>Chinese Wordnet at Academia Sinica</code> (2005-2010)</p></li>
+<li><p><code>Chinese Wordnet at NTU Taiwan</code> (2010-)</p></li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
 <div class="callout-content">
 <p>Note that there are more than one Chinese Wordnet.</p>
+</div>
 </div>
 </div>
 </div>
@@ -442,8 +499,13 @@ Graduate Institute of Linguistics, National Taiwan University
 <li><p>Manually created (sense distinction, gloss with controlled vocabulary, etc)</p></li>
 <li><p>The status quo: latest release 2022, <a href="https://lopentu.github.io/CwnWeb/">website online</a></p></li>
 </ul>
-
-<img data-src="cwn.png" class="r-stretch quarto-figure-right"></section><section id="gloss-as-lexicographic-resources-with-add-ons-annotations" class="slide level2"><h2>Gloss as lexicographic resources with add-ons annotations</h2>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-right">
+<figure><p><img data-src="cwn.png"></p>
+</figure>
+</div>
+</div>
+</section><section id="gloss-as-lexicographic-resources-with-add-ons-annotations" class="slide level2"><h2>Gloss as lexicographic resources with add-ons annotations</h2>
 <ul>
 <li>
 <p>Gloss (`lexicographic definition’) is carefully controlled with limited vocabulary and <strong>patterns</strong>, e.g.,</p>
@@ -455,29 +517,42 @@ Graduate Institute of Linguistics, National Taiwan University
 <li><p>collocational information, pragmatic information (‘tone’, etc) are recorded as additional annotation.</p></li>
 </ul>
 
-<img data-src="glossStat.png" class="r-stretch"></section><section id="cwn-2.0-programmable-search" class="slide level2"><h2>CWN 2.0 Programmable Search</h2>
+<img data-src="glossStat.png" class="r-stretch quarto-figure-center"></section><section id="cwn-2.0-search" class="slide level2"><h2>CWN 2.0 Search</h2>
 <ul>
 <li>The most comprehensive and fine-grained sense repository and network in Chinese</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-left">
+<figure><p><img data-src="eat.png"></p>
+</figure>
+</div>
+</div>
+</section><section id="cwn-2.0-programmable-search" class="slide level2"><h2>CWN 2.0 Programmable Search</h2>
+<ul>
 <li>
 <a href="https://cwngraph.readthedocs.io/en/latest/">API and doc</a> freely available</li>
 </ul>
-
-<img data-src="eat.png" class="r-stretch quarto-figure-left"></section><section id="comparison-to-others" class="slide level2"><h2>Comparison to others</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> CwnGraph <span class="im">import</span> CwnImage</span>
+<span id="cb1-2"><a href="#cb1-2"></a>cwn <span class="op">=</span> CwnImage.latest()</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"># the original base data</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># from CwnGraph import CwnImage</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># cwn = CwnBase()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="comparison-to-others" class="slide level2"><h2>Comparison to others</h2>
 <div class="columns fragment" data-fragment-index="0">
-<div class="column" style="width:30%;">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="cwn_sense.png"></p>
-<figcaption>cwn</figcaption></figure>
-</div>
-</div><div class="column" style="width:30%;">
+<div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="ehownet_sen.png"></p>
 <figcaption>e-Hownet</figcaption></figure>
 </div>
-</div><div class="column" style="width:30%;">
+</div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="meng.png"></p>
 <figcaption>MOE</figcaption></figure>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="cwn_sense.png"></p>
+<figcaption>CWN20</figcaption></figure>
 </div>
 </div>
 </div>
@@ -513,11 +588,9 @@ Graduate Institute of Linguistics, National Taiwan University
 </div>
 </div>
 </section><section id="cwn-2.0" class="slide level2"><h2>CWN 2.0</h2>
-<p><strong>Graph API (synsets and relations)</strong></p>
-</section><section id="cwn-2.0-1" class="slide level2"><h2>CWN 2.0</h2>
 <p><strong>Visualization</strong></p>
 
-<img data-src="cwnVis.png" class="r-stretch"></section><section id="cwn-2.0-2" class="slide level2"><h2>CWN 2.0</h2>
+<img data-src="cwnVis.png" class="r-stretch"></section><section id="cwn-2.0-1" class="slide level2"><h2>CWN 2.0</h2>
 <p><strong>sense tagger and SemCor</strong></p>
 <ul>
 <li>
@@ -528,7 +601,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <p>sense frequency distribution in corpus</p>
 <ul>
 <li>
-<p>Now we have chance to <em>empirically</em> explore the <strong>dominancy</strong> of word senses, which is essential for both lexical semantic and psycholinguistic studies.</p>
+<p>Now we have chance to <em>empirically</em> explore the <strong>dominance</strong> of word senses, which is essential for both lexical semantic and psycholinguistic studies.</p>
 <ul>
 <li>e.g., ‘開’ (kai1,‘open’) has (surprisingly) more dominant <em>blossom</em> sense over others (based on randomly chosen 300 sentences in ASBC corpus)</li>
 </ul>
@@ -631,7 +704,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><code>basic elements</code></p>
 <div class="fragment">
 <p>A prompt is composed with the following components:</p>
-<p><img data-src="prompt_elements.png"></p>
+<p><img data-src="prompt_elements.png" style="width:70.0%"></p>
 <p><a href="www.promptingguide.ai/">source</a></p>
 </div>
 </section><section id="prompt-and-prompt-engineering-2" class="slide level2"><h2>Prompt and Prompt engineering</h2>
@@ -662,14 +735,14 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><code>Persona</code> setting is also important, <em>socio-linguistically</em></p>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="pe1.png"></p>
+<figure><p><img data-src="pe1.png" style="width:75.0%"></p>
 <figcaption>awesome-chatgpt-prompts</figcaption></figure>
 </div>
 </div>
 </section><section id="prompting-llm-for-lexical-semantic-tasks" class="slide level2"><h2>Prompting LLM for lexical semantic tasks</h2>
 <p><code>word sense disambiguation</code></p>
 
-<img data-src="wsd.jpeg" width="600" class="r-stretch"></section><section id="prompting-llm-for-solve-lexical-semantic-tasks" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
+<img data-src="wsd.jpeg" width="400" class="r-stretch"></section><section id="prompting-llm-for-solve-lexical-semantic-tasks" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
 <p><code>sense to action</code> <img data-src="sense2action.jpeg"></p>
 </section><section id="prompting-llm-for-solve-lexical-semantic-tasks-1" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
 <p><code>word sense induction</code> <img data-src="sense%20induction.jpeg" style="width:70.0%"></p>
@@ -700,16 +773,21 @@ Graduate Institute of Linguistics, National Taiwan University
 <li>incapable of accessing factual/updated information</li>
 </ul>
 
-<img data-src="llm_freq.png" style="width:70.0%" class="r-stretch"></section><section><section id="a-neuro-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1"><h1>A neuro-symbolic approach to rebuild the LR ecosystem</h1>
+<img data-src="llm_freq.png" style="width:50.0%" class="r-stretch"></section><section><section id="a-neuro-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1"><h1>A neuro-symbolic approach to rebuild the LR ecosystem</h1>
 <p>Toward a more linguistic knowledge-aware LLMs</p>
+<div class="columns fragment" data-fragment-index="4">
+<div class="column" style="width:50%;">
 <ul>
 <li><p>Mutually benificial</p></li>
 <li><p>Grounded generation (Indexing LRs)</p></li>
 <li><p>LLM-LR app stores: LR and LLM <code>langchain</code>ed</p></li>
 <li><p>Using cwn and corpus as an case study</p></li>
 </ul>
-
-<img data-src="augmented-llms.webp" class="r-stretch"></section><section id="llm-apps-everything-app-v.2" class="slide level2"><h2>LLM apps (<code>Everything app</code> v.2)</h2>
+</div><div class="column" style="width:40%;">
+<p><img data-src="augmented-llms.png"></p>
+</div>
+</div>
+</section><section id="llm-apps-everything-app-v.2" class="slide level2"><h2>LLM apps (<code>Everything app</code> v.2)</h2>
 <ul>
 <li>These plugins enable LLM (<code>chatGPT</code>) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.</li>
 </ul></section><section id="everything-app" class="slide level2"><h2>Everything app</h2>
@@ -741,7 +819,11 @@ Graduate Institute of Linguistics, National Taiwan University
 </section></section><section><section id="cwn-2.0-and-corpus-plugins-for-llms" class="title-slide slide level1"><h1>CWN 2.0 and Corpus plugins for LLMs</h1>
 <p>high-level architecture</p>
 
-<img data-src="lopegpt.png" style="width:420.0%" class="r-stretch quarto-figure-center"><p class="caption">lopeGPT</p></section><section id="experiments-on-sense-computing-tasks" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
+<img data-src="lopegpt.png" style="width:520.0%" class="r-stretch quarto-figure-center"><p class="caption">lopeGPT</p></section><section id="experiments-on-sense-computing-tasks" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
+<ul>
+<li><p>sense and relation data query</p></li>
+<li>
+</li></ul></section><section id="experiments-on-sense-computing-tasks-1" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
 <ul>
 <li><p>upload data to calculate (word frequency, word sense frequency, etc) via <code>llama-index</code> data loader.</p></li>
 <li><p>compare the text</p></li>

@@ -15,10 +15,22 @@ $body-color: #000 !default;
 $link-color: #00008b !default;
 $code-block-bg: #f2f2f2;
 $code-block-font-size: 0.7em;
+$baby-blue: #d2e3f3;
+$teal: #047C90;
+$d-blue: #003660;
+$white: #FFFFFF;
+$green: #78A540; 
+$magenta: #900C3F;
+$off-white: #F7F7F7; 
+$gray: #ADADAD; 
+
+
 
 $presentation-font-smaller: 0.7rem;
 
 /*-- scss:rules --*/
+
+// HTML selectors //
 
 h1 {
   font-family: "Fira Mono";
@@ -28,3 +40,26 @@ h1 {
 .author, .date {
   font-size: 34px;
 }
+
+// Class selectors //
+
+.blue-italicized {
+    color: blue;
+    font-style: italic;
+}
+
+/* <p class="blue-italicized">My first paragraph is styled</p> */
+
+#d-blue {
+    color: #003660;
+}
+
+.big-text {
+  font-size: 150px;
+  color: blue;
+}
+
+#magenta {
+  color:#900C3F
+}
+

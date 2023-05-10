@@ -13,7 +13,7 @@ format:
     highlight-style: a11y
     height: 1080
     width: 1920
-    toc: true
+    toc: false
     toc-title: Contents
     toc-depth: 1
     toc_float: true
@@ -64,11 +64,11 @@ bibliography: cllt_v2.bib
 # Language Resources
 in linguistics and language technology
 
-- Collection, processing and evaluation of digital form of language use.
+- Collection, processing and evaluation of digital form of [language use]{#d-blue}.
 
 - **data, tools, advice**
 
-  - corpora and lexical (semantic) resources, ...
+  - corpora and lexical (semantic) resources (e.g. [wordnet]{#magenta}), ...
   - tagger, parser, ...
   - metadata, evaluation metrics, .....
 
@@ -83,17 +83,38 @@ Two core components:
 
 
 ## Chinese Wordnet: Brief History
-黃老師開始 lay the solid foundation 照片
+
+:::: {.columns}
+
+::: {.column width="25%"}
+
+![](huang.png)
+
+:::
+
+::: {.column width="65%"}
 
 
-`Sinica BOW` [@huang2004sinica] (2000-2004)
+- `Sinica BOW` [@huang2004sinica] (2000-2004)
 
-`Chinese Wordnet at Academia Sinica` (2005-2010)
 
-`Chinese Wordnet at NTU Taiwan` (2010-)
 
-::: callout-note
+- `Chinese Wordnet at Academia Sinica` (2005-2010)
+
+ 
+
+- `Chinese Wordnet at NTU Taiwan` (2010-)
+
+
+:::
+::::
+
+. . .
+
+::: {.callout-note appearance="simple" icon=false}
+
 Note that there are more than one Chinese Wordnet.
+
 :::
 
 
@@ -109,6 +130,8 @@ Note that there are more than one Chinese Wordnet.
 
 - The status quo: latest release 2022, [website online](https://lopentu.github.io/CwnWeb/)
 
+. . .
+
 ![](cwn.png){fig-align="right"}
 
 ## Gloss as lexicographic resources with add-ons annotations
@@ -122,16 +145,31 @@ Note that there are more than one Chinese Wordnet.
 
 
 
-![](glossStat.png)
+![](glossStat.png){fig-align="center"}
 
 
+
+## CWN 2.0 Search
+
+-   The most comprehensive and fine-grained sense repository and network in Chinese
+
+. . .
+
+![](eat.png){fig-align="left"}
 
 ## CWN 2.0 Programmable Search
 
--   The most comprehensive and fine-grained sense repository and network in Chinese
 -   [API and doc](https://cwngraph.readthedocs.io/en/latest/) freely available
 
-![](eat.png){fig-align="left"}
+
+```python
+from CwnGraph import CwnImage
+cwn = CwnImage.latest()
+# the original base data
+# from CwnGraph import CwnImage
+# cwn = CwnBase()
+```
+
 
 
 ## Comparison to others
@@ -139,18 +177,19 @@ Note that there are more than one Chinese Wordnet.
 
 :::: {.columns .fragment fragment-index=0}
 
-::: {.column width="30%"}
-![cwn](cwn_sense.png)
-:::
 
-::: {.column width="30%"}
+::: {.column width="40%"}
 
 ![e-Hownet](ehownet_sen.png)
 :::
 
-::: {.column width="30%"}
+::: {.column width="40%"}
 
 ![MOE](meng.png)
+:::
+
+::: {.column width="40%"}
+![CWN20](cwn_sense.png)
 :::
 
 ::::
@@ -226,11 +265,6 @@ df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type,
 ::::
 
 
-## CWN 2.0
-
-**Graph API (synsets and relations)**
-
-
 
 
 ## CWN 2.0 
@@ -253,7 +287,7 @@ df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type,
 ## CWN-based applications
 sense frequency distribution in corpus
 
--   Now we have chance to *empirically* explore the **dominancy** of word senses, which is essential for both lexical semantic and psycholinguistic studies.
+-   Now we have chance to *empirically* explore the **dominance** of word senses, which is essential for both lexical semantic and psycholinguistic studies.
 
     -   e.g., '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
 
@@ -371,7 +405,7 @@ Prompt Engineering is the way in which instruction and reference data is present
 A prompt is composed with the following components:
 
 
-![](prompt_elements.png)
+![](prompt_elements.png){width=70%}
 
 
 
@@ -424,7 +458,7 @@ to sample multiple outputs with temperature > 0 and then selecting the best one 
 
 . . .
 
-![awesome-chatgpt-prompts](pe1.png)
+![awesome-chatgpt-prompts](pe1.png){width=75%}
 
 
 
@@ -433,7 +467,7 @@ to sample multiple outputs with temperature > 0 and then selecting the best one 
 `word sense disambiguation`
 
 
-![](wsd.jpeg){width="600"}
+![](wsd.jpeg){width="400"}
 
 ## Prompting LLM for solve lexical semantic tasks
 `sense to action`
@@ -492,11 +526,16 @@ to sample multiple outputs with temperature > 0 and then selecting the best one 
 
 - incapable of accessing factual/updated information 
 
-![](llm_freq.png){width=70%}
+![](llm_freq.png){width=50%}
 
 
 # A neuro-symbolic approach to rebuild the LR ecosystem
 Toward a more linguistic knowledge-aware LLMs
+
+
+:::: {.columns .fragment fragment-index=4} 
+
+::: {.column width="50%"} 
 
 - Mutually benificial
 
@@ -506,8 +545,14 @@ Toward a more linguistic knowledge-aware LLMs
 
 - Using cwn and corpus as an case study
 
-![](augmented-llms.webp)
+:::
 
+::: {.column width="40%"} 
+
+
+![](augmented-llms.png)
+:::
+::::
 
 
 
@@ -580,10 +625,15 @@ Toward a more linguistic knowledge-aware LLMs
 # CWN 2.0 and Corpus plugins for LLMs
 high-level architecture
 
-![lopeGPT](lopegpt.png){width=420%}
+![lopeGPT](lopegpt.png){width=520%}
 
 
 
+## Experiments on Sense computing tasks
+
+- sense and relation data query
+
+- 
 
 
 
