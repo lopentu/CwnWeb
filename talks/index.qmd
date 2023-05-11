@@ -784,7 +784,12 @@ A prompt is composed with the following components:
 - sense definition, lexical relation query and processing
 
 - sense tagging and analysis 
-標記 ...
+
+
+
+## 
+
+![](lopegpt_huang.png)
 
 
 
@@ -801,7 +806,7 @@ A prompt is composed with the following components:
 
 ::: {.callout-note appearance="default"}
 
-All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API…..) . It uses the default configurations, i.e., `temperature`=0.0.
+All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API) . It uses the default configurations, i.e., `temperature`=0.0.
 
 :::
 
