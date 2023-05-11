@@ -311,8 +311,8 @@ df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type,
 
 - [Transformer-based sense tagger]{#magenta}
 
--   Leveraging wordnet *glosses* using `GlossBert` [@huang2019glossbert]
-    - a BERT model for word sense disambiguation with gloss knowledge.
+-   Leveraging wordnet *glosses* using `GlossBert`,a BERT model for word sense disambiguation with gloss knowledge [@huang2019glossbert].
+
 -   Our extended `GlossBert` model on CWN gloss+ SemCor reports 82% accuracy.
 
 ::: notes
@@ -390,6 +390,18 @@ sense frequency distribution in corpus
 
 # Large Language Models (LLMs)
 
+> Large language models refer to large general-purpose language models that can be pre-trained and then fine-tuned for specific purposes.
+
+
+![](llm.png)
+
+
+
+## Large Language Models (LLMs)
+
+- Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words. 
+
+- Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence.
 
 
 ## LLM-based NLP: a new paradigm
@@ -399,7 +411,7 @@ Pre-train, Prompt, and Predict [@liu2021pretrain]
 
 
 ## Foundation Models
-From LLMs to FMs
+From LLMs to FMs (thus [Generative AI]{#magenta})
 
 ![](foundation_models.png)
 
@@ -463,7 +475,9 @@ one model can then be adapted to a wide range of downstream tasks.[@bommasani202
 
 **prompt**: a natural language description of the task.
 
-**prompt engineering**: The approach of designing optimal prompts to instruct the model to perform a task.
+**prompt design**: involves instructions and context passed to the LLM to achieve a desired task.
+
+**prompt engineering**: the practice of developing optimal (clear, concise, informative) prompts to efficiently use LLMs for a variety of applications.
 
 :::
 
@@ -473,9 +487,15 @@ Prompt Engineering is the way in which instruction and reference data is present
 
 . . . 
 
+![](prompt_de.png)
+
+
+
 > (Text) Generation is a meta capability of Large Language Models & Prompt Engineering is the key to unlocking it. 
 
 
+
+  
 ## Prompt and Prompt engineering
 `basic elements`
 
@@ -491,45 +511,40 @@ A prompt is composed with the following components:
 [source](www.promptingguide.ai/)
 
 ## Prompt and Prompt engineering
-`typology` [@weng2023prompt]
+`zero and few shot` [@weng2023prompt]
 . . .
 
-- Zero shot learning 
+- Zero shot learning: implies that a model can recognize things that have not explicitly been taught in the training.
 
-
-- Few shot learning
-
-
-## Prompt and Prompt engineering
-`typology`[@weng2023prompt]
-
-- **Chain-of-Thought (CoT)**
-
-
-## Prompt and Prompt engineering
-``typology`[@weng2023prompt]`
-
-- **Instruction prompting**
-
-
-
-## Prompt and Prompt engineering
-`typology`[@weng2023prompt]
-
-
-- **Self-consistency sampling**
-
-to sample multiple outputs with temperature > 0 and then selecting the best one out of these candidates. The criteria for selecting the best candidate can vary from task to task. A general solution is to pick majority vote. 
-
+- Few shot learning: refers to training a model with minimal data.
 
 
 
 ## Prompt and Prompt engineering
 `Chain-of-Thought` [@wei2023chainofthought] 
 
-- generates a sequence of short sentences to describe reasoning logics step by step, known as reasoning chains or rationales, to eventually lead to the final answer. 
+- generates a sequence of short sentences to describe reasoning logic step by step, known as reasoning chains or rationales, to eventually lead to the final answer. 
+
+![](cot.png)[source](https://youtu.be/zizonToFXDs)
 
 - zero or few shot CoT
+
+
+
+<!-- ## Prompt and Prompt engineering -->
+<!-- ``typology`[@weng2023prompt]` -->
+
+<!-- - **Instruction prompting** -->
+
+
+
+## Prompt and Prompt engineering
+`Self-consistency sampling` [@weng2023prompt]
+
+- to sample multiple outputs with temperature > 0 and then selecting the best one out of these candidates. The criteria for selecting the best candidate can vary from task to task. A general solution is to pick majority vote. 
+
+
+
 
 
 ## Prompt and Prompt engineering
@@ -574,29 +589,41 @@ to sample multiple outputs with temperature > 0 and then selecting the best one 
 
 . . . 
 
-圖示 few shot learning
+- After exploring different prompt templates, we take a prompt template with bullet points, a sequence of instructions, and a guided inquiring style to be complied with, with the persona setting as "“You are a linguist mastering in lexical semantics and in constructing Chinese Wordnet.”
 
 
-## Example
+![](cwn_aug_prompt.png)
+
+
+
+
+## Results
+[instruction tuning]{#magenta} 
+
+
+![](cwn-aug2.png)
+
 
 
 
 ## Human ratings
 
+- Human rating is based on the word's appropriateness of interpretation, the meanings' correspondence to the word's part of speech, their avoidance of oversimplification/overgeneralization, and their compliance with the prompt's requirements.
 
-## Neologism
-
-
-
+- The top 600 frequent words are rated to further analyze their error types. 
 
 
-
+![](rating.png)
 
 
 
-# Limitations
 
-- Hallucination
+
+
+
+
+
+# Limitations: Hallucination
 
 > when the generated content is nonsensical or unfaithful to the provided source content.
 
@@ -611,28 +638,31 @@ to sample multiple outputs with temperature > 0 and then selecting the best one 
 
 
 
-# Limitations
+# Limitations: Knowledge Cutoff
 
 - incapable of accessing factual/updated information 
 
 ![](llm_freq.png){width=50%}
 
 
-# A neuro-symbolic approach to rebuild the LR ecosystem
-Toward a more linguistic knowledge-aware LLMs
+# A neural-symbolic approach to rebuild the LR ecosystem
+[Toward a more linguistic knowledge-aware LLMs]{#magenta}
+
+
+- The neural-symbolic approach seeks to integrate these two paradigms to leverage the strengths of both: the learning and generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic systems. 
 
 
 :::: {.columns .fragment fragment-index=4} 
 
 ::: {.column width="50%"} 
 
-- Mutually benificial
+- Mutually beneficial for LLM and LR
 
 - Grounded generation (Indexing LRs)
 
 - LLM-LR app stores: LR and LLM `langchain`ed
 
-- Using cwn and corpus as an case study
+- Using cwn and corpus as a case study
 
 :::
 
@@ -649,23 +679,22 @@ Toward a more linguistic knowledge-aware LLMs
 
 ## LLM apps (`Everything app` v.2) 
 
+- `Everything app` (aka super app) is a commercial scenario where all the living services are provided.
+  - e.g., imaging a super app (like `WeChat`) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services.
+  
+- Similarly, the plugins enable LLMs (like `GPT-4`, `PaLM-2`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
 
 
-- These plugins enable LLM (`chatGPT`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
-
-
-
-
-
-
-##  Everything app
-`another example`
+##  LLM apps: another example
+`JARVIS`
 
 ![HuggingGPT: workflow](hugginggpt_workflow.png)
 
 ## 
 
-![an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT](hf_jarvis.jpeg)
+- an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT
+
+![](hf_jarvis.jpeg)
 
 
 
@@ -687,9 +716,6 @@ Toward a more linguistic knowledge-aware LLMs
 
 ![](langchain_components.png)
 
-<!-- ## Architecture -->
-
-<!-- ![high level explanation](langchain_highlevel.png) -->
 
 
 ## Working with LLMs and your own data
@@ -701,7 +727,7 @@ Toward a more linguistic knowledge-aware LLMs
 
 . . .
 
-![自己改圖](langchain.png)
+![改圖](langchain.png)
 
 
 <!-- ## Chain -->
@@ -710,14 +736,19 @@ Toward a more linguistic knowledge-aware LLMs
 
 
 
+## Workflow
+
+![](langchain-step.png)
+
+
 
 # CWN 2.0 and Corpus plugins for LLMs
-high-level architecture
+[lopeGPT]{#magenta}: high-level architecture
 
 
 <!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
 
-![lopeGPT](lopegpt.png){width="920px"}
+![](lopegpt.png){width="920px"}
 
 
 

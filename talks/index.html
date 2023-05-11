@@ -636,12 +636,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><strong>sense tagger</strong></p>
 <ul>
 <li><p><span id="magenta">Transformer-based sense tagger</span></p></li>
-<li>
-<p>Leveraging wordnet <em>glosses</em> using <code>GlossBert</code> <span class="citation" data-cites="huang2019glossbert">(<a href="#/reference" role="doc-biblioref" onclick=""><strong>huang2019glossbert?</strong></a>)</span></p>
-<ul>
-<li>a BERT model for word sense disambiguation with gloss knowledge.</li>
-</ul>
-</li>
+<li><p>Leveraging wordnet <em>glosses</em> using <code>GlossBert</code>,a BERT model for word sense disambiguation with gloss knowledge <span class="citation" data-cites="huang2019glossbert">(<a href="#/reference" role="doc-biblioref" onclick=""><strong>huang2019glossbert?</strong></a>)</span>.</p></li>
 <li><p>Our extended <code>GlossBert</code> model on CWN gloss+ SemCor reports 82% accuracy.</p></li>
 </ul>
 <aside class="notes"><p>conducting <em>context-gloss</em> pairs, and fine-tune the pre-trained BERT model on SemCor3.0 training corpus, and achieves SOTA performance on several English all-words WSD tasks.</p>
@@ -720,12 +715,19 @@ Graduate Institute of Linguistics, National Taiwan University
 </ul>
 
 <img data-src="jia_en.png" class="r-stretch quarto-figure-center"></section></section><section><section id="large-language-models-llms" class="title-slide slide level1"><h1>Large Language Models (LLMs)</h1>
+<blockquote>
+<p>Large language models refer to large general-purpose language models that can be pre-trained and then fine-tuned for specific purposes.</p>
+</blockquote>
 
-</section><section id="llm-based-nlp-a-new-paradigm" class="slide level2"><h2>LLM-based NLP: a new paradigm</h2>
+<img data-src="llm.png" class="r-stretch"></section><section id="large-language-models-llms-1" class="slide level2"><h2>Large Language Models (LLMs)</h2>
+<ul>
+<li><p>Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words.</p></li>
+<li><p>Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence.</p></li>
+</ul></section><section id="llm-based-nlp-a-new-paradigm" class="slide level2"><h2>LLM-based NLP: a new paradigm</h2>
 <p>Pre-train, Prompt, and Predict <span class="citation" data-cites="liu2021pretrain">(<a href="#/reference" role="doc-biblioref" onclick="">Liu et al. 2021</a>)</span></p>
 
 <img data-src="nlp-paradigm.png" class="r-stretch quarto-figure-center"><p class="caption">Four paradims in NLP</p></section><section id="foundation-models" class="slide level2"><h2>Foundation Models</h2>
-<p>From LLMs to FMs</p>
+<p>From LLMs to FMs (thus <span id="magenta">Generative AI</span>)</p>
 
 <img data-src="foundation_models.png" class="r-stretch"><p>A foundation model can centralize the information from all the data from various modalities. This one model can then be adapted to a wide range of downstream tasks.<span class="citation" data-cites="bommasani2021opportunities">(<a href="#/reference" role="doc-biblioref" onclick="">Bommasani et al. 2021</a>)</span></p>
 <!-- ##  -->
@@ -763,7 +765,8 @@ Graduate Institute of Linguistics, National Taiwan University
 </div>
 <div class="callout-content">
 <p><strong>prompt</strong>: a natural language description of the task.</p>
-<p><strong>prompt engineering</strong>: The approach of designing optimal prompts to instruct the model to perform a task.</p>
+<p><strong>prompt design</strong>: involves instructions and context passed to the LLM to achieve a desired task.</p>
+<p><strong>prompt engineering</strong>: the practice of developing optimal (clear, concise, informative) prompts to efficiently use LLMs for a variety of applications.</p>
 </div>
 </div>
 </div>
@@ -779,6 +782,7 @@ Graduate Institute of Linguistics, National Taiwan University
           overflow: hidden!important;
           display:block!important;
       }</style></aside><div class="fragment">
+<p><img data-src="prompt_de.png"></p>
 <blockquote>
 <p>(Text) Generation is a meta capability of Large Language Models &amp; Prompt Engineering is the key to unlocking it.</p>
 </blockquote>
@@ -791,30 +795,24 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><a href="www.promptingguide.ai/">source</a></p>
 </div>
 </section><section id="prompt-and-prompt-engineering-2" class="slide level2"><h2>Prompt and Prompt engineering</h2>
-<p><code>typology</code> <span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span> . . .</p>
+<p><code>zero and few shot</code> <span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span> . . .</p>
 <ul>
-<li><p>Zero shot learning</p></li>
-<li><p>Few shot learning</p></li>
+<li><p>Zero shot learning: implies that a model can recognize things that have not explicitly been taught in the training.</p></li>
+<li><p>Few shot learning: refers to training a model with minimal data.</p></li>
 </ul></section><section id="prompt-and-prompt-engineering-3" class="slide level2"><h2>Prompt and Prompt engineering</h2>
-<p><code>typology</code><span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span></p>
-<ul>
-<li><strong>Chain-of-Thought (CoT)</strong></li>
-</ul></section><section id="prompt-and-prompt-engineering-4" class="slide level2"><h2>Prompt and Prompt engineering</h2>
-<p>`<code>typology</code><span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span>`</p>
-<ul>
-<li><strong>Instruction prompting</strong></li>
-</ul></section><section id="prompt-and-prompt-engineering-5" class="slide level2"><h2>Prompt and Prompt engineering</h2>
-<p><code>typology</code><span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span></p>
-<ul>
-<li><strong>Self-consistency sampling</strong></li>
-</ul>
-<p>to sample multiple outputs with temperature &gt; 0 and then selecting the best one out of these candidates. The criteria for selecting the best candidate can vary from task to task. A general solution is to pick majority vote.</p>
-</section><section id="prompt-and-prompt-engineering-6" class="slide level2"><h2>Prompt and Prompt engineering</h2>
 <p><code>Chain-of-Thought</code> <span class="citation" data-cites="wei2023chainofthought">(<a href="#/reference" role="doc-biblioref" onclick="">Wei et al. 2023</a>)</span></p>
 <ul>
-<li><p>generates a sequence of short sentences to describe reasoning logics step by step, known as reasoning chains or rationales, to eventually lead to the final answer.</p></li>
-<li><p>zero or few shot CoT</p></li>
-</ul></section><section id="prompt-and-prompt-engineering-7" class="slide level2"><h2>Prompt and Prompt engineering</h2>
+<li>generates a sequence of short sentences to describe reasoning logic step by step, known as reasoning chains or rationales, to eventually lead to the final answer.</li>
+</ul>
+<p><img data-src="cot.png"><a href="https://youtu.be/zizonToFXDs">source</a></p>
+<ul>
+<li>zero or few shot CoT</li>
+</ul>
+<!-- ## Prompt and Prompt engineering --><!-- ``typology`[@weng2023prompt]` --><!-- - **Instruction prompting** --></section><section id="prompt-and-prompt-engineering-4" class="slide level2"><h2>Prompt and Prompt engineering</h2>
+<p><code>Self-consistency sampling</code> <span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span></p>
+<ul>
+<li>to sample multiple outputs with temperature &gt; 0 and then selecting the best one out of these candidates. The criteria for selecting the best candidate can vary from task to task. A general solution is to pick majority vote.</li>
+</ul></section><section id="prompt-and-prompt-engineering-5" class="slide level2"><h2>Prompt and Prompt engineering</h2>
 <p><code>Persona</code> setting is also important, <em>socio-linguistically</em></p>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
@@ -840,15 +838,21 @@ Graduate Institute of Linguistics, National Taiwan University
 <li>Prompting LLM becomes an empirical work and the effect of prompt engineering methods can vary a lot among models and tasks, thus requiring heavy experimentation and heuristics.</li>
 </ul>
 <div class="fragment">
-<p>圖示 few shot learning</p>
-</div>
-</section><section id="example" class="slide level2"><h2>Example</h2>
-</section><section id="human-ratings" class="slide level2"><h2>Human ratings</h2>
-</section><section id="neologism" class="slide level2"><h2>Neologism</h2>
-</section></section><section id="limitations" class="title-slide slide level1"><h1>Limitations</h1>
 <ul>
-<li>Hallucination</li>
+<li>After exploring different prompt templates, we take a prompt template with bullet points, a sequence of instructions, and a guided inquiring style to be complied with, with the persona setting as ““You are a linguist mastering in lexical semantics and in constructing Chinese Wordnet.”</li>
 </ul>
+<p><img data-src="cwn_aug_prompt.png"></p>
+</div>
+</section><section id="results" class="slide level2"><h2>Results</h2>
+<p><span id="magenta">instruction tuning</span></p>
+
+<img data-src="cwn-aug2.png" class="r-stretch"></section><section id="human-ratings" class="slide level2"><h2>Human ratings</h2>
+<ul>
+<li><p>Human rating is based on the word’s appropriateness of interpretation, the meanings’ correspondence to the word’s part of speech, their avoidance of oversimplification/overgeneralization, and their compliance with the prompt’s requirements.</p></li>
+<li><p>The top 600 frequent words are rated to further analyze their error types.</p></li>
+</ul>
+
+<img data-src="rating.png" class="r-stretch"></section></section><section id="limitations-hallucination" class="title-slide slide level1"><h1>Limitations: Hallucination</h1>
 <blockquote>
 <p>when the generated content is nonsensical or unfaithful to the provided source content.</p>
 </blockquote>
@@ -856,20 +860,23 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><img data-src="hallucination.png" style="width:50.0%"></p>
 <!-- reluctance to express uncertainty, to change premise, and caught in a lie -->
 </div>
-</section><section id="limitations-1" class="title-slide slide level1"><h1>Limitations</h1>
+</section><section id="limitations-knowledge-cutoff" class="title-slide slide level1"><h1>Limitations: Knowledge Cutoff</h1>
 <ul>
 <li>incapable of accessing factual/updated information</li>
 </ul>
 
-<img data-src="llm_freq.png" style="width:50.0%" class="r-stretch"></section><section><section id="a-neuro-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1"><h1>A neuro-symbolic approach to rebuild the LR ecosystem</h1>
-<p>Toward a more linguistic knowledge-aware LLMs</p>
+<img data-src="llm_freq.png" style="width:50.0%" class="r-stretch"></section><section><section id="a-neural-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1"><h1>A neural-symbolic approach to rebuild the LR ecosystem</h1>
+<p><span id="magenta">Toward a more linguistic knowledge-aware LLMs</span></p>
+<ul>
+<li>The neural-symbolic approach seeks to integrate these two paradigms to leverage the strengths of both: the learning and generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic systems.</li>
+</ul>
 <div class="columns fragment" data-fragment-index="4">
 <div class="column" style="width:50%;">
 <ul>
-<li><p>Mutually benificial</p></li>
+<li><p>Mutually beneficial for LLM and LR</p></li>
 <li><p>Grounded generation (Indexing LRs)</p></li>
 <li><p>LLM-LR app stores: LR and LLM <code>langchain</code>ed</p></li>
-<li><p>Using cwn and corpus as an case study</p></li>
+<li><p>Using cwn and corpus as a case study</p></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <p><img data-src="augmented-llms.png"></p>
@@ -877,21 +884,28 @@ Graduate Institute of Linguistics, National Taiwan University
 </div>
 </section><section id="llm-apps-everything-app-v.2" class="slide level2"><h2>LLM apps (<code>Everything app</code> v.2)</h2>
 <ul>
-<li>These plugins enable LLM (<code>chatGPT</code>) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.</li>
-</ul></section><section id="everything-app" class="slide level2"><h2>Everything app</h2>
-<p><code>another example</code></p>
+<li>
+<code>Everything app</code> (aka super app) is a commercial scenario where all the living services are provided.
+<ul>
+<li>e.g., imaging a super app (like <code>WeChat</code>) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services.</li>
+</ul>
+</li>
+<li>Similarly, the plugins enable LLMs (like <code>GPT-4</code>, <code>PaLM-2</code>) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.</li>
+</ul></section><section id="llm-apps-another-example" class="slide level2"><h2>LLM apps: another example</h2>
+<p><code>JARVIS</code></p>
 
 <img data-src="hugginggpt_workflow.png" class="r-stretch quarto-figure-center"><p class="caption">HuggingGPT: workflow</p></section><section id="section-1" class="slide level2"><h2></h2>
+<ul>
+<li>an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT</li>
+</ul>
 
-<img data-src="hf_jarvis.jpeg" class="r-stretch quarto-figure-center"><p class="caption">an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT</p></section><section id="langchain" class="slide level2"><h2>Langchain</h2>
+<img data-src="hf_jarvis.jpeg" class="r-stretch"></section><section id="langchain" class="slide level2"><h2>Langchain</h2>
 <blockquote>
 <p><code>langchain</code> is an open source framework that allows AI developers to combine LLMs like GPT-4 with external sources of computation and data.</p>
 </blockquote>
 
 <img data-src="langchain_star.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Github repo star history</p></section><section id="architecture" class="slide level2"><h2>Architecture</h2>
 
-<!-- ## Architecture -->
-<!-- ![high level explanation](langchain_highlevel.png) -->
 <img data-src="langchain_components.png" class="r-stretch"></section><section id="working-with-llms-and-your-own-data" class="slide level2"><h2>Working with LLMs and your own data</h2>
 <ul>
 <li>Good news for Language Resource developers</li>
@@ -899,16 +913,18 @@ Graduate Institute of Linguistics, National Taiwan University
 <!-- Be data-aware: connect a language model to other sources of data --><!-- Be agentic: allow a language model to interact with its environment --><div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="langchain.png"></p>
-<figcaption>自己改圖</figcaption></figure>
+<figcaption>改圖</figcaption></figure>
 </div>
 <!-- ## Chain -->
 <!-- 有點像組合函數，裏面是 prompt template, 外面是 llm -->
 </div>
-</section></section><section><section id="cwn-2.0-and-corpus-plugins-for-llms" class="title-slide slide level1"><h1>CWN 2.0 and Corpus plugins for LLMs</h1>
-<p>high-level architecture</p>
+</section><section id="workflow" class="slide level2"><h2>Workflow</h2>
+
+<img data-src="langchain-step.png" class="r-stretch"></section></section><section><section id="cwn-2.0-and-corpus-plugins-for-llms" class="title-slide slide level1"><h1>CWN 2.0 and Corpus plugins for LLMs</h1>
+<p><span id="magenta">lopeGPT</span>: high-level architecture</p>
 <!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
 
-<img data-src="lopegpt.png" width="920" class="r-stretch quarto-figure-center"><p class="caption">lopeGPT</p></section><section id="experiments-on-sense-computing-tasks" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
+<img data-src="lopegpt.png" width="920" class="r-stretch"></section><section id="experiments-on-sense-computing-tasks" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
 <ul>
 <li><p>sense and relation data query</p></li>
 <li>
