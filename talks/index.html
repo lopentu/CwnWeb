@@ -505,6 +505,43 @@ Graduate Institute of Linguistics, National Taiwan University
 </figure>
 </div>
 </div>
+</section></section><section><section id="theories" class="title-slide slide level1"><h1>Theories</h1>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Some new perspectives in CWN</strong></p>
+</div>
+<div class="callout-content">
+<p>sense granularity, relation discovery, and gloss with annotation</p>
+</div>
+</div>
+</div>
+</section><section id="meaning-facets-vs-senses" class="slide level2"><h2>Meaning facets vs senses</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="co-predication.png"></p>
+</div><div class="column" style="width:50%;">
+<blockquote>
+<p>埔里<em>種</em>的【茶】很<em>好喝</em></p>
+</blockquote>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Co-predicative Nouns</strong></p>
+</div>
+<div class="callout-content">
+<p>a phenomenon where two or more predicates seem to require that their argument denotes different things.</p>
+</div>
+</div>
+</div>
 </section><section id="gloss-as-lexicographic-resources-with-add-ons-annotations" class="slide level2"><h2>Gloss as lexicographic resources with add-ons annotations</h2>
 <ul>
 <li>
@@ -537,7 +574,12 @@ Graduate Institute of Linguistics, National Taiwan University
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co"># the original base data</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="co"># from CwnGraph import CwnImage</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="co"># cwn = CwnBase()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="comparison-to-others" class="slide level2"><h2>Comparison to others</h2>
+</section><section id="zipfs-law-no-surprise" class="slide level2"><h2>Zipf’s law (no surprise)</h2>
+<ul>
+<li>Most words have small number of senses (Zipf’s law)</li>
+</ul>
+
+<img data-src="comp.jpg" class="r-stretch"></section><section id="comparison-to-others" class="slide level2"><h2>Comparison to others</h2>
 <div class="columns fragment" data-fragment-index="0">
 <div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
@@ -591,24 +633,18 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><strong>Visualization</strong></p>
 
 <img data-src="cwnVis.png" class="r-stretch"></section><section id="cwn-2.0-1" class="slide level2"><h2>CWN 2.0</h2>
-<p><strong>sense tagger and SemCor</strong></p>
+<p><strong>sense tagger</strong></p>
 <ul>
+<li><p><span id="magenta">Transformer-based sense tagger</span></p></li>
 <li>
-<code>SemCor</code> semi-automatically curated sense-tagged corpus</li>
-</ul>
-
-<img data-src="senseanno.png" class="r-stretch quarto-figure-left"></section><section id="cwn-based-applications" class="slide level2"><h2>CWN-based applications</h2>
-<p>sense frequency distribution in corpus</p>
+<p>Leveraging wordnet <em>glosses</em> using <code>GlossBert</code> <span class="citation" data-cites="huang2019glossbert">(<a href="#/reference" role="doc-biblioref" onclick=""><strong>huang2019glossbert?</strong></a>)</span></p>
 <ul>
-<li>
-<p>Now we have chance to <em>empirically</em> explore the <strong>dominance</strong> of word senses, which is essential for both lexical semantic and psycholinguistic studies.</p>
-<ul>
-<li>e.g., ‘開’ (kai1,‘open’) has (surprisingly) more dominant <em>blossom</em> sense over others (based on randomly chosen 300 sentences in ASBC corpus)</li>
+<li>a BERT model for word sense disambiguation with gloss knowledge.</li>
 </ul>
 </li>
+<li><p>Our extended <code>GlossBert</code> model on CWN gloss+ SemCor reports 82% accuracy.</p></li>
 </ul>
-
-<img data-src="senseFreq.png" class="r-stretch quarto-figure-center"><aside class="notes"><p>從平衡語料庫中取出 300 句包含「吃」或「開」的句子（一句可能含多個目標詞），用CwnSenseTagger 判斷該詞在脈絡中的詞意，並計算其頻率。以下列出頻率最高的 5 個詞意。</p>
+<aside class="notes"><p>conducting <em>context-gloss</em> pairs, and fine-tune the pre-trained BERT model on SemCor3.0 training corpus, and achieves SOTA performance on several English all-words WSD tasks.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -619,8 +655,65 @@ Graduate Institute of Linguistics, National Taiwan University
           width: 1px!important;
           overflow: hidden!important;
           display:block!important;
-      }</style></aside></section><section id="cwn-based-applications-1" class="slide level2"><h2>CWN-based applications</h2>
-<p>tracking sense evolution</p>
+      }</style></aside>
+<img src="glossB.png" alt="drawing" style="width:50px;" class="r-stretch"></section><section id="word-sense-tagger" class="slide level2"><h2>Word Sense Tagger</h2>
+<ul>
+<li>APIs (GlossBert version) released in 2021<br><img src="tagger.png" alt="drawing" style="width:400px;">
+</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># pip install -U DistilTag SenseTagger</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> DistilTag</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> CwnSenseTagger</span>
+<span id="cb2-4"><a href="#cb2-4"></a>DistilTag.download()</span>
+<span id="cb2-5"><a href="#cb2-5"></a>CwnSenseTagger.download()</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>tagger <span class="op">=</span> DistilTag()</span>
+<span id="cb2-8"><a href="#cb2-8"></a>tagged <span class="op">=</span> tagger.tag(<span class="st">"&lt;raw text&gt;"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>sense_tagged <span class="op">=</span> senseTag(tagged)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="senseTag.png"></p>
+</figure>
+</div>
+</section><section id="cwn-2.0-2" class="slide level2"><h2>CWN 2.0</h2>
+<p><strong>SemCor</strong></p>
+<ul>
+<li>
+<code>SemCor</code> (semi-automatically curated sense-tagged corpus) based on ASBC.</li>
+</ul>
+
+<img data-src="senseanno.png" class="r-stretch quarto-figure-left"></section><section id="cwn-based-applications" class="slide level2"><h2>CWN-based applications</h2>
+<p>sense frequency distribution in corpus</p>
+<ul>
+<li>Now we have chance to <em>empirically</em> explore the <strong>dominance</strong> of word senses, which is essential for both lexical semantic and psycholinguistic studies.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>‘開’ (kai1,‘open’) has (surprisingly) more dominant <em>blossom</em> sense over others (based on randomly chosen 300 sentences in ASBC corpus)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="senseFreq.png"></p>
+</figure>
+</div>
+<aside class="notes"><p>從平衡語料庫中取出 300 句包含「吃」或「開」的句子（一句可能含多個目標詞），用CwnSenseTagger 判斷該詞在脈絡中的詞意，並計算其頻率。以下列出頻率最高的 5 個詞意。</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section><section id="cwn-based-applications-1" class="slide level2"><h2>CWN-based applications</h2>
+<p><strong>word sense acquisition</strong></p>
+
+<img data-src="huan.png" class="r-stretch quarto-figure-center"><p class="caption">credit:郭懷元同學</p></section><section id="cwn-based-applications-2" class="slide level2"><h2>CWN-based applications</h2>
+<p><strong>tracking sense evolution</strong></p>
 <ul>
 <li>The indeterminate nature of Chinese affixoids</li>
 <li>Sense status of 家 jiā from the Tang dynasty to the 1980s</li>
@@ -635,20 +728,10 @@ Graduate Institute of Linguistics, National Taiwan University
 <p>From LLMs to FMs</p>
 
 <img data-src="foundation_models.png" class="r-stretch"><p>A foundation model can centralize the information from all the data from various modalities. This one model can then be adapted to a wide range of downstream tasks.<span class="citation" data-cites="bommasani2021opportunities">(<a href="#/reference" role="doc-biblioref" onclick="">Bommasani et al. 2021</a>)</span></p>
-</section><section id="section" class="slide level2"><h2></h2>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>I’d still call it LLMs because of the use of NL</p>
-</div>
-</div>
-</div>
+<!-- ##  -->
+<!-- ::: {.callout-note appearance="default"} -->
+<!-- I'd still call it LLMs because of the use of NL -->
+<!-- ::: -->
 <!-- ## LLM-based NLP  -->
 <!-- easier version -->
 <!-- :::: {.columns .fragment fragment-index=1} -->
@@ -667,7 +750,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <!-- LLM is a general store of information, and in-context learning allows us to access certain parts within this store without having to specialize the entire model towards each task. -->
 <ul>
 <li>Amazing performance with only zero/few-shot</li>
-<li>Requires no parameter updates, just talk to them in natural language!</li>
+<li>Requires no parameter updates, just talk to them in <span id="magenta">natural language</span>!</li>
 <li>Prompt engineering: the process of creating a prompt that results in the most effective performance on the downstream task</li>
 </ul></section><section id="prompt-and-prompt-engineering" class="slide level2"><h2>Prompt and Prompt engineering</h2>
 <div class="callout callout-note callout-titled callout-style-default">
@@ -708,7 +791,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><a href="www.promptingguide.ai/">source</a></p>
 </div>
 </section><section id="prompt-and-prompt-engineering-2" class="slide level2"><h2>Prompt and Prompt engineering</h2>
-<p><code>typology</code><span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span> . . .</p>
+<p><code>typology</code> <span class="citation" data-cites="weng2023prompt">(<a href="#/reference" role="doc-biblioref" onclick="">Weng 2023</a>)</span> . . .</p>
 <ul>
 <li><p>Zero shot learning</p></li>
 <li><p>Few shot learning</p></li>
@@ -746,7 +829,12 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><code>sense to action</code> <img data-src="sense2action.jpeg"></p>
 </section><section id="prompting-llm-for-solve-lexical-semantic-tasks-1" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
 <p><code>word sense induction</code> <img data-src="sense%20induction.jpeg" style="width:70.0%"></p>
-</section><section id="prompting-llm-for-wordnet-data-augmentation" class="slide level2"><h2>Prompting LLM for Wordnet data augmentation</h2>
+</section><section id="prompting-llm-for-solve-lexical-semantic-tasks-2" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
+<p><code>code-switching wsd</code></p>
+
+<img data-src="codeswitch.png" style="width:60.0%" class="r-stretch"></section><section id="section" class="slide level2"><h2></h2>
+
+<img data-src="codeswitch2.png" style="width:60.0%" class="r-stretch"></section><section id="prompting-llm-for-wordnet-data-augmentation" class="slide level2"><h2>Prompting LLM for Wordnet data augmentation</h2>
 <p><strong>Exploratory Prompting Analysis</strong></p>
 <ul>
 <li>Prompting LLM becomes an empirical work and the effect of prompt engineering methods can vary a lot among models and tasks, thus requiring heavy experimentation and heuristics.</li>
@@ -818,8 +906,9 @@ Graduate Institute of Linguistics, National Taiwan University
 </div>
 </section></section><section><section id="cwn-2.0-and-corpus-plugins-for-llms" class="title-slide slide level1"><h1>CWN 2.0 and Corpus plugins for LLMs</h1>
 <p>high-level architecture</p>
+<!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
 
-<img data-src="lopegpt.png" style="width:520.0%" class="r-stretch quarto-figure-center"><p class="caption">lopeGPT</p></section><section id="experiments-on-sense-computing-tasks" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
+<img data-src="lopegpt.png" width="920" class="r-stretch quarto-figure-center"><p class="caption">lopeGPT</p></section><section id="experiments-on-sense-computing-tasks" class="slide level2"><h2>Experiments on Sense computing tasks</h2>
 <ul>
 <li><p>sense and relation data query</p></li>
 <li>
@@ -854,13 +943,15 @@ Graduate Institute of Linguistics, National Taiwan University
 <!-- ## Next:  -->
 <!-- 如此一來，Auto-GPT 就能打造出一個閉環（closed loop），進而有能力應對更複雜的多步程序；我們也可以把 Auto-GPT 看作一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果。目前 Auto-GPT 能夠與線上和本地的應用程序、軟體和服務進行各種互動，例如網頁瀏覽器與文字處理器。 . . . -->
 <!-- Once you have explored and want to bring it into memory, it's also fast! -->
-</section></section><section><section id="conclusion" class="title-slide slide level1"><h1>Conclusion</h1>
+</section></section><section id="conclusion" class="title-slide slide level1"><h1>Conclusion</h1>
 <ul>
 <li>more resources and tools, games</li>
 <li>exploring open-source LLMs chains</li>
 <li>Sustanable / ?lifelong learning for Human and Machine</li>
-</ul></section><section id="acknowledgment" class="slide level2"><h2>Acknowledgment</h2>
+</ul></section><section><section id="acknowledgment" class="title-slide slide level1"><h1>Acknowledgment</h1>
+<blockquote>
 <p>連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！</p>
+</blockquote>
 </section><section id="reference" class="slide level2 smaller scrollable"><h2>Reference</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bommasani2021opportunities" class="csl-entry" role="listitem">
@@ -882,7 +973,7 @@ Wei, Jason, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, 
 Weng, Lilian. 2023. <span>“Prompt Engineering.”</span> <em>Lilianweng.github.io</em>, March. <a href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/">https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/</a>.
 </div>
 </div>
-</section></section><section id="祝黃老師-福如東海壽比南山" class="title-slide slide level1"><h1>祝黃老師 福如東海壽比南山</h1>
+</section></section><section id="祝黃老師-福如東海-壽比南山" class="title-slide slide level1"><h1><span id="magenta">祝黃老師 福如東海 壽比南山</span></h1>
 <p>(找以前的相片) 慶生蛋糕</p>
 <!-- ##  {background-image="howard.jpg" background-size="contain"} -->
 <!-- ## Fill your quiver with `arrow`s -->

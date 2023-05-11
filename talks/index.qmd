@@ -134,6 +134,33 @@ Note that there are more than one Chinese Wordnet.
 
 ![](cwn.png){fig-align="right"}
 
+# Theories
+
+::: callout-tip
+## Some new perspectives in CWN
+
+sense granularity, relation discovery, and gloss with annotation
+:::
+
+## Meaning facets vs senses
+
+::: columns
+::: {.column width="50%"}
+![](co-predication.png)
+:::
+
+::: {.column width="50%"}
+> 埔里*種*的【茶】很*好喝*
+:::
+:::
+
+::: callout-tip
+## Co-predicative Nouns
+
+a phenomenon where two or more predicates seem to require that their argument denotes different things.
+:::
+
+
 ## Gloss as lexicographic resources with add-ons annotations
 
 -   Gloss (`lexicographic definition') is carefully controlled with limited vocabulary and **patterns**, e.g.,
@@ -169,6 +196,12 @@ cwn = CwnImage.latest()
 # from CwnGraph import CwnImage
 # cwn = CwnBase()
 ```
+
+## Zipf's law (no surprise)
+
+-   Most words have small number of senses (Zipf's law)
+
+![](comp.jpg)
 
 
 
@@ -274,12 +307,49 @@ df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type,
 
 
 ## CWN 2.0
-**sense tagger and SemCor**
+**sense tagger**
 
-- `SemCor` semi-automatically curated sense-tagged corpus
+- [Transformer-based sense tagger]{#magenta}
+
+-   Leveraging wordnet *glosses* using `GlossBert` [@huang2019glossbert]
+    - a BERT model for word sense disambiguation with gloss knowledge.
+-   Our extended `GlossBert` model on CWN gloss+ SemCor reports 82% accuracy.
+
+::: notes
+conducting *context-gloss* pairs, and fine-tune the pre-trained BERT model on SemCor3.0 training corpus, and achieves SOTA performance on several English all-words WSD tasks.
+:::
+
+<img src="glossB.png" alt="drawing" style="width:50px;"/>
+
+
+## Word Sense Tagger
+
+- APIs (GlossBert version) released in 2021\
+<img src="tagger.png" alt="drawing" style="width:400px;"/>
+
+```{python}
+#| eval: false
+#| echo: true
+# pip install -U DistilTag SenseTagger
+import DistilTag
+import CwnSenseTagger
+DistilTag.download()
+CwnSenseTagger.download()
+
+tagger = DistilTag()
+tagged = tagger.tag("<raw text>")
+sense_tagged = senseTag(tagged)
+```
+
+![](senseTag.png){fig-align="center"}
+
+
+## CWN 2.0
+**SemCor**
+
+- `SemCor` (semi-automatically curated sense-tagged corpus) based on ASBC.
 
 ![](senseanno.png){fig-align="left"}
-
 
 
 
@@ -289,7 +359,9 @@ sense frequency distribution in corpus
 
 -   Now we have chance to *empirically* explore the **dominance** of word senses, which is essential for both lexical semantic and psycholinguistic studies.
 
-    -   e.g., '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
+. . .
+
+- '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
 
 ![](senseFreq.png){fig-align="center"}
 
@@ -298,9 +370,16 @@ sense frequency distribution in corpus
 :::
 
 
+## CWN-based applications
+**word sense acquisition**
+
+
+
+![credit:郭懷元同學](huan.png)
+
 
 ## CWN-based applications
-tracking sense evolution
+**tracking sense evolution**
 
 -   The indeterminate nature of Chinese affixoids
 -   Sense status of 家 jiā from the Tang dynasty to the 1980s
@@ -328,13 +407,13 @@ A foundation model can centralize the information from all the data from various
 one model can then be adapted to a wide range of downstream tasks.[@bommasani2021opportunities]
 
 
-## 
+<!-- ##  -->
 
-::: {.callout-note appearance="default"}
+<!-- ::: {.callout-note appearance="default"} -->
 
-I'd still call it LLMs because of the use of NL
+<!-- I'd still call it LLMs because of the use of NL -->
 
-:::
+<!-- ::: -->
 
 
 
@@ -371,7 +450,7 @@ I'd still call it LLMs because of the use of NL
 <!-- LLM is a general store of information, and in-context learning allows us to access certain parts within this store without having to specialize the entire model towards each task. -->
 
 - Amazing performance with only zero/few-shot
-- Requires no parameter updates, just talk to them in natural language!
+- Requires no parameter updates, just talk to them in [natural language]{#magenta}!
 - Prompt engineering: the process of creating a prompt that results in the most effective performance on the downstream task
 
 
@@ -412,7 +491,7 @@ A prompt is composed with the following components:
 [source](www.promptingguide.ai/)
 
 ## Prompt and Prompt engineering
-`typology`[@weng2023prompt]
+`typology` [@weng2023prompt]
 . . .
 
 - Zero shot learning 
@@ -476,6 +555,16 @@ to sample multiple outputs with temperature > 0 and then selecting the best one 
 ## Prompting LLM for solve lexical semantic tasks
 `word sense induction`
 ![](sense induction.jpeg){width=70%}
+
+## Prompting LLM for solve lexical semantic tasks
+`code-switching wsd`
+
+ ![](codeswitch.png){width=60%}
+
+## 
+ ![](codeswitch2.png){width=60%}
+
+
 
 
 ## Prompting LLM for Wordnet data augmentation
@@ -625,7 +714,10 @@ Toward a more linguistic knowledge-aware LLMs
 # CWN 2.0 and Corpus plugins for LLMs
 high-level architecture
 
-![lopeGPT](lopegpt.png){width=520%}
+
+<!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
+
+![lopeGPT](lopegpt.png){width="920px"}
 
 
 
@@ -689,9 +781,10 @@ democratizing LLM
 
 
 
-## Acknowledgment
+# Acknowledgment
 
-連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！
+
+> 連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！
 
 
 ## Reference
@@ -700,7 +793,8 @@ democratizing LLM
 :::
 
 
-# 祝黃老師 福如東海壽比南山   
+
+# [祝黃老師 福如東海 壽比南山]{#magenta}
 
 
 
