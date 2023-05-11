@@ -715,15 +715,22 @@ Graduate Institute of Linguistics, National Taiwan University
 </ul>
 
 <img data-src="jia_en.png" class="r-stretch quarto-figure-center"></section></section><section><section id="large-language-models-llms" class="title-slide slide level1"><h1>Large Language Models (LLMs)</h1>
+<div class="fragment">
 <blockquote>
 <p>Large language models refer to large general-purpose language models that can be pre-trained and then fine-tuned for specific purposes.</p>
 </blockquote>
-
-<img data-src="llm.png" class="r-stretch"></section><section id="large-language-models-llms-1" class="slide level2"><h2>Large Language Models (LLMs)</h2>
+<p><img data-src="llm.png"></p>
+</div>
+</section><section id="large-language-models-llms-1" class="slide level2"><h2>Large Language Models (LLMs)</h2>
 <ul>
-<li><p>Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words.</p></li>
-<li><p>Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence.</p></li>
-</ul></section><section id="llm-based-nlp-a-new-paradigm" class="slide level2"><h2>LLM-based NLP: a new paradigm</h2>
+<li>Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words.</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence.</li>
+</ul>
+</div>
+</section><section id="llm-based-nlp-a-new-paradigm" class="slide level2"><h2>LLM-based NLP: a new paradigm</h2>
 <p>Pre-train, Prompt, and Predict <span class="citation" data-cites="liu2021pretrain">(<a href="#/reference" role="doc-biblioref" onclick="">Liu et al. 2021</a>)</span></p>
 
 <img data-src="nlp-paradigm.png" class="r-stretch quarto-figure-center"><p class="caption">Four paradims in NLP</p></section><section id="foundation-models" class="slide level2"><h2>Foundation Models</h2>
@@ -782,7 +789,9 @@ Graduate Institute of Linguistics, National Taiwan University
           overflow: hidden!important;
           display:block!important;
       }</style></aside><div class="fragment">
-<p><img data-src="prompt_de.png"></p>
+<p><img data-src="prompt_de.png" style="width:40.0%"></p>
+</div>
+<div class="fragment">
 <blockquote>
 <p>(Text) Generation is a meta capability of Large Language Models &amp; Prompt Engineering is the key to unlocking it.</p>
 </blockquote>
@@ -822,15 +831,25 @@ Graduate Institute of Linguistics, National Taiwan University
 </div>
 </section><section id="prompting-llm-for-lexical-semantic-tasks" class="slide level2"><h2>Prompting LLM for lexical semantic tasks</h2>
 <p><code>word sense disambiguation</code></p>
-
-<img data-src="wsd.jpeg" width="400" class="r-stretch"></section><section id="prompting-llm-for-solve-lexical-semantic-tasks" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
-<p><code>sense to action</code> <img data-src="sense2action.jpeg"></p>
+<div class="fragment">
+<p><img data-src="wsd.jpeg" style="width:60.0%"></p>
+</div>
+</section><section id="prompting-llm-for-solve-lexical-semantic-tasks" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
+<p><code>sense to action</code></p>
+<div class="fragment">
+<p><img data-src="sense2action.jpeg"></p>
+</div>
 </section><section id="prompting-llm-for-solve-lexical-semantic-tasks-1" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
-<p><code>word sense induction</code> <img data-src="sense%20induction.jpeg" style="width:70.0%"></p>
+<p><code>word sense induction</code></p>
+<div class="fragment">
+<p><img data-src="sense%20induction.jpeg" style="width:70.0%"></p>
+</div>
 </section><section id="prompting-llm-for-solve-lexical-semantic-tasks-2" class="slide level2"><h2>Prompting LLM for solve lexical semantic tasks</h2>
 <p><code>code-switching wsd</code></p>
-
-<img data-src="codeswitch.png" style="width:60.0%" class="r-stretch"></section><section id="section" class="slide level2"><h2></h2>
+<div class="fragment">
+<p><img data-src="codeswitch.png" style="width:60.0%"></p>
+</div>
+</section><section id="section" class="slide level2"><h2></h2>
 
 <img data-src="codeswitch2.png" style="width:60.0%" class="r-stretch"></section><section id="prompting-llm-for-wordnet-data-augmentation" class="slide level2"><h2>Prompting LLM for Wordnet data augmentation</h2>
 <p><strong>Exploratory Prompting Analysis</strong></p>
@@ -841,9 +860,10 @@ Graduate Institute of Linguistics, National Taiwan University
 <ul>
 <li>After exploring different prompt templates, we take a prompt template with bullet points, a sequence of instructions, and a guided inquiring style to be complied with, with the persona setting as ““You are a linguist mastering in lexical semantics and in constructing Chinese Wordnet.”</li>
 </ul>
-<p><img data-src="cwn_aug_prompt.png"></p>
 </div>
-</section><section id="results" class="slide level2"><h2>Results</h2>
+</section><section id="section-1" class="slide level2"><h2></h2>
+
+<img data-src="cwn_aug_prompt.png" class="r-stretch"></section><section id="results" class="slide level2"><h2>Results</h2>
 <p><span id="magenta">instruction tuning</span></p>
 
 <img data-src="cwn-aug2.png" class="r-stretch"></section><section id="human-ratings" class="slide level2"><h2>Human ratings</h2>
@@ -852,7 +872,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <li><p>The top 600 frequent words are rated to further analyze their error types.</p></li>
 </ul>
 
-<img data-src="rating.png" class="r-stretch"></section></section><section id="limitations-hallucination" class="title-slide slide level1"><h1>Limitations: Hallucination</h1>
+<img data-src="rating.png" style="width:40.0%" class="r-stretch"></section></section><section id="limitations-hallucination" class="title-slide slide level1"><h1>Limitations: Hallucination</h1>
 <blockquote>
 <p>when the generated content is nonsensical or unfaithful to the provided source content.</p>
 </blockquote>
@@ -862,20 +882,21 @@ Graduate Institute of Linguistics, National Taiwan University
 </div>
 </section><section id="limitations-knowledge-cutoff" class="title-slide slide level1"><h1>Limitations: Knowledge Cutoff</h1>
 <ul>
-<li>incapable of accessing factual/updated information</li>
+<li>incapable of accessing factual/up-to-date information</li>
 </ul>
 
-<img data-src="llm_freq.png" style="width:50.0%" class="r-stretch"></section><section><section id="a-neural-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1"><h1>A neural-symbolic approach to rebuild the LR ecosystem</h1>
+<img data-src="llm_freq.png" style="width:30.0%" class="r-stretch"></section><section><section id="a-neural-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1"><h1>A neural-symbolic approach to rebuild the LR ecosystem</h1>
 <p><span id="magenta">Toward a more linguistic knowledge-aware LLMs</span></p>
 <ul>
 <li>The neural-symbolic approach seeks to integrate these two paradigms to leverage the strengths of both: the learning and generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic systems.</li>
 </ul>
 <div class="columns fragment" data-fragment-index="4">
 <div class="column" style="width:50%;">
+<pre><code>- Grounded generation (Indexing LRs): a form of retrieval augmented generation, the LLM provides answers to user queries based not only on the knowledge captured in the dataset the LLM was trained on, but augmented with knowledge coming from searching additional data sources:
+
+- LLM-LR app stores: LR and LLM `langchain`ed could be mutually beneficial for LLM and LR.</code></pre>
 <ul>
-<li><p>Grounded generation (Indexing LRs): a form of <strong>retrieval augmented generation</strong>, the LLM provides answers to user queries based not only on the knowledge captured in the dataset the LLM was trained on, but augmented with knowledge coming from searching additional data sources:</p></li>
-<li><p>LLM-LR app stores: LR and LLM <code>langchain</code>ed could be mutually beneficial for LLM and LR.</p></li>
-<li><p>Using cwn and corpus as a case study is a good start.</p></li>
+<li>Using cwn and corpus as a case study is a good start.</li>
 </ul>
 </div><div class="column" style="width:40%;">
 <p><img data-src="augmented-llms.png"></p>
@@ -889,11 +910,16 @@ Graduate Institute of Linguistics, National Taiwan University
 <li>e.g., imaging a super app (like <code>WeChat</code>) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services.</li>
 </ul>
 </li>
+</ul>
+<div class="fragment">
+<ul>
 <li>Similarly, the plugins enable LLMs (like <code>GPT-4</code>, <code>PaLM-2</code>) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.</li>
-</ul></section><section id="llm-apps-another-example" class="slide level2"><h2>LLM apps: another example</h2>
+</ul>
+</div>
+</section><section id="llm-apps-another-example" class="slide level2"><h2>LLM apps: another example</h2>
 <p><code>JARVIS</code></p>
 
-<img data-src="hugginggpt_workflow.png" class="r-stretch quarto-figure-center"><p class="caption">HuggingGPT: workflow</p></section><section id="section-1" class="slide level2"><h2></h2>
+<img data-src="hugginggpt_workflow.png" class="r-stretch quarto-figure-center"><p class="caption">HuggingGPT: workflow</p></section><section id="section-2" class="slide level2"><h2></h2>
 <ul>
 <li>an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT</li>
 </ul>
@@ -905,15 +931,21 @@ Graduate Institute of Linguistics, National Taiwan University
 
 <img data-src="langchain_star.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Github repo star history</p></section><section id="architecture" class="slide level2"><h2>Architecture</h2>
 
-<img data-src="langchain_components.png" class="r-stretch"></section><section id="working-with-llms-and-your-own-data" class="slide level2"><h2>Working with LLMs and your own data</h2>
+<img data-src="langchain_components.png" class="r-stretch"></section><section id="langchain-components" class="slide level2"><h2>langchain components</h2>
+<ul>
+<li><p><strong>Chains</strong>: The core of <code>langchain</code>. Components (and even other chains) can be stringed together to create <em>chains</em>.</p></li>
+<li><p><strong>Prompt templates</strong>: Prompt templates are templates for different types of prompts. Like “chatbot” style templates, ELI5 question-answering, etc</p></li>
+<li><p><strong>LLMs</strong>: Large language models</p></li>
+<li><p><strong>Indexing Utils:</strong> Ways to interact with specific data (embeddings, vectorstores, document loaders)</p></li>
+<li><p><strong>Tools:</strong> Ways to interact with the outside world (search, calculators, etc)</p></li>
+<li><p><strong>Agents</strong>: Agents use LLMs to decide what actions should be taken. Tools like web search or calculators can be used, and all are packaged into a logical loop of operations.</p></li>
+<li><p><strong>Memory</strong>: Short-term memory, long-term memory.</p></li>
+</ul></section><section id="working-with-llms-and-your-own-data" class="slide level2"><h2>Working with LLMs and your own data</h2>
 <ul>
 <li>Good news for Language Resource developers</li>
 </ul>
 <!-- Be data-aware: connect a language model to other sources of data --><!-- Be agentic: allow a language model to interact with its environment --><div class="fragment">
-<div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="langchain.png"></p>
-<figcaption>改圖</figcaption></figure>
-</div>
+<p><img data-src="langchain.png" style="width:40.0%"></p>
 <!-- ## Chain -->
 <!-- 有點像組合函數，裏面是 prompt template, 外面是 llm -->
 </div>
@@ -956,18 +988,26 @@ Graduate Institute of Linguistics, National Taiwan University
 <!-- 如此一來，Auto-GPT 就能打造出一個閉環（closed loop），進而有能力應對更複雜的多步程序；我們也可以把 Auto-GPT 看作一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果。目前 Auto-GPT 能夠與線上和本地的應用程序、軟體和服務進行各種互動，例如網頁瀏覽器與文字處理器。 . . . -->
 <!-- Once you have explored and want to bring it into memory, it's also fast! -->
 </section></section><section id="final-thoughts" class="title-slide slide level1"><h1>Final thoughts</h1>
+<div class="fragment">
 <ul>
 <li>Democratizing LLM and connect LR help keep balance between the generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic knowledge systems.
 <ul>
 <li>LLM chains; Agent network</li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>
 <span id="magenta">Auto-GPT</span> and alike as Project Manager (for a scaled and manageable ecosystem for <code>LR + LLM</code> based applications)</li>
 </ul>
+</div>
+<div class="fragment">
 <blockquote>
 <p>More and more democratized LLMs and more diverse ecosystems which lead to a more stable symbiosis for Human and Machine.</p>
 </blockquote>
+</div>
 </section><section><section id="acknowledgment" class="title-slide slide level1"><h1>Acknowledgment</h1>
 <blockquote>
 <p>連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！</p>
@@ -994,7 +1034,6 @@ Weng, Lilian. 2023. <span>“Prompt Engineering.”</span> <em>Lilianweng.github
 </div>
 </div>
 </section></section><section id="祝黃老師-福如東海-壽比南山" class="title-slide slide level1"><h1><span id="magenta">祝黃老師 福如東海 壽比南山</span></h1>
-<p>(找以前的相片) 慶生蛋糕</p>
 
 <img src="https://lope.linguistics.ntu.edu.tw/static/media/logo_lope.e082917e.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://lopentu.github.io/CwnWeb/">CWN2.0 ::: lopeGPT</a></p>

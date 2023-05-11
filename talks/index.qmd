@@ -390,6 +390,8 @@ sense frequency distribution in corpus
 
 # Large Language Models (LLMs)
 
+. . . 
+
 > Large language models refer to large general-purpose language models that can be pre-trained and then fine-tuned for specific purposes.
 
 
@@ -400,6 +402,8 @@ sense frequency distribution in corpus
 ## Large Language Models (LLMs)
 
 - Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words. 
+
+. . .
 
 - Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence.
 
@@ -487,9 +491,9 @@ Prompt Engineering is the way in which instruction and reference data is present
 
 . . . 
 
-![](prompt_de.png)
+![](prompt_de.png){width=40%}
 
-
+. . .
 
 > (Text) Generation is a meta capability of Large Language Models & Prompt Engineering is the key to unlocking it. 
 
@@ -560,21 +564,30 @@ A prompt is composed with the following components:
 ## Prompting LLM for lexical semantic tasks
 `word sense disambiguation`
 
+. . .
 
-![](wsd.jpeg){width="400"}
+![](wsd.jpeg){width="60%"}
 
 ## Prompting LLM for solve lexical semantic tasks
 `sense to action`
+
+. . .
+
 ![](sense2action.jpeg)
 
 ## Prompting LLM for solve lexical semantic tasks
 `word sense induction`
+
+. . .
+
 ![](sense induction.jpeg){width=70%}
 
 ## Prompting LLM for solve lexical semantic tasks
 `code-switching wsd`
 
- ![](codeswitch.png){width=60%}
+. . .
+
+![](codeswitch.png){width=60%}
 
 ## 
  ![](codeswitch2.png){width=60%}
@@ -591,6 +604,7 @@ A prompt is composed with the following components:
 
 - After exploring different prompt templates, we take a prompt template with bullet points, a sequence of instructions, and a guided inquiring style to be complied with, with the persona setting as "“You are a linguist mastering in lexical semantics and in constructing Chinese Wordnet.”
 
+## 
 
 ![](cwn_aug_prompt.png)
 
@@ -613,7 +627,7 @@ A prompt is composed with the following components:
 - The top 600 frequent words are rated to further analyze their error types. 
 
 
-![](rating.png)
+![](rating.png){width=40%}
 
 
 
@@ -640,9 +654,9 @@ A prompt is composed with the following components:
 
 # Limitations: Knowledge Cutoff
 
-- incapable of accessing factual/updated information 
+- incapable of accessing factual/up-to-date information 
 
-![](llm_freq.png){width=50%}
+![](llm_freq.png){width=30%}
 
 
 # A neural-symbolic approach to rebuild the LR ecosystem
@@ -656,10 +670,9 @@ A prompt is composed with the following components:
 
 ::: {.column width="50%"} 
 
+    - Grounded generation (Indexing LRs): a form of retrieval augmented generation, the LLM provides answers to user queries based not only on the knowledge captured in the dataset the LLM was trained on, but augmented with knowledge coming from searching additional data sources:
 
-- Grounded generation (Indexing LRs): a form of **retrieval augmented generation**, the LLM provides answers to user queries based not only on the knowledge captured in the dataset the LLM was trained on, but augmented with knowledge coming from searching additional data sources:
-
-- LLM-LR app stores: LR and LLM `langchain`ed could be mutually beneficial for LLM and LR.
+    - LLM-LR app stores: LR and LLM `langchain`ed could be mutually beneficial for LLM and LR.
 
 - Using cwn and corpus as a case study is a good start.
 
@@ -681,6 +694,8 @@ A prompt is composed with the following components:
 - `Everything app` (aka super app) is a commercial scenario where all the living services are provided.
   - e.g., imaging a super app (like `WeChat`) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services.
   
+. . .
+
 - Similarly, the plugins enable LLMs (like `GPT-4`, `PaLM-2`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
 
 
@@ -698,11 +713,6 @@ A prompt is composed with the following components:
 
 
 
-
-
-
-
-
 ## Langchain
 
 > `langchain` is an open source framework that allows AI developers to combine LLMs like GPT-4 with external sources of computation and data.
@@ -715,6 +725,23 @@ A prompt is composed with the following components:
 
 ![](langchain_components.png)
 
+## langchain components
+
+- **Chains**: The core of `langchain`. Components (and even other chains) can be stringed together to create *chains*.
+
+- **Prompt templates**: Prompt templates are templates for different types of prompts. Like “chatbot” style templates, ELI5 question-answering, etc
+
+- **LLMs**: Large language models
+
+- **Indexing Utils:** Ways to interact with specific data (embeddings, vectorstores, document loaders)
+
+- **Tools:** Ways to interact with the outside world (search, calculators, etc)
+
+- **Agents**: Agents use LLMs to decide what actions should be taken. Tools like web search or calculators can be used, and all are packaged into a logical loop of operations.
+
+- **Memory**: Short-term memory, long-term memory.
+
+
 
 
 ## Working with LLMs and your own data
@@ -726,7 +753,7 @@ A prompt is composed with the following components:
 
 . . .
 
-![改圖](langchain.png)
+![](langchain.png){width=40%}
 
 
 <!-- ## Chain -->
@@ -800,14 +827,16 @@ All examples are tested with `text-davinci-003` (using OpenAI's API…..) . It u
 
 # Final thoughts
 
+. . .
+
 - Democratizing LLM and connect LR help keep balance between the generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic knowledge systems. 
     - LLM chains; Agent network
 
+. . .
+
 - [Auto-GPT]{#magenta} and alike as Project Manager (for a scaled and manageable ecosystem for `LR + LLM` based applications)
 
-
-
-
+. . .
 
 > More and more democratized LLMs and more diverse ecosystems which lead to a more stable symbiosis for Human and Machine.
 
@@ -830,7 +859,5 @@ All examples are tested with `text-davinci-003` (using OpenAI's API…..) . It u
 # [祝黃老師 福如東海 壽比南山]{#magenta}
 
 
-
-(找以前的相片) 慶生蛋糕
 
 
