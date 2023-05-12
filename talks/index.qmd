@@ -128,9 +128,12 @@ Note that there are more than one Chinese Wordnet.
 
 -   Manually created (sense distinction, gloss with controlled vocabulary, etc)
 
-- The status quo: latest release 2022, [website online](https://lopentu.github.io/CwnWeb/)
 
-. . .
+
+![](MandarinChineseWords.jpg){width=95%}
+
+## Chinese Wordnet
+- The status quo: latest release 2022, [website](https://lopentu.github.io/CwnWeb/)
 
 ![](cwn.png){fig-align="right"}
 
@@ -139,10 +142,10 @@ Note that there are more than one Chinese Wordnet.
 ::: callout-tip
 ## Some new perspectives in CWN
 
-sense granularity, relation discovery, and gloss with annotation
+sense granularity, relation discovery, glos and annotation in parallel
 :::
 
-## Meaning facets vs senses
+## Distinction of meaning facets and senses
 
 ::: columns
 ::: {.column width="50%"}
@@ -163,7 +166,7 @@ a phenomenon where two or more predicates seem to require that their argument de
 
 ## Gloss as lexicographic resources with add-ons annotations
 
--   Gloss (`lexicographic definition') is carefully controlled with limited vocabulary and **patterns**, e.g.,
+-   Gloss ([lexicographic definition]{#magenta}) is carefully controlled with limited vocabulary and **lexical patterns**, e.g.,
 
     -   Verbs with `VH` tag (i.e., stative intransitive verbs) are glossed with "形容 or 比喻形容 ...".
     -   Adverbs are glossed with "表..."
@@ -205,7 +208,7 @@ cwn = CwnImage.latest()
 
 
 
-## Comparison to others
+## Comparison to other Chinese lexical resources
 
 
 :::: {.columns .fragment fragment-index=0}
@@ -218,7 +221,7 @@ cwn = CwnImage.latest()
 
 ::: {.column width="40%"}
 
-![MOE](meng.png)
+![Grand Dictionary of Ministry of Education](meng.png)
 :::
 
 ::: {.column width="40%"}
@@ -311,7 +314,7 @@ df %>% count(relation_type) %>% ggplot() + geom_col(aes(x=reorder(relation_type,
 
 - [Transformer-based sense tagger]{#magenta}
 
--   Leveraging wordnet *glosses* using `GlossBert`,a BERT model for word sense disambiguation with gloss knowledge [@huang2019glossbert].
+-   Leveraging wordnet *glosses* using `GlossBert` [@huang2019glossbert], a BERT model for word sense disambiguation with gloss knowledge.
 
 -   Our extended `GlossBert` model on CWN gloss+ SemCor reports 82% accuracy.
 
@@ -345,23 +348,23 @@ sense_tagged = senseTag(tagged)
 
 
 ## CWN 2.0
-**SemCor**
+**Chinese SemCor**
 
-- `SemCor` (semi-automatically curated sense-tagged corpus) based on ASBC.
+- semi-automatically curated sense-tagged corpus based on Academic Sinica Balanced Corpus (ASBC) s.
 
-![](senseanno.png){fig-align="left"}
+![](senseanno.png){width=80%}
 
 
 
 
 ## CWN-based applications
-sense frequency distribution in corpus
+**sense frequency distribution** in corpus
 
--   Now we have chance to *empirically* explore the **dominance** of word senses, which is essential for both lexical semantic and psycholinguistic studies.
+-   Now we have chance to *empirically* explore the **dominance** of word senses in language use, which is essential for both lexical semantic and psycholinguistic studies.
 
 . . .
 
-- '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
+- e.g., '開' (kai1,'open') has (surprisingly) more dominant *blossom* sense over others (based on randomly chosen 300 sentences in ASBC corpus)
 
 ![](senseFreq.png){fig-align="center"}
 
@@ -696,7 +699,7 @@ A prompt is composed with the following components:
   
 . . .
 
-- Similarly, the plugins enable LLMs (like `GPT-4`, `PaLM-2`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
+- Similarly, the (external knowledge and factual resources) plugins enable LLMs (like `GPT-4`, `PaLM-2`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
 
 
 ##  LLM apps: another example
@@ -737,7 +740,7 @@ A prompt is composed with the following components:
 
 - **Tools:** Ways to interact with the outside world (search, calculators, etc)
 
-- **Agents**: Agents use LLMs to decide what actions should be taken. Tools like web search or calculators can be used, and all are packaged into a logical loop of operations.
+- [**Agents**: Agents use LLMs to decide what actions should be taken]{#magenta}. Tools like web search or calculators can be used, and all are packaged into a logical loop of operations.
 
 - **Memory**: Short-term memory, long-term memory.
 
@@ -862,7 +865,7 @@ All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API) . It uses 
 
 # [祝黃老師 福如東海 壽比南山]{#magenta}
 
-<!-- <iframe data-external="1" src="end.mp4" width="100%" height="85%"></iframe> -->
+<iframe data-external="1" src="end.mp4" width="100%" height="85%"></iframe>
 
 <!-- {{< "video" "end.mp4" "width"="100%" "height"="85%" >}} -->
 

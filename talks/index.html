@@ -497,15 +497,15 @@ Graduate Institute of Linguistics, National Taiwan University
 <li><p>Word segmentation principle <span class="citation" data-cites="chu2017mandarin">(<a href="#/reference" role="doc-biblioref" onclick="">Huang, Hsieh, and Chen 2017</a>)</span></p></li>
 <li><p>Corpus-based decision</p></li>
 <li><p>Manually created (sense distinction, gloss with controlled vocabulary, etc)</p></li>
-<li><p>The status quo: latest release 2022, <a href="https://lopentu.github.io/CwnWeb/">website online</a></p></li>
 </ul>
-<div class="fragment">
-<div class="quarto-figure quarto-figure-right">
-<figure><p><img data-src="cwn.png"></p>
-</figure>
-</div>
-</div>
-</section></section><section><section id="theories" class="title-slide slide level1"><h1>Theories</h1>
+
+<img data-src="MandarinChineseWords.jpg" style="width:95.0%" class="r-stretch"></section><section id="chinese-wordnet-1" class="slide level2"><h2>Chinese Wordnet</h2>
+<ul>
+<li>The status quo: latest release 2022, <a href="https://lopentu.github.io/CwnWeb/">website</a>
+</li>
+</ul>
+
+<img data-src="cwn.png" class="r-stretch quarto-figure-right"></section></section><section><section id="theories" class="title-slide slide level1"><h1>Theories</h1>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -515,11 +515,11 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><strong>Some new perspectives in CWN</strong></p>
 </div>
 <div class="callout-content">
-<p>sense granularity, relation discovery, and gloss with annotation</p>
+<p>sense granularity, relation discovery, glos and annotation in parallel</p>
 </div>
 </div>
 </div>
-</section><section id="meaning-facets-vs-senses" class="slide level2"><h2>Meaning facets vs senses</h2>
+</section><section id="distinction-of-meaning-facets-and-senses" class="slide level2"><h2>Distinction of meaning facets and senses</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><img data-src="co-predication.png"></p>
@@ -545,7 +545,7 @@ Graduate Institute of Linguistics, National Taiwan University
 </section><section id="gloss-as-lexicographic-resources-with-add-ons-annotations" class="slide level2"><h2>Gloss as lexicographic resources with add-ons annotations</h2>
 <ul>
 <li>
-<p>Gloss (`lexicographic definition’) is carefully controlled with limited vocabulary and <strong>patterns</strong>, e.g.,</p>
+<p>Gloss (<span id="magenta">lexicographic definition</span>) is carefully controlled with limited vocabulary and <strong>lexical patterns</strong>, e.g.,</p>
 <ul>
 <li>Verbs with <code>VH</code> tag (i.e., stative intransitive verbs) are glossed with “形容 or 比喻形容 …”.</li>
 <li>Adverbs are glossed with “表…”</li>
@@ -579,7 +579,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <li>Most words have small number of senses (Zipf’s law)</li>
 </ul>
 
-<img data-src="comp.jpg" class="r-stretch"></section><section id="comparison-to-others" class="slide level2"><h2>Comparison to others</h2>
+<img data-src="comp.jpg" class="r-stretch"></section><section id="comparison-to-other-chinese-lexical-resources" class="slide level2"><h2>Comparison to other Chinese lexical resources</h2>
 <div class="columns fragment" data-fragment-index="0">
 <div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
@@ -589,7 +589,7 @@ Graduate Institute of Linguistics, National Taiwan University
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="meng.png"></p>
-<figcaption>MOE</figcaption></figure>
+<figcaption>Grand Dictionary of Ministry of Education</figcaption></figure>
 </div>
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-center">
@@ -636,7 +636,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <p><strong>sense tagger</strong></p>
 <ul>
 <li><p><span id="magenta">Transformer-based sense tagger</span></p></li>
-<li><p>Leveraging wordnet <em>glosses</em> using <code>GlossBert</code>,a BERT model for word sense disambiguation with gloss knowledge <span class="citation" data-cites="huang2019glossbert">(<a href="#/reference" role="doc-biblioref" onclick=""><strong>huang2019glossbert?</strong></a>)</span>.</p></li>
+<li><p>Leveraging wordnet <em>glosses</em> using <code>GlossBert</code> <span class="citation" data-cites="huang2019glossbert">(<a href="#/reference" role="doc-biblioref" onclick=""><strong>huang2019glossbert?</strong></a>)</span>, a BERT model for word sense disambiguation with gloss knowledge.</p></li>
 <li><p>Our extended <code>GlossBert</code> model on CWN gloss+ SemCor reports 82% accuracy.</p></li>
 </ul>
 <aside class="notes"><p>conducting <em>context-gloss</em> pairs, and fine-tune the pre-trained BERT model on SemCor3.0 training corpus, and achieves SOTA performance on several English all-words WSD tasks.</p>
@@ -672,20 +672,19 @@ Graduate Institute of Linguistics, National Taiwan University
 </figure>
 </div>
 </section><section id="cwn-2.0-2" class="slide level2"><h2>CWN 2.0</h2>
-<p><strong>SemCor</strong></p>
+<p><strong>Chinese SemCor</strong></p>
 <ul>
-<li>
-<code>SemCor</code> (semi-automatically curated sense-tagged corpus) based on ASBC.</li>
+<li>semi-automatically curated sense-tagged corpus based on Academic Sinica Balanced Corpus (ASBC) s.</li>
 </ul>
 
-<img data-src="senseanno.png" class="r-stretch quarto-figure-left"></section><section id="cwn-based-applications" class="slide level2"><h2>CWN-based applications</h2>
-<p>sense frequency distribution in corpus</p>
+<img data-src="senseanno.png" style="width:80.0%" class="r-stretch"></section><section id="cwn-based-applications" class="slide level2"><h2>CWN-based applications</h2>
+<p><strong>sense frequency distribution</strong> in corpus</p>
 <ul>
-<li>Now we have chance to <em>empirically</em> explore the <strong>dominance</strong> of word senses, which is essential for both lexical semantic and psycholinguistic studies.</li>
+<li>Now we have chance to <em>empirically</em> explore the <strong>dominance</strong> of word senses in language use, which is essential for both lexical semantic and psycholinguistic studies.</li>
 </ul>
 <div class="fragment">
 <ul>
-<li>‘開’ (kai1,‘open’) has (surprisingly) more dominant <em>blossom</em> sense over others (based on randomly chosen 300 sentences in ASBC corpus)</li>
+<li>e.g., ‘開’ (kai1,‘open’) has (surprisingly) more dominant <em>blossom</em> sense over others (based on randomly chosen 300 sentences in ASBC corpus)</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure><p><img data-src="senseFreq.png"></p>
@@ -913,7 +912,7 @@ Graduate Institute of Linguistics, National Taiwan University
 </ul>
 <div class="fragment">
 <ul>
-<li>Similarly, the plugins enable LLMs (like <code>GPT-4</code>, <code>PaLM-2</code>) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.</li>
+<li>Similarly, the (external knowledge and factual resources) plugins enable LLMs (like <code>GPT-4</code>, <code>PaLM-2</code>) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.</li>
 </ul>
 </div>
 </section><section id="llm-apps-another-example" class="slide level2"><h2>LLM apps: another example</h2>
@@ -938,7 +937,7 @@ Graduate Institute of Linguistics, National Taiwan University
 <li><p><strong>LLMs</strong>: Large language models</p></li>
 <li><p><strong>Indexing Utils:</strong> Ways to interact with specific data (embeddings, vectorstores, document loaders)</p></li>
 <li><p><strong>Tools:</strong> Ways to interact with the outside world (search, calculators, etc)</p></li>
-<li><p><strong>Agents</strong>: Agents use LLMs to decide what actions should be taken. Tools like web search or calculators can be used, and all are packaged into a logical loop of operations.</p></li>
+<li><p><span id="magenta"><strong>Agents</strong>: Agents use LLMs to decide what actions should be taken</span>. Tools like web search or calculators can be used, and all are packaged into a logical loop of operations.</p></li>
 <li><p><strong>Memory</strong>: Short-term memory, long-term memory.</p></li>
 </ul></section><section id="working-with-llms-and-your-own-data" class="slide level2"><h2>Working with LLMs and your own data</h2>
 <ul>
@@ -1037,7 +1036,8 @@ Weng, Lilian. 2023. <span>“Prompt Engineering.”</span> <em>Lilianweng.github
 </div>
 </div>
 </section></section><section id="祝黃老師-福如東海-壽比南山" class="title-slide slide level1"><h1><span id="magenta">祝黃老師 福如東海 壽比南山</span></h1>
-<!-- <iframe data-external="1" src="end.mp4" width="100%" height="85%"></iframe> -->
+<iframe data-external="1" src="end.mp4" width="100%" height="85%">
+</iframe>
 <!-- {{< "video" "end.mp4" "width"="100%" "height"="85%" >}} -->
 
 <img src="https://lope.linguistics.ntu.edu.tw/static/media/logo_lope.e082917e.jpg" class="slide-logo r-stretch"><div class="footer footer-default">
