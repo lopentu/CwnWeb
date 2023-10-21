@@ -58,12 +58,11 @@ bibliography: cllt_v2.bib
 
 - Language Resources and Large Language Models: possible linkages
 
-. . .
+- Hands-on code session 
 
-- Hands-on code sessions 
+![](talk_qr.png){width=2in}
 
-
-## 背景
+# 背景
 [Language Models]{#magenta}
 
 . . . 
@@ -75,11 +74,11 @@ bibliography: cllt_v2.bib
 
 ## 預訓練大型語言模型橫空出世
 
-[Large Language Models]{#magenta}
+[Pre-trained Large Language Models]{#magenta}
 
 . . . 
 
-- Transformer-based pre-trained Large Language Models 改變了NLP/世界
+- Transformer-based pre-trained Large Language Models changed NLP/the world
 
 ![](llm_tree.png){fig-align="middle"}
 
@@ -97,30 +96,50 @@ From generation to understanding
 ![](emergence.png){fig-align="middle"}
 
 
-## Reasoning
+## Science exam reasoning
 
-- Common sense reasoning
+. . .
 
-- Mathematical reasoning
+![](reasoning.png)
+## Mathematical reasoning
+. . .
+
+![](iol1.png)
 
 
 ## Iterative Reasoning
 [Rosetta Stone]{#magenta}
+. . . 
+
+![](reasoning2.png)
 
 
-## Iterative Reasoning
+
+
+##
+
+![](iol2.png)
 
 
 # 幻覺與知識阻斷
 hallucination and knowledge-cutoff
 
-- 事實（也許還好解決）
-- 推理、判斷與假說很棘手
+. . . 
+
+- 事實幻覺（也許還好解決）
+
+. . .
+
+![](hallucination.png){width=60%}
+
+
+## 推理、判斷與假說幻覺則很棘手
 
 . . . 
 
-## BART's hallucination
+BART's hallucination
 (每一家的幻覺都蠻嚴重的)
+
 . . .
 
 ![](oma.png)
@@ -756,11 +775,9 @@ A prompt is composed with the following components:
 
   - reluctance to express uncertainty, to change premise, and caught in a lie 
   
-  - incapable of accessing factual/up-to-date information
+  - incapable of accessing factual/up-to-date information; or no authentic sources provided
   
-## 
 
-![](hallucination.png){width=50%}
 
 ## 
 
@@ -859,6 +876,8 @@ versational data to enable instruction-following and context-aware responses.
 ![](vector.png)
 
 - We obtain vectors by removing the last layer and taking the output from the second-to-last layer. 
+
+- Vector DB/ Vector Store: 
 
 <!-- ## LLM apps (`Everything app` v.2)  -->
 

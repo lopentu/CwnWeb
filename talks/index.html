@@ -453,20 +453,18 @@ Graduate Institute of Linguistics, NTU
 <!-- . . .  -->
 <!-- ![](huang_cite.png){width="40%"} -->
 </section>
-<section>
 <section id="今天要談的主題" class="title-slide slide level1">
 <h1>今天要談的主題</h1>
 <ul>
-<li>Language Resources and Large Language Models: possible linkages</li>
+<li><p>Language Resources and Large Language Models: possible linkages</p></li>
+<li><p>Hands-on code session</p></li>
 </ul>
-<div class="fragment">
-<ul>
-<li>Hands-on code sessions</li>
-</ul>
-</div>
-</section>
-<section id="背景" class="slide level2">
-<h2>背景</h2>
+
+<img data-src="talk_qr.png" style="width:2in" class="r-stretch"></section>
+
+<section>
+<section id="背景" class="title-slide slide level1">
+<h1>背景</h1>
 <p><span id="magenta">Language Models</span></p>
 <div class="fragment">
 <ul>
@@ -477,10 +475,10 @@ Graduate Institute of Linguistics, NTU
 </section>
 <section id="預訓練大型語言模型橫空出世" class="slide level2">
 <h2>預訓練大型語言模型橫空出世</h2>
-<p><span id="magenta">Large Language Models</span></p>
+<p><span id="magenta">Pre-trained Large Language Models</span></p>
 <div class="fragment">
 <ul>
-<li>Transformer-based pre-trained Large Language Models 改變了NLP/世界</li>
+<li>Transformer-based pre-trained Large Language Models changed NLP/the world</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -498,38 +496,48 @@ Graduate Institute of Linguistics, NTU
 <p>直到大型語言模型開始出現結構理解的<em>頓悟</em>行為 (emergence)之後， 開始有推理能力的期待。</p>
 
 <img data-src="emergence.png" class="r-stretch quarto-figure-center"></section>
-<section id="reasoning" class="slide level2">
-<h2>Reasoning</h2>
-<ul>
-<li><p>Common sense reasoning</p></li>
-<li><p>Mathematical reasoning</p></li>
-</ul>
+<section id="science-exam-reasoning" class="slide level2">
+<h2>Science exam reasoning</h2>
+<div class="fragment">
+<p><img data-src="reasoning.png"> ## Mathematical reasoning . . .</p>
+<p><img data-src="iol1.png"></p>
+</div>
 </section>
 <section id="iterative-reasoning" class="slide level2">
 <h2>Iterative Reasoning</h2>
-<p><span id="magenta">Rosetta Stone</span></p>
-</section>
-<section id="iterative-reasoning-1" class="slide level2">
-<h2>Iterative Reasoning</h2>
-</section></section>
+<p><span id="magenta">Rosetta Stone</span> . . .</p>
+
+<img data-src="reasoning2.png" class="r-stretch"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+
+<img data-src="iol2.png" class="r-stretch"></section></section>
 <section>
 <section id="幻覺與知識阻斷" class="title-slide slide level1">
 <h1>幻覺與知識阻斷</h1>
 <p>hallucination and knowledge-cutoff</p>
+<div class="fragment">
 <ul>
-<li>事實（也許還好解決）</li>
-<li>推理、判斷與假說很棘手</li>
+<li>事實幻覺（也許還好解決）</li>
 </ul>
+</div>
+<div class="fragment">
+<p><img data-src="hallucination.png" style="width:60.0%"></p>
+</div>
 </section>
-<section id="barts-hallucination" class="slide level2">
-<h2>BART’s hallucination</h2>
-<p>(每一家的幻覺都蠻嚴重的) . . .</p>
-
-<img data-src="oma.png" class="r-stretch"><div class="fragment">
+<section id="推理判斷與假說幻覺則很棘手" class="slide level2">
+<h2>推理、判斷與假說幻覺則很棘手</h2>
+<div class="fragment">
+<p>BART’s hallucination (每一家的幻覺都蠻嚴重的)</p>
+</div>
+<div class="fragment">
+<p><img data-src="oma.png"></p>
+</div>
+<div class="fragment">
 <p><span class="small-text">可愛的錯誤是沒關係，但在重要的決策（如：法律親屬繼承關係）就出大事</span></p>
 </div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -555,7 +563,7 @@ Graduate Institute of Linguistics, NTU
 <!-- > Here are the images illustrating language and knowledge resources as the food for AI: -->
 </div>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:25%;">
@@ -1048,7 +1056,7 @@ Graduate Institute of Linguistics, NTU
 <p><img data-src="codeswitch.png" style="width:60.0%"></p>
 </div>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 
 <img data-src="codeswitch2.png" style="width:60.0%" class="r-stretch"></section>
@@ -1064,7 +1072,7 @@ Graduate Institute of Linguistics, NTU
 </ul>
 </div>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 
 <img data-src="cwn_aug_prompt.png" class="r-stretch"></section>
@@ -1094,15 +1102,11 @@ Graduate Institute of Linguistics, NTU
 <li><p><code>Hallucination</code> appears when the generated content is nonsensical or unfaithful to the provided source content.</p>
 <ul>
 <li><p>reluctance to express uncertainty, to change premise, and caught in a lie</p></li>
-<li><p>incapable of accessing factual/up-to-date information</p></li>
+<li><p>incapable of accessing factual/up-to-date information; or no authentic sources provided</p></li>
 </ul></li>
 </ul>
 </div>
 </section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-
-<img data-src="hallucination.png" style="width:50.0%" class="r-stretch"></section>
 <section id="section-6" class="slide level2">
 <h2></h2>
 <ul>
@@ -1189,7 +1193,8 @@ Graduate Institute of Linguistics, NTU
 </ul>
 
 <img data-src="vector.png" class="r-stretch"><ul>
-<li>We obtain vectors by removing the last layer and taking the output from the second-to-last layer.</li>
+<li><p>We obtain vectors by removing the last layer and taking the output from the second-to-last layer.</p></li>
+<li><p>Vector DB/ Vector Store:</p></li>
 </ul>
 <!-- ## LLM apps (`Everything app` v.2)  -->
 <!-- - `Everything app` (aka super app) is a commercial scenario where all the living services are provided. -->
