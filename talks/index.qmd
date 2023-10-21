@@ -1092,5 +1092,6 @@ Orchestration frameworks provide a way to manage and control LLMs.
 
 ![](langchain-tutorial.png)
 
-
+![](richard.jpg)
+![](piner.jpg){width=200}
 
