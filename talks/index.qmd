@@ -532,8 +532,12 @@ sense_tagged = senseTag(tagged)
 ![](moco.png)
 
 
-## 回到我們要探究的問題
-`(Autoregressive) LLMs 與 LR/KR 的關係`
+# 回到我們要探究的問題
+
+`(Autoregressive) LLMs 與 LR/KR 的關係？`
+
+
+
 
 <!-- - Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words.  -->
 
@@ -604,8 +608,6 @@ Pre-train, Prompt, and Predict [@liu2021pretrain]
 - Amazing performance with only zero/few-shot
 - Requires no parameter updates, just talk to them in [natural language]{#magenta}!
 - Prompt engineering: the process of creating a prompt that results in the most effective performance on the downstream task
-
-
 
 
 
@@ -683,7 +685,7 @@ A prompt is composed with the following components:
 
 - to sample multiple outputs with temperature > 0 and then selecting the best one out of these candidates. The criteria for selecting the best candidate can vary from task to task. A general solution is to pick majority vote. 
 
-
+新發展可以參見 [Prompting Guide](https://www.promptingguide.ai/)
 
 
 
@@ -770,27 +772,27 @@ A prompt is composed with the following components:
 
 
 
-## in-context learning and limitations
-> `In-context learning (~prompting) `involves providing input to the language model in a specific format to elicit the desired output. 
+## Prompting limitations
+想辦法問博學者 savant 的各種技能，也會有天花板
 
-- `context window size` restricts the model's ability to process long sequences of information effectively.
+> `In-context learning (~ prompting) `involves providing input to the language model in a specific format to elicit the desired output. 
+
+- 提示詞脈絡視窗大小 `context window size` restricts the model's ability to process long sequences of information effectively.
 
 . . .
 
-- `Hallucination` appears when the generated content is nonsensical or unfaithful to the provided source content.
+- 各種幻覺與執著 `Hallucination` appears when the generated content is nonsensical or unfaithful to the provided source content.
 
-  - reluctance to express uncertainty, to change premise, and caught in a lie 
+  - reluctance to express uncertainty, to change premise, and yields to authority 
   
   - incapable of accessing factual/up-to-date information; or no authentic sources provided
   
-
-
 ## 
 
 - 數據也有可能受到版權、個資與企業隱私問題。
 
 
-![](llm_freq.png){width=20%}
+![](llm_freq.png){width=10%}
 
 
 
@@ -798,23 +800,24 @@ A prompt is composed with the following components:
 # A neural-symbolic approach to rebuild the LR ecosystem
 [Toward a more linguistic knowledge-aware LLMs]{#magenta}
 
+:::: {.columns .fragment fragment-index=4}
+
+::: {.column width="50%"}
 
 - The neural-symbolic approach seeks to integrate these two paradigms to leverage the strengths of both: the learning and generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic systems. 
 
-
-:::: {.columns .fragment fragment-index=4} 
-
-::: {.column width="50%"} 
-
-    - Grounded generation (Indexing LRs): a form of retrieval augmented generation, the LLM provides answers to user queries based not only on the knowledge captured in the dataset the LLM was trained on, but augmented with knowledge coming from searching additional data sources:
-
-    - LLM-LR app stores: LR and LLM `langchain`ed could be mutually beneficial for LLM and LR.
-
-- Using cwn and corpus as a case study is a good start.
-
 :::
 
-::: {.column width="40%"} 
+
+<!--     - Grounded generation (Indexing LRs): a form of retrieval augmented generation, the LLM provides answers to user queries based not only on the knowledge captured in the dataset the LLM was trained on, but augmented with knowledge coming from searching additional data sources: -->
+
+<!--     - LLM-LR app stores: LR and LLM `langchain`ed could be mutually beneficial for LLM and LR. -->
+
+<!-- - Using cwn and corpus as a case study is a good start. -->
+
+
+
+::: {.column width="40%"}
 
 
 ![](augmented-llms.png)
@@ -824,23 +827,22 @@ A prompt is composed with the following components:
 
 
 
-# 兩種作法
+# 目前兩種作法
 
 - Fine-tuning on up-to-dated / customized data
 
 . . .
 
-- Retrieval-augmented in-context learning (e.g., RAG prompting)
+- **Retrieval-augmented Generation ** (e.g., RAG prompting)
 
 
 # Fine-tune
 
-
-quantization
+模型的壓縮技術 quantization (`LoRA`, `QLoRA`, ...) 使得微調大型語言模型變得更為可行
 
 ## LoLama: a fine-tuned model
 
-- We fine-tune LoLlama on top of Taiwan-LLaMa (Lin and Chen, 2023), which was pre-trained on over
+- We fine-tune `LoLlama` on top of Taiwan-LLaMa (Lin and Chen, 2023), which was pre-trained on over
 5 billion tokens of Traditional Chinese. The model was further fine-tuned on over 490K multi-turn con-
 versational data to enable instruction-following and context-aware responses.
 - We train LoLlama with CWN
@@ -860,6 +862,7 @@ versational data to enable instruction-following and context-aware responses.
 ## 問題限制
 
 - 商用好，但很貴，也不保證安全。
+
 - 開源的 llm 越來越好，壓縮技術越見成熟。但訓練不便宜，動輒政治價值審查。
 
 . . .
@@ -868,7 +871,8 @@ versational data to enable instruction-following and context-aware responses.
 
 
 # RAG
-> Retrieval-augmented generation (RAG) is an AI framework for retrieving facts from an external knowledge base to ground large language models (LLMs) on the most accurate, up-to-date information and to give users insight into LLMs' generative process.
+
+> Retrieving facts from an external knowledge base to ground large language models (LLMs) on the most accurate, up-to-date information and to give users insight into LLMs' generative process.
 
 . . .
 
