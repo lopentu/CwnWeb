@@ -1144,11 +1144,11 @@ Graduate Institute of Linguistics, NTU
 <section id="目前兩種作法" class="title-slide slide level1">
 <h1>目前兩種作法</h1>
 <ul>
-<li>Fine-tuning on up-to-dated / customized data</li>
+<li><strong>Fine-tuning</strong> on up-to-dated / customized data</li>
 </ul>
 <div class="fragment">
 <ul>
-<li><strong>Retrieval-augmented Generation </strong> (e.g., RAG prompting)</li>
+<li><strong>Retrieval-augmented Generation</strong> (e.g., RAG prompting)</li>
 </ul>
 </div>
 </section>
@@ -1158,8 +1158,8 @@ Graduate Institute of Linguistics, NTU
 <h1>Fine-tune</h1>
 <p>模型的壓縮技術 quantization (<code>LoRA</code>, <code>QLoRA</code>, …) 使得微調大型語言模型變得更為可行</p>
 </section>
-<section id="lolama-a-fine-tuned-model" class="slide level2">
-<h2>LoLama: a fine-tuned model</h2>
+<section id="lollama-a-fine-tuned-model" class="slide level2">
+<h2>LoLlama: a fine-tuned model</h2>
 <ul>
 <li>We fine-tune <code>LoLlama</code> on top of Taiwan-LLaMa (Lin and Chen, 2023), which was pre-trained on over 5 billion tokens of Traditional Chinese. The model was further fine-tuned on over 490K multi-turn con- versational data to enable instruction-following and context-aware responses.</li>
 <li>We train LoLlama with CWN</li>
@@ -1327,12 +1327,12 @@ Graduate Institute of Linguistics, NTU
 <section id="working-with-llms-and-your-own-data" class="slide level2">
 <h2>Working with LLMs and your own data</h2>
 <ul>
-<li>Good news for Language Resource developers</li>
+<li>Good news for Language and Knowledge Resource developers</li>
 </ul>
 <!-- Be data-aware: connect a language model to other sources of data -->
 <!-- Be agentic: allow a language model to interact with its environment -->
 <div class="fragment">
-<p><img data-src="langchain.png" style="width:40.0%"></p>
+<p><img data-src="langchain.png" style="width:60.0%"></p>
 <!-- ## Chain -->
 <!-- 有點像組合函數，裏面是 prompt template, 外面是 llm -->
 <!-- ## Next:  -->
@@ -1349,6 +1349,22 @@ Graduate Institute of Linguistics, NTU
 <!-- > More and more democratized LLMs and more diverse ecosystems which lead to a more stable symbiosis for Human and Machine. -->
 <!-- # Acknowledgment -->
 <!-- > 連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！ -->
+</div>
+</section>
+<section id="總結" class="slide level2">
+<h2>總結</h2>
+<ul>
+<li>語言與知識資源與模型訓練一樣重要：可信任、可解釋、可克制（與客製）。</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>兩者連結的可能目前是 Fine-tune 與 RAG prompting。</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>了解 orchestration 的架構 (e.g.，<code>langchain</code>) 對於部署 LLM 應用變成核心技能。</li>
+</ul>
 </div>
 </section>
 <section id="reference" class="slide level2 smaller scrollable">

@@ -829,18 +829,18 @@ A prompt is composed with the following components:
 
 # 目前兩種作法
 
-- Fine-tuning on up-to-dated / customized data
+- **Fine-tuning** on up-to-dated / customized data
 
 . . .
 
-- **Retrieval-augmented Generation ** (e.g., RAG prompting)
+- **Retrieval-augmented Generation** (e.g., RAG prompting)
 
 
 # Fine-tune
 
 模型的壓縮技術 quantization (`LoRA`, `QLoRA`, ...) 使得微調大型語言模型變得更為可行
 
-## LoLama: a fine-tuned model
+## LoLlama: a fine-tuned model
 
 - We fine-tune `LoLlama` on top of Taiwan-LLaMa (Lin and Chen, 2023), which was pre-trained on over
 5 billion tokens of Traditional Chinese. The model was further fine-tuned on over 490K multi-turn con-
@@ -1037,14 +1037,14 @@ Orchestration frameworks provide a way to manage and control LLMs.
 
 ## Working with LLMs and your own data
 
--   Good news for Language Resource developers
+-   Good news for Language and Knowledge Resource developers
 
 <!-- Be data-aware: connect a language model to other sources of data -->
 <!-- Be agentic: allow a language model to interact with its environment -->
 
 . . .
 
-![](langchain.png){width=40%}
+![](langchain.png){width=60%}
 
 
 <!-- ## Chain -->
@@ -1082,6 +1082,19 @@ Orchestration frameworks provide a way to manage and control LLMs.
 
 
 <!-- > 連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！ -->
+
+## 總結
+
+- 語言與知識資源與模型訓練一樣重要：可信任、可解釋、可克制（與客製）。
+
+. . .
+
+- 兩者連結的可能目前是 Fine-tune 與 RAG prompting。
+
+. . .
+
+- 了解 orchestration 的架構 (e.g.，`langchain`) 對於部署 LLM 應用變成核心技能。
+
 
 
 ## Reference
