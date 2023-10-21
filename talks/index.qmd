@@ -745,38 +745,30 @@ A prompt is composed with the following components:
 
 
 
+## in-context learning and limitations
+> `In-context learning (~prompting) `involves providing input to the language model in a specific format to elicit the desired output. 
 
-
-
-# Limitations: Hallucination
-
-> when the generated content is nonsensical or unfaithful to the provided source content.
+- `context window size` restricts the model's ability to process long sequences of information effectively.
 
 . . .
 
+- `Hallucination` appears when the generated content is nonsensical or unfaithful to the provided source content.
+
+  - reluctance to express uncertainty, to change premise, and caught in a lie 
+  
+  - incapable of accessing factual/up-to-date information
+  
+## 
+
 ![](hallucination.png){width=50%}
 
-
-
-<!-- reluctance to express uncertainty, to change premise, and caught in a lie -->
-
-
-
-
-# Limitations: Knowledge Cutoff
-
-- incapable of accessing factual/up-to-date information 
-
-![](llm_freq.png){width=20%}
+## 
 
 - 數據也有可能受到版權、個資與企業隱私問題。
 
 
-## in-context learning and limitations
-`In-context learning (~prompting) `
+![](llm_freq.png){width=20%}
 
-- involves providing input to the language model in a specific format to elicit the desired output.
-context window restricts the model’s ability to process long sequences of information effectively.
 
 
 
@@ -853,14 +845,20 @@ versational data to enable instruction-following and context-aware responses.
 
 
 # RAG
+> Retrieval-augmented generation (RAG) is an AI framework for retrieving facts from an external knowledge base to ground large language models (LLMs) on the most accurate, up-to-date information and to give users insight into LLMs' generative process.
+
+. . .
 
 ![](rag.png)
 
 
 ## Vector DataBase and Embeddings
 
+- A (vector) embedding is the internal representation of input data in a deep learning model, also known as embedding models or a deep neural network.
 
+![](vector.png)
 
+- We obtain vectors by removing the last layer and taking the output from the second-to-last layer. 
 
 <!-- ## LLM apps (`Everything app` v.2)  -->
 
@@ -889,18 +887,33 @@ versational data to enable instruction-following and context-aware responses.
 
 ![](langchain-step.png)
 
+# [lopeGPT]{#magenta}: [a RAG model](https://lope.linguistics.ntu.edu.tw/lopeGPT)
 
+:::: {.columns} 
 
-# CWN 2.0 and SoMe Corpus plugins for LLMs
-[lopeGPT]{#magenta}: a RAG model high-level architecture
-[lopeGPT](https://lope.linguistics.ntu.edu.tw/lopeGPT) 
-
-
+::: {.column width="50%"} 
 
 <!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
-
+a higer archtecture
 ![](lopegpt.png){width="920px"}
 
+:::
+
+
+
+::: {.column width="50%"} 
+- Integration of language resources: 
+  - Academia Sinica Balanced Corpus of Modern Chinese (ASBC)
+  - Social Media Corpus in Taiwan (SoMe)
+  - Chinese Wordnet 2.0 (CWN)
+
+
+![](lopegpt-rag.png)
+<br>
+[https://lope.linguistics.ntu.edu.tw/lopeGPT]()
+
+:::
+::::
 
 
 ## Experiments on Sense Computing Tasks
@@ -910,8 +923,12 @@ versational data to enable instruction-following and context-aware responses.
 - sense tagging and analysis 
 
 ## 
+![](lopegpt-3.png)
 
-![](lopegpt_huang.png)
+
+##
+![](lopegpt-2.png)
+
 
 
 
@@ -945,11 +962,24 @@ Orchestration frameworks provide a way to manage and control LLMs.
 
 需要一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果
 
+
+## LLMs orchestration frameworks
+
+- LlamaIndex 
+
+- Semantic Kernel
+
+- LangChain
+
+## Comparison
+
+![](sk.png)
+
 ## Langchain
 
 > `langchain` is an open source framework that allows AI developers to combine LLMs like GPT-4 with external sources of computation and data.
 
-![Github repo star history](langchain_star.png){width="50%"}
+![Github repo star history](star.png){width="50%"}
 
 
 

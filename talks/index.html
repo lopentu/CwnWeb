@@ -1080,36 +1080,36 @@ Graduate Institute of Linguistics, NTU
 <li><p>The top 600 frequent words are rated to further analyze their error types.</p></li>
 </ul>
 
-<img data-src="rating.png" style="width:40.0%" class="r-stretch"></section></section>
-<section id="limitations-hallucination" class="title-slide slide level1">
-<h1>Limitations: Hallucination</h1>
-<blockquote>
-<p>when the generated content is nonsensical or unfaithful to the provided source content.</p>
-</blockquote>
-<div class="fragment">
-<p><img data-src="hallucination.png" style="width:50.0%"></p>
-<!-- reluctance to express uncertainty, to change premise, and caught in a lie -->
-</div>
-</section>
-
-<section>
-<section id="limitations-knowledge-cutoff" class="title-slide slide level1">
-<h1>Limitations: Knowledge Cutoff</h1>
-<ul>
-<li>incapable of accessing factual/up-to-date information</li>
-</ul>
-
-<img data-src="llm_freq.png" style="width:20.0%" class="r-stretch"><ul>
-<li>數據也有可能受到版權、個資與企業隱私問題。</li>
-</ul>
-</section>
+<img data-src="rating.png" style="width:40.0%" class="r-stretch"></section>
 <section id="in-context-learning-and-limitations" class="slide level2">
 <h2>in-context learning and limitations</h2>
-<p><code>In-context learning (~prompting)</code></p>
+<blockquote>
+<p><code>In-context learning (~prompting)</code>involves providing input to the language model in a specific format to elicit the desired output.</p>
+</blockquote>
 <ul>
-<li>involves providing input to the language model in a specific format to elicit the desired output. context window restricts the model’s ability to process long sequences of information effectively.</li>
+<li><code>context window size</code> restricts the model’s ability to process long sequences of information effectively.</li>
 </ul>
-</section></section>
+<div class="fragment">
+<ul>
+<li><p><code>Hallucination</code> appears when the generated content is nonsensical or unfaithful to the provided source content.</p>
+<ul>
+<li><p>reluctance to express uncertainty, to change premise, and caught in a lie</p></li>
+<li><p>incapable of accessing factual/up-to-date information</p></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+
+<img data-src="hallucination.png" style="width:50.0%" class="r-stretch"></section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<ul>
+<li>數據也有可能受到版權、個資與企業隱私問題。</li>
+</ul>
+
+<img data-src="llm_freq.png" style="width:20.0%" class="r-stretch"></section></section>
 <section id="a-neural-symbolic-approach-to-rebuild-the-lr-ecosystem" class="title-slide slide level1">
 <h1>A neural-symbolic approach to rebuild the LR ecosystem</h1>
 <p><span id="magenta">Toward a more linguistic knowledge-aware LLMs</span></p>
@@ -1175,10 +1175,22 @@ Graduate Institute of Linguistics, NTU
 <section>
 <section id="rag" class="title-slide slide level1">
 <h1>RAG</h1>
-
-<img data-src="rag.png" class="r-stretch"></section>
+<blockquote>
+<p>Retrieval-augmented generation (RAG) is an AI framework for retrieving facts from an external knowledge base to ground large language models (LLMs) on the most accurate, up-to-date information and to give users insight into LLMs’ generative process.</p>
+</blockquote>
+<div class="fragment">
+<p><img data-src="rag.png"></p>
+</div>
+</section>
 <section id="vector-database-and-embeddings" class="slide level2">
 <h2>Vector DataBase and Embeddings</h2>
+<ul>
+<li>A (vector) embedding is the internal representation of input data in a deep learning model, also known as embedding models or a deep neural network.</li>
+</ul>
+
+<img data-src="vector.png" class="r-stretch"><ul>
+<li>We obtain vectors by removing the last layer and taking the output from the second-to-last layer.</li>
+</ul>
 <!-- ## LLM apps (`Everything app` v.2)  -->
 <!-- - `Everything app` (aka super app) is a commercial scenario where all the living services are provided. -->
 <!--   - e.g., imaging a super app (like `WeChat`) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services. -->
@@ -1196,12 +1208,25 @@ Graduate Institute of Linguistics, NTU
 
 <img data-src="langchain-step.png" class="r-stretch"></section></section>
 <section>
-<section id="cwn-2.0-and-some-corpus-plugins-for-llms" class="title-slide slide level1">
-<h1>CWN 2.0 and SoMe Corpus plugins for LLMs</h1>
-<p><span id="magenta">lopeGPT</span>: a RAG model high-level architecture <a href="https://lope.linguistics.ntu.edu.tw/lopeGPT">lopeGPT</a></p>
+<section id="lopegpt-a-rag-model" class="title-slide slide level1">
+<h1><span id="magenta">lopeGPT</span>: <a href="https://lope.linguistics.ntu.edu.tw/lopeGPT">a RAG model</a></h1>
+<div class="columns">
+<div class="column" style="width:50%;">
 <!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
-
-<img data-src="lopegpt.png" width="920" class="r-stretch"></section>
+<p>a higer archtecture <img data-src="lopegpt.png" width="920"></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Integration of language resources:
+<ul>
+<li>Academia Sinica Balanced Corpus of Modern Chinese (ASBC)</li>
+<li>Social Media Corpus in Taiwan (SoMe)</li>
+<li>Chinese Wordnet 2.0 (CWN)</li>
+</ul></li>
+</ul>
+<p><img data-src="lopegpt-rag.png"> <br> <a href="">https://lope.linguistics.ntu.edu.tw/lopeGPT</a></p>
+</div>
+</div>
+</section>
 <section id="experiments-on-sense-computing-tasks" class="slide level2">
 <h2>Experiments on Sense Computing Tasks</h2>
 <p><code>augmented LLMs</code></p>
@@ -1210,10 +1235,14 @@ Graduate Institute of Linguistics, NTU
 <li>sense tagging and analysis</li>
 </ul>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2></h2>
 
-<img data-src="lopegpt_huang.png" class="r-stretch"></section>
+<img data-src="lopegpt-3.png" class="r-stretch"></section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+
+<img data-src="lopegpt-2.png" class="r-stretch"></section>
 <section id="experiments-on-sense-computing-tasks-1" class="slide level2">
 <h2>Experiments on Sense computing tasks</h2>
 <p><code>localized and customized</code></p>
@@ -1248,13 +1277,25 @@ Graduate Institute of Linguistics, NTU
 <p>Orchestration frameworks provide a way to manage and control LLMs.</p>
 <p>需要一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果</p>
 </section>
+<section id="llms-orchestration-frameworks" class="slide level2">
+<h2>LLMs orchestration frameworks</h2>
+<ul>
+<li><p>LlamaIndex</p></li>
+<li><p>Semantic Kernel</p></li>
+<li><p>LangChain</p></li>
+</ul>
+</section>
+<section id="comparison" class="slide level2">
+<h2>Comparison</h2>
+
+<img data-src="sk.png" class="r-stretch"></section>
 <section id="langchain" class="slide level2">
 <h2>Langchain</h2>
 <blockquote>
 <p><code>langchain</code> is an open source framework that allows AI developers to combine LLMs like GPT-4 with external sources of computation and data.</p>
 </blockquote>
 
-<img data-src="langchain_star.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Github repo star history</p></section>
+<img data-src="star.png" style="width:50.0%" class="r-stretch quarto-figure-center"><p class="caption">Github repo star history</p></section>
 <section id="architecture" class="slide level2">
 <h2>Architecture</h2>
 
