@@ -60,7 +60,7 @@ bibliography: cllt_v2.bib
 
 - Hands-on code session 
 
-![](talk_qr.png){width=2in}
+![](talk_qr.png){width=70}
 
 # 背景
 [Language Models]{#magenta}
@@ -80,20 +80,19 @@ bibliography: cllt_v2.bib
 
 - Transformer-based pre-trained Large Language Models changed NLP/the world
 
-![](llm_tree.png){fig-align="middle"}
+![](llm_tree.png){fig-align="middle" width=50%}
 
 
 ##  
 
 - **Emergent Abilities** in LLM : Unpredictable Abilities in Large Language Models
-
-From generation to understanding
+From generation to understanding?
 
 直到大型語言模型開始出現結構理解的*頓悟*行為 (emergence)之後，
 開始有推理能力的期待。
 
 
-![](emergence.png){fig-align="middle"}
+![](emergence.png){fig-align="middle" width=2%}
 
 
 ## Science exam reasoning
@@ -101,25 +100,32 @@ From generation to understanding
 . . .
 
 ![](reasoning.png)
-## Mathematical reasoning
+
+## [Mathematical reasoning](https://openai.com/research/formal-math)
+
 . . .
 
-![](iol1.png)
+![](reasoning2.png){width=70%}
 
 
-## Iterative Reasoning
-[Rosetta Stone]{#magenta}
+
+## Iterative Reasoning and Cultural Imagination
+[Rosetta Stone Problems]{#magenta}
+
 . . . 
-
-![](reasoning2.png)
-
-
-
-
-##
 
 ![](iol2.png)
 
+
+
+
+## 跨符碼類型推理
+
+![](iol1.png)
+![](metrics.png)
+
+## 結果還差強人意
+![](iol1-new.png)
 
 # 幻覺與知識阻斷
 hallucination and knowledge-cutoff
@@ -1089,9 +1095,21 @@ Orchestration frameworks provide a way to manage and control LLMs.
 
 
 ## Hands-on coding tutorial
+:::: {.columns} 
 
-![](langchain-tutorial.png)
+::: {.column width="50%"} 
+![](langchain-tutorial.png){width=35%}
 
-![](richard.jpg)
+<br>
+[colab notebook 連結](https://t.ly/p3Z4_)
+
+:::
+
+
+::: {.column width="50%"} 
 ![](piner.jpg){width=200}
 
+![](richard.jpg)
+:::
+
+::::
