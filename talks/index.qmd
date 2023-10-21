@@ -4,7 +4,7 @@ format:
     theme: ["theme/q-theme.scss"]
     slide-number: c/t
     logo: "https://lope.linguistics.ntu.edu.tw/static/media/logo_lope.e082917e.jpg"
-    footer: "[CWN2.0 ::: lopeGPT](https://lopentu.github.io/CwnWeb/)"
+    # footer: "[CWN2.0 ::: lopeGPT](https://lopentu.github.io/CwnWeb/)"
     code-copy: true
     center-title-slide: false
     include-in-header: heading-meta.html
@@ -22,19 +22,22 @@ execute:
   eval: true
   echo: true
 bibliography: cllt_v2.bib
----
+--- 
 
-<h1>Language Resources with/in Language Models</h1>
+<h1>Chaining Language and Knowledge Resources with LLM(s)</h1>
 
-<h2>a case of `cwn`</h2>
+<h2>a tutorial at ROCLING 2023</h2>
 
 <hr>
+<br>
+<h3>Shu-Kai Hsieh 謝舒凱 </h3>
 
-<h3>Shu-Kai Hsieh</h3>
+<h4>Graduate Institute of Linguistics/Brain and Mind, NTU</h4>
 
-<h3>Graduate Institute of Linguistics, National Taiwan University</h3>
+<br>
+<h3>Piner Chen and Dachen Lian 陳品而 連大成</h3>
 
-<h4>2023/05/12, CBS Research Symposium, PolyU. Hong Kong</h4>
+<h4>Graduate Institute of Linguistics, NTU</h4>
 
 <br>
 
@@ -43,38 +46,148 @@ bibliography: cllt_v2.bib
 ![](langchain.webp){.absolute top="800" left="950" width="550"}
 
 
-# Where all starts with ..
+<!-- # Where all starts with .. -->
+<!-- . . .  -->
+
+<!-- ![](huang_cite.png){width="40%"} -->
+
+
+
+
+# 今天要談的主題
+
+- Language Resources and Large Language Models: possible linkages
+
+. . .
+
+- Hands-on code sessions 
+
+
+## 背景
+[Language Models]{#magenta}
+
 . . . 
 
-![](huang_cite.png){width="40%"}
+  - Probability distributions over sequences of words, tokens or characters (Shannon, 1948; 1951)
+
+  - As a core task in NLP, often framed as **next token prediction**.
 
 
+## 預訓練大型語言模型橫空出世
+
+[Large Language Models]{#magenta}
+
+. . . 
+
+- Transformer-based pre-trained Large Language Models 改變了NLP/世界
+
+![](llm_tree.png){fig-align="middle"}
 
 
-# Introduction
+##  
 
-- Language Resources 
+- **Emergent Abilities** in LLM : Unpredictable Abilities in Large Language Models
 
-- Large Language Models
+From generation to understanding
 
-- Proposed linkage
+直到大型語言模型開始出現結構理解的*頓悟*行為 (emergence)之後，
+開始有推理能力的期待。
 
 
+![](emergence.png){fig-align="middle"}
 
-# Language Resources
-in linguistics and language technology
 
-- Collection, processing and evaluation of digital form of [language use]{#d-blue}.
+## Reasoning
 
-- **data, tools, advice**
+- Common sense reasoning
 
-  - corpora and lexical (semantic) resources (e.g. [wordnet]{#magenta}), ...
-  - tagger, parser, ...
+- Mathematical reasoning
+
+
+## Iterative Reasoning
+[Rosetta Stone]{#magenta}
+
+
+## Iterative Reasoning
+
+
+# 幻覺與知識阻斷
+hallucination and knowledge-cutoff
+
+- 事實（也許還好解決）
+- 推理、判斷與假說很棘手
+
+. . . 
+
+## BART's hallucination
+(每一家的幻覺都蠻嚴重的)
+. . .
+
+![](oma.png)
+
+. . .
+
+[可愛的錯誤是沒關係，但在重要的決策（如：法律親屬繼承關係）就出大事]{.small-text}
+
+
+## 
+
+
+::: callout-tip
+## 持續學習
+Life-long learning for Human and Machine
+:::
+
+
+- 一個需要回答的技術哲學的問題：我們期待一個通才的 AI 還是專才的 AI 們？
+([可以用我們現在期待的人類社會來想像]{.small-text})
+
+. . . 
+
+- 讓機器與人類一起學習，可以協助人類發想、開創與演化。而這就是語言與知識資源教養 AI 的時代意義。
+
+
+<!-- ##  -->
+<!-- > Here are the images illustrating language and knowledge resources as the food for AI: -->
+
+## 
+
+:::: {.columns}
+
+::: {.column width="25%"}
+
+> Here are the images illustrating language and knowledge resources as the food for AI:
+
+:::
+
+::: {.column width="55%"}
+
+![](ai-lr.png)
+
+:::
+
+
+::::
+
+# 那麼，什麼是語言與知識資源
+**Language (and Knowledge) Resources** in linguistics and language technology
+
+. . . 
+
+- Collection, processing and evaluation of digital form of [language use]{#magenta}.
+
+. . .
+
+- [**數據 data, 工具 tools, 經驗 advice**]{#magenta}
+
+  - corpora and lexical (semantic) resources (e.g. [wordnet, framenet, e-Hownet, Conceptnet, BabelNet, ..]{#d-blue}), ...
+  - tagger, parser, chunker, ...
   - metadata, evaluation metrics, .....
 
-## WordNet architecture
 
-Two core components:
+
+## 我們以詞彙網路舉例
+`WordNet` architecture: two core components:
 
 -   Synset (synonymous set)
 -   Paradigmatic lexical (semantic) relations: hyponymy/hypernymy; meronymy/holonymy, etc
@@ -82,40 +195,40 @@ Two core components:
 ![](wn.graph.png){fig-align="right"}
 
 
-## Chinese Wordnet: Brief History
+<!-- ## Chinese Wordnet: Brief History -->
 
-:::: {.columns}
+<!-- :::: {.columns} -->
 
-::: {.column width="25%"}
+<!-- ::: {.column width="25%"} -->
 
-![](huang.png)
+<!-- ![](huang.png) -->
 
-:::
+<!-- ::: -->
 
-::: {.column width="65%"}
-
-
-- `Sinica BOW` [@huang2004sinica] (2000-2004)
+<!-- ::: {.column width="65%"} -->
 
 
-
-- `Chinese Wordnet at Academia Sinica` (2005-2010)
-
- 
-
-- `Chinese Wordnet at NTU Taiwan` (2010-)
+<!-- - `Sinica BOW` [@huang2004sinica] (2000-2004) -->
 
 
-:::
-::::
 
-. . .
+<!-- - `Chinese Wordnet at Academia Sinica` (2005-2010) -->
 
-::: {.callout-note appearance="simple" icon=false}
 
-Note that there are more than one Chinese Wordnet.
 
-:::
+<!-- - `Chinese Wordnet at NTU Taiwan` (2010-) -->
+
+
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- . . . -->
+
+<!-- ::: {.callout-note appearance="simple" icon=false} -->
+
+<!-- Note that there are more than one Chinese Wordnet. -->
+
+<!-- ::: -->
 
 
 ## Chinese Wordnet
@@ -130,7 +243,7 @@ Note that there are more than one Chinese Wordnet.
 
 
 
-![](MandarinChineseWords.jpg){width=95%}
+![](MandarinChineseWords.jpg)
 
 ## Chinese Wordnet
 - The status quo: latest release 2022, [website](https://lopentu.github.io/CwnWeb/)
@@ -185,7 +298,7 @@ a phenomenon where two or more predicates seem to require that their argument de
 
 . . .
 
-![](eat.png){fig-align="left"}
+![](lang.png){fig-align="left"}
 
 ## CWN 2.0 Programmable Search
 
@@ -389,26 +502,21 @@ sense_tagged = senseTag(tagged)
 
 ![](jia_en.png){fig-align="center"}
 
+# [台灣多模態語料庫](https://multimoco.linguistics.ntu.edu.tw/index.html
+)
+![](moco.png)
 
 
-# Large Language Models (LLMs)
+## 回到我們要探究的問題
+`(Autoregressive) LLMs 與 LR/KR 的關係`
 
-. . . 
+<!-- - Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words.  -->
 
-> Large language models refer to large general-purpose language models that can be pre-trained and then fine-tuned for specific purposes.
+<!-- . . . -->
 
-
-![](llm.png)
-
+<!-- - Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence. -->
 
 
-## Large Language Models (LLMs)
-
-- Autoregressive (AR) models, like GPT-3 (and later versions), generate sentences word by word from left to right. They predict the next word in a sentence given all the previous words. 
-
-. . .
-
-- Autoencoding (AE) models, like BERT, instead focus on understanding the sentence as a whole. They are trained to fill in gaps in a sentence.
 
 
 ## LLM-based NLP: a new paradigm
@@ -417,13 +525,13 @@ Pre-train, Prompt, and Predict [@liu2021pretrain]
 ![Four paradims in NLP](nlp-paradigm.png)
 
 
-## Foundation Models
-From LLMs to FMs (thus [Generative AI]{#magenta})
+<!-- ## Foundation Models -->
+<!-- From LLMs to FMs (thus [Generative AI]{#magenta}) -->
 
-![](foundation_models.png)
+<!-- ![](foundation_models.png) -->
 
-A foundation model can centralize the information from all the data from various modalities. This
-one model can then be adapted to a wide range of downstream tasks.[@bommasani2021opportunities]
+<!-- A foundation model can centralize the information from all the data from various modalities. This -->
+<!-- one model can then be adapted to a wide range of downstream tasks.[@bommasani2021opportunities] -->
 
 
 <!-- ##  -->
@@ -659,7 +767,17 @@ A prompt is composed with the following components:
 
 - incapable of accessing factual/up-to-date information 
 
-![](llm_freq.png){width=30%}
+![](llm_freq.png){width=20%}
+
+- 數據也有可能受到版權、個資與企業隱私問題。
+
+
+## in-context learning and limitations
+`In-context learning (~prompting) `
+
+- involves providing input to the language model in a specific format to elicit the desired output.
+context window restricts the model’s ability to process long sequences of information effectively.
+
 
 
 # A neural-symbolic approach to rebuild the LR ecosystem
@@ -691,30 +809,141 @@ A prompt is composed with the following components:
 
 
 
+# 兩種作法
 
-## LLM apps (`Everything app` v.2) 
+- Fine-tuning on up-to-dated / customized data
 
-- `Everything app` (aka super app) is a commercial scenario where all the living services are provided.
-  - e.g., imaging a super app (like `WeChat`) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services.
-  
 . . .
 
-- Similarly, the (external knowledge and factual resources) plugins enable LLMs (like `GPT-4`, `PaLM-2`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation.
+- Retrieval-augmented in-context learning (e.g., RAG prompting)
 
 
-##  LLM apps: another example
-`JARVIS`
+# Fine-tune
 
-![HuggingGPT: workflow](hugginggpt_workflow.png)
+
+quantization
+
+## LoLama: a fine-tuned model
+
+- We fine-tune LoLlama on top of Taiwan-LLaMa (Lin and Chen, 2023), which was pre-trained on over
+5 billion tokens of Traditional Chinese. The model was further fine-tuned on over 490K multi-turn con-
+versational data to enable instruction-following and context-aware responses.
+- We train LoLlama with CWN
+
+
+## Evaluation
+
+![](lollama.png)
+
+## Evaluation
+![](lollama2.png)
+
+
+
+
+
+## 問題限制
+
+- 商用好，但很貴，也不保證安全。
+- 開源的 llm 越來越好，壓縮技術越見成熟。但訓練不便宜，動輒政治價值審查。
+
+. . .
+
+[（抱怨：又要馬兒跑，又要馬兒沒草吃）]{.small-text}
+
+
+# RAG
+
+![](rag.png)
+
+
+## Vector DataBase and Embeddings
+
+
+
+
+<!-- ## LLM apps (`Everything app` v.2)  -->
+
+<!-- - `Everything app` (aka super app) is a commercial scenario where all the living services are provided. -->
+<!--   - e.g., imaging a super app (like `WeChat`) offers food delivery, ride-hailing, on-demand package delivery, financial and investing, and other services. -->
+
+<!-- . . . -->
+
+<!-- - Similarly, the (external knowledge and factual resources) plugins enable LLMs (like `GPT-4`, `PaLM-2`) to gather real-time information pertinent to their conversation prompts, effectively overcoming the limitation. -->
+
+
+<!-- ##  LLM apps: another example -->
+<!-- `JARVIS` -->
+
+<!-- ![HuggingGPT: workflow](hugginggpt_workflow.png) -->
+
+<!-- ##  -->
+
+<!-- - an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT -->
+
+<!-- ![](hf_jarvis.jpeg) -->
+
+
+
+## Workflow
+
+![](langchain-step.png)
+
+
+
+# CWN 2.0 and SoMe Corpus plugins for LLMs
+[lopeGPT]{#magenta}: a RAG model high-level architecture
+[lopeGPT](https://lope.linguistics.ntu.edu.tw/lopeGPT) 
+
+
+
+<!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
+
+![](lopegpt.png){width="920px"}
+
+
+
+## Experiments on Sense Computing Tasks
+`augmented LLMs`
+
+- sense definition, lexical relation query and processing
+- sense tagging and analysis 
 
 ## 
 
-- an LLM as the controller and numerous expert models as collaborative executors (from HuggingFace Hub), demo at https://huggingface.co/spaces/microsoft/HuggingGPT
-
-![](hf_jarvis.jpeg)
+![](lopegpt_huang.png)
 
 
 
+## Experiments on Sense computing tasks
+`localized and customized`
+
+- upload data to calculate (word frequency, word sense frequency, etc) via `llama-index` data loader.
+
+- vectorized the data and semantically search/compare 
+
+- given few shot, predict the sense and automatically generate the gloss (and relations to others)
+
+. . .
+
+::: {.callout-note appearance="default"}
+
+All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API) . It uses the default configurations, i.e., `temperature`=0.0.
+
+:::
+
+
+## Some prelimenary results
+
+![](lopegpt_upload.png)
+
+
+
+
+# LLMs orchestration
+Orchestration frameworks provide a way to manage and control LLMs. 
+
+需要一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果
 
 ## Langchain
 
@@ -726,7 +955,7 @@ A prompt is composed with the following components:
 
 ## Architecture
 
-![](langchain_components.png)
+![](lanchain.gif)
 
 ## langchain components
 
@@ -765,66 +994,6 @@ A prompt is composed with the following components:
 
 
 
-## Workflow
-
-![](langchain-step.png)
-
-
-
-# CWN 2.0 and Corpus plugins for LLMs
-[lopeGPT]{#magenta}: high-level architecture
-
-
-<!-- <img src="lopegpt.png" alt="drawing" align = "center" style="width:900px;"/> -->
-
-![](lopegpt.png){width="920px"}
-
-
-
-## Experiments on Sense Computing Tasks
-`augmented LLMs`
-
-- sense definition, lexical relation query and processing
-
-- sense tagging and analysis 
-
-
-
-## 
-
-![](lopegpt_huang.png)
-
-
-
-## Experiments on Sense computing tasks
-`localized and customized`
-
-- upload data to calculate (word frequency, word sense frequency, etc) via `llama-index` data loader.
-
-- vectorized the data and semantically search/compare 
-
-- given few shot, predict the sense and automatically generate the gloss (and relations to others)
-
-. . .
-
-::: {.callout-note appearance="default"}
-
-All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API) . It uses the default configurations, i.e., `temperature`=0.0.
-
-:::
-
-
-## Some prelimenary results
-
-![](lopegpt_upload.png)
-
-
-
-
-## Web app demo 
-
-
-
 <!-- ## Next:  -->
 
 <!-- 如此一來，Auto-GPT 就能打造出一個閉環（closed loop），進而有能力應對更複雜的多步程序；我們也可以把 Auto-GPT 看作一名專案經理，協調所有進行中的工作項目，確保各專案達成理想的最終結果。目前 Auto-GPT 能夠與線上和本地的應用程序、軟體和服務進行各種互動，例如網頁瀏覽器與文字處理器。 . . . -->
@@ -832,28 +1001,28 @@ All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API) . It uses 
 <!-- Once you have explored and want to bring it into memory, it's also fast! -->
 
 
-# Final thoughts
+<!-- # Final thoughts -->
 
-. . .
+<!-- . . . -->
 
-- Democratizing LLM and connect LR help keep balance between the generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic knowledge systems. 
-    - LLM chains; Agent network
+<!-- - Democratizing LLM and connect LR help keep balance between the generalization capabilities of neural networks and the interpretability and reasoning capabilities of symbolic knowledge systems.  -->
+<!--     - LLM chains; Agent network -->
 
-. . .
+<!-- . . . -->
 
-- [Auto-GPT]{#magenta} and alike as Project Manager (for a scaled and manageable ecosystem for `LR + LLM` based applications)
+<!-- - [Auto-GPT]{#magenta} and alike as Project Manager (for a scaled and manageable ecosystem for `LR + LLM` based applications) -->
 
-. . .
+<!-- . . . -->
 
-> More and more democratized LLMs and more diverse ecosystems which lead to a more stable symbiosis for Human and Machine.
-
-
+<!-- > More and more democratized LLMs and more diverse ecosystems which lead to a more stable symbiosis for Human and Machine. -->
 
 
-# Acknowledgment
 
 
-> 連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！
+<!-- # Acknowledgment -->
+
+
+<!-- > 連大成、陳品而、王伯雅、古貿昌、張淳涵以及 lopers 們！ -->
 
 
 ## Reference
@@ -863,10 +1032,16 @@ All examples are tested with `chatgpt-3.5-turbo` (using OpenAI's API) . It uses 
 
 
 
-# [祝黃老師 福如東海 壽比南山]{#magenta}
+<!-- # [祝黃老師 福如東海 壽比南山]{#magenta} -->
 
-<iframe data-external="1" src="end.mp4" width="100%" height="85%"></iframe>
+<!-- <iframe data-external="1" src="end.mp4" width="100%" height="85%"></iframe> -->
 
 <!-- {{< "video" "end.mp4" "width"="100%" "height"="85%" >}} -->
+
+
+## Hands-on coding tutorial
+
+![](langchain-tutorial.png)
+
 
 
