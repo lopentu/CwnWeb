@@ -114,7 +114,7 @@ From generation to understanding?
 
 . . . 
 
-![](iol2.png)
+![](iol2.png){width=800}
 
 
 
@@ -148,11 +148,14 @@ BART's hallucination
 
 . . .
 
-![](oma.png)
+![](oma.png){width=60%}
 
-. . .
 
+
+##
 [可愛的錯誤是沒關係，但在重要的決策（如：法律親屬繼承關係）就出大事]{.small-text}
+
+![](bard.png){width=60%}
 
 
 ## 
@@ -859,11 +862,11 @@ versational data to enable instruction-following and context-aware responses.
 
 
 
-## 問題限制
+## 微調的問題與限制
 
-- 商用好，但很貴，也不保證安全。
+- 商業版本好，但很貴，也不保證安全。
 
-- 開源的 llm 越來越好，壓縮技術越見成熟。但訓練不便宜，動輒政治價值審查。
+- 開源的 llm 越來越好，壓縮技術越見成熟。但訓練不便宜，結果常動輒被政治價值審查。
 
 . . .
 
@@ -887,7 +890,7 @@ versational data to enable instruction-following and context-aware responses.
 
 - We obtain vectors by removing the last layer and taking the output from the second-to-last layer. 
 
-- Vector DB/ Vector Store: 
+- Vector DB/ Vector Stores
 
 <!-- ## LLM apps (`Everything app` v.2)  -->
 
