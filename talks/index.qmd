@@ -80,7 +80,7 @@ bibliography: cllt_v2.bib
 
 - Transformer-based pre-trained Large Language Models changed NLP/the world
 
-![](llm_tree.png){fig-align="middle" width=50%}
+![Yang et al. 2023](llm_tree.png){fig-align="middle" width=50%} 
 
 
 ##  
